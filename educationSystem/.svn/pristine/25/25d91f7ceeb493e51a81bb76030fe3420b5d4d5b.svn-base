@@ -1,0 +1,125 @@
+var menu = {
+	'home' : {
+		title : '首页',
+		menu : [ {
+			title : '首页',
+			icon : 'imgs/main/l03.png',
+			href : 'index.html',
+
+		}
+		
+		]
+	},
+
+	'project' : {
+		title : '查询信息',
+		menu : [  {
+			title : '学籍信息',
+			icon : 'imgs/main/l01.png',
+			href : 'project/selectSroll.jsp',
+			isCurrent : true
+		},
+		         {
+			title : '专业信息',
+			icon : 'imgs/main/l02.png',
+			href : 'project/userinfo.html',
+			
+		}, {
+			title : '教室信息',
+			icon : 'imgs/main/l03.png',
+			href : 'project/plan.html'
+		}, {
+			title : '教师信息',
+			icon : 'imgs/main/l04.png',
+			href : 'adminAction!selectAllTeacher'
+		}, {
+			title : '课表信息',
+			icon : 'imgs/main/l05.png',
+			href : 'adminAction!selectSchoolCourse'
+		}, {
+			title : '班级信息',
+			icon : 'imgs/main/l06.png',
+			href : 'adminAction!selectAllSclass'
+		}, {
+			title : '选课信息',
+			icon : 'imgs/main/l07.png',
+			href : 'adminAction!selectAllExcourse'
+		}, {
+			title : '成绩信息',
+			icon : 'imgs/main/l08.png',
+			href : 'project/selectGrade.jsp'
+		} ]
+	},
+
+	'query' : {
+		title : '教学评估',
+		menu : [
+
+		{
+			title : '上传教学评估表',
+			icon : 'imgs/main/l12.png',
+			href : 'query/addQuestion.jsp',
+			isCurrent : true
+		}, {
+			title : '查看评估表',
+			icon : 'imgs/main/l14.png',
+			href : 'adminAction!selectAllQuestion'
+		},
+
+		/*
+		 * { title: '平时考核成绩查询', icon: 'imgs/main/l13.png', href:
+		 * 'query/normal_time.html' },{ title: '加扣分查询', icon:
+		 * 'imgs/main/l15.png', href: 'query/grade_query.html' },{ title:
+		 * '辖区考核情况统计', icon: 'imgs/main/l16.png', href: 'query/exam.html' }
+		 */
+		]
+	},
+
+	'mange' : {
+		title : '后台管理',
+		menu : [ {
+			title : '专业管理',
+			icon : 'imgs/main/l17.png',
+			isCurrent : true,
+			href : 'backend/organ_manger.html'
+		}, {
+			title : '教室管理',
+			icon : 'imgs/main/l18.png',
+			href : 'backend/person/person_manger.html'
+		}, {
+			title : '教师管理',
+			icon : 'imgs/main/l19.png',
+			href : 'backend/addTeacher.jsp'
+		}, {
+			title : '班级管理',
+			icon : 'imgs/main/l20.png',
+			href : 'backend/minzhu/addClass.jsp'
+		}, {
+			title : '学生管理',
+			icon : 'imgs/main/l21.png',
+			href : 'backend/minzhu/weight.html'
+		}, {
+			title : '课程管理',
+			icon : 'imgs/main/l22.png',
+			href : 'backend/addCourse.jsp'
+		}, {
+			title : '选课管理',
+			icon : 'imgs/main/l23.png',
+			href : 'backend/addExCourse.jsp'
+		}, {
+			title : '学籍登记',
+			icon : 'imgs/main/l27.png',
+			href : 'backend/addSroll.jsp'
+		} /*
+			 * ,{ title: '加扣分理由管理', icon: 'imgs/main/l28.png', href:
+			 * 'backend/score_manage/manage.html' },{ title: '加扣分管理', icon:
+			 * 'imgs/main/l29.png', href:
+			 * 'backend/score_manage/score_manage.html' },{ title: '学习园地', icon:
+			 * 'imgs/main/l30.png', href: 'backend/study/list.html' },{ title:
+			 * '人员调动', icon: 'imgs/main/l31.png', href:
+			 * 'backend/person_transfer.html' }
+			 */
+
+		]
+	}
+};

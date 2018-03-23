@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- 数据库相关连接信息 -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/educationsystem</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
+
+		<!-- 设置数据库方言 -->
+
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!-- 显示sql语句 -->
+		<property name="show_sql">true</property>
+		<!-- 格式化sql语句 -->
+		<property name="format_sql">true</property>
+
+		<!-- 关联映射文件 -->
+
+		
+		<mapping resource="com/icss/entity/Course.hbm.xml" />
+		<mapping resource="com/icss/entity/Excourse.hbm.xml" />
+		<mapping resource="com/icss/entity/Major.hbm.xml" />
+		<mapping resource="com/icss/entity/Question.hbm.xml" />
+		<mapping resource="com/icss/entity/Sclass.hbm.xml" />
+		<mapping resource="com/icss/entity/User.hbm.xml" /> 
+		<mapping resource="com/icss/entity/Sroll.hbm.xml" />
+		<mapping resource="com/icss/entity/Student.hbm.xml" />
+		<mapping resource="com/icss/entity/Teacher.hbm.xml" />
+		<mapping resource="com/icss/entity/EnCourse.hbm.xml" />
+		<mapping resource="com/icss/entity/Room.hbm.xml" />
+		<mapping resource="com/icss/entity/Evaluation.hbm.xml" />
+		<mapping resource="com/icss/entity/Grade.hbm.xml" />
+		
+	</session-factory>
+
+</hibernate-configuration>

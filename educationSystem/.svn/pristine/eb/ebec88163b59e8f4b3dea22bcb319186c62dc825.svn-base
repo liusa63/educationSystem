@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>录入班级信息</title> 
+<link href="${pageContext.request.contextPath }/css/base.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/backend/reationship.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/js/lib/ztree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+function sub(){
+	var id=$("#dep>option:selected").val();
+	$("#aa").val(id);
+	alert(id);
+		$("#formadd").submit();    
+}
+
+
+$(function(){
+	
+		$.ajax({
+			type:"post",
+			url:"selectAll_departmentAction",
+			success:function(list1){
+				alert(1);
+			   alert(list);
+			 	var str="<select id='dep'>";
+				for(var i=0;i<list1.length;i++){
+					str+="<option value="+list1[i].id+">"+list1[i].departmentName+"<option>";
+				}
+				str+="</select>";
+				$("#content").html(str); 
+			},
+			error:function(){
+				alert("失败");
+			}
+			
+			
+		})
+	
+})
+
+
+</script>
+</head> 
+<body>
+  
+    <form id="formadd" action="addEmploy_employAction" method="post">
+		<table>
+			<tr>
+				<td>员工姓名:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="name" />
+
+				</td>
+			</tr>
+
+			<tr>
+				<td>员工生日:</td>
+				
+				<td>&nbsp;&nbsp;<input class="easyui-datebox" data-options="sharedCalendar:'#cc'" name="birthday" >
+                <div id="cc" class="easyui-calendar"></div>
+				</td>
+			</tr>
+			
+			<tr>
+			
+			<td>选择所在部门:</td>
+			<td><span id="content"></span>
+				</td>			
+			</tr>
+			<tr>		  
+		        <td><input type="hidden" name="depId" id=aa />				
+				<td><input type="button" value="提交" onclick="sub();" />				
+			</tr>
+		</table>
+
+	</form>
+</body> 
+</html>

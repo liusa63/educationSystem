@@ -1,0 +1,92 @@
+package com.icss.entity;
+
+import java.util.Date;
+
+public class Sroll {
+	private int srId;//学籍id
+	private String  srNumber; //学号
+	private String srName; //姓名
+	private String srSex;//性别
+	private String srAddress;//籍贯
+	private String srImg;//照片
+	private String srPhone;//联系电话
+	private String srEmail;//邮箱
+	private Date srTime; //入学日期
+	private Date srBirthday;//出生日期
+	private String srIdCard;//身份证号
+	private String srIsRoll;//是否有学籍
+	public int getSrId() {
+		return srId;
+	}
+	public void setSrId(int srId) {
+		this.srId = srId;
+	}
+	public String getSrNumber() {
+		return srNumber;
+	}
+	public void setSrNumber(String srNumber) {
+		this.srNumber = srNumber;
+	}
+	public String getSrName() {
+		return srName;
+	}
+	public void setSrName(String srName) {
+		this.srName = srName;
+	}
+	public String getSrSex() {
+		return srSex;
+	}
+	public void setSrSex(String srSex) {
+		this.srSex = srSex;
+	}
+	public String getSrAddress() {
+		return srAddress;
+	}
+	public void setSrAddress(String srAddress) {
+		this.srAddress = srAddress;
+	}
+	public String getSrImg() {
+		return srImg;
+	}
+	public void setSrImg(String srImg) {
+		this.srImg = srImg;
+	}
+	public String getSrPhone() {
+		return srPhone;
+	}
+	public void setSrPhone(String srPhone) {
+		this.srPhone = srPhone;
+	}
+	public String getSrEmail() {
+		return srEmail;
+	}
+	public void setSrEmail(String srEmail) {
+		this.srEmail = srEmail;
+	}
+	public Date getSrTime() {
+		return srTime;
+	}
+	public void setSrTime(Date srTime) {
+		this.srTime = srTime;
+	}
+	public Date getSrBirthday() {
+		return srBirthday;
+	}
+	public void setSrBirthday(Date srBirthday) {
+		this.srBirthday = srBirthday;
+	}
+	public String getSrIdCard() {
+		return srIdCard;
+	}
+	public void setSrIdCard(String srIdCard) {
+		this.srIdCard = srIdCard;
+	}
+	public String getSrIsRoll() {
+		return srIsRoll;
+	}
+	public void setSrIsRoll(String srIsRoll) {
+		this.srIsRoll = srIsRoll;
+	}
+	
+
+}

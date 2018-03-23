@@ -1,0 +1,120 @@
+package com.icss.dao;
+
+import java.util.List;
+import java.util.Set;
+
+import com.icss.entity.Course;
+import com.icss.entity.EnCourseVo;
+import com.icss.entity.EvaluationVo;
+import com.icss.entity.Excourse;
+import com.icss.entity.ExcourseVo;
+import com.icss.entity.Grade;
+import com.icss.entity.Question;
+import com.icss.entity.Room;
+import com.icss.entity.Sclass;
+import com.icss.entity.Student;
+import com.icss.entity.Teacher;
+import com.icss.entity.TeacherVo;
+import com.icss.entity.User;
+
+/**
+ * 
+ * <p>Title:TeacherDao</p>
+ * <P>Description:</p>
+ * <p>Company:</p>
+ * @author jby
+ * @date2017-9-27下午3:13:26
+ */
+public interface TeacherDao {
+
+	//浏览个人信息--老师登录系统后，可浏览自己的个人基本信息，但没有修改或删除的权限。
+	public TeacherVo findTeacher(String teNum);
+	
+	//修改密码
+	public void updatePwd(User user);
+	
+	//获取教师id
+	public Teacher findByNum(String teNum);
+	
+	//查询课程详情---添加到List<Course>集合中
+	public Course findCourse(int coId);
+	
+	//获取课程信息
+	public Course change(int coId);
+	
+	//分页查询所有必修课程
+	public List<EnCourseVo> findPageCourse(int firstResult, int pageSize,int teId);
+	
+	//查询指定教师课程总数---根据EnCourse必修课程表
+	public int selectCountCourse(int teId);
+	
+	//遍历问题表，将问题添加到评估表的表头，取代答案1...
+	public List<Question> selectQuestion();
+	
+	//根据课程查看所有评估，计算每个问题的平均分
+	public EvaluationVo selectByCoId(int coId,int teId);
+
+	//分页查询所有评估
+	public List<EvaluationVo> findPageEva(int firstResult, int pageSize,int teId);
+	
+	//查询指定教师评估总数-----根据Envalution
+	public int selectCountEva(int coId);
+	
+	//查询指定课程id
+	public List<Course> findCourseList(int teId); 
+	
+	//查询班级---根据课程id和教师id
+	public List<Sclass> selectSclassByCoIdAndTeId(int coId,int teId);
+	
+    //班级信息
+	public List<Sclass> selectSclassByTeId(int teId);
+
+	//获取班级里面的学生
+	public Set<Student> selectByClId(int clId);
+	
+	//录入成绩
+	public void addGrade(Grade grade);
+	
+	//判断是否已经录入过必修成绩
+	public Grade selectByConameAndStnum(String coName, String stNum);
+	
+	//分页查询所有成绩
+	public List<Grade> findPageGrade(int firstResult, int pageSize);
+	
+	//查询成绩总条数
+	public int selectCountGrade();
+	
+	//分页查询所有成绩------根据课程分类
+	public List<Grade> selectPageGradeByCourse(int firstResult, int pageSize,String coName);
+	
+	//查询成绩总条数------根据课程分类
+	public int selectGradeByCourse(String coName);
+	
+	//查询一个班级的成绩
+	public List<Grade> selectGrades(int coId,String coName);
+	
+	//分页查询所有选修课程
+	public List<ExcourseVo> findPageExcourse(int firstResult, int pageSize,int teId);
+	
+	//根据教室Id查询教室详情
+	public Room findRoomByRoid(int roId);
+	
+	//查询教师选修课程总数---根据Excourse选修课程表
+	public int selectCountExcourse(int teId);
+	
+	//查询选修课----根据教师id
+	public List<Excourse> selectEncourseByTeid(int teId);
+	
+	//查询选修某门课的学生集合----根据选修课名称exName
+	public Set<Student> selectByExname(int exId);
+	
+	//查询某选修课详情----根据根据选修课id
+	public Excourse selectExcourseByExname(int exId);
+	
+	//判断是否已经录入选修成绩------coName 实际上是 exName
+	public Grade selectByExnameAndStnum(String coName, String stNum);
+	
+	//查询选修成绩----根据课程名称
+	public List<Grade> selectExGrades(String coName);
+	
+}

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>录入全校课表</title> 
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript">
+/* 获取选中单选框 */
+function testradio(){
+	var v = $(":radio:checked").val();
+	if(v!=undefined){
+		$("#teMethod").val(v);
+		$("#subform").submit();
+}else{
+	alert("您还没有选择录入方式");
+}
+	
+	 
+	
+	/*  alert(v);  */
+}
+</script>
+</head>
+<body>
+	<form action="${pageContext.request.contextPath }/adminAction!checkTeacherMethod" method="post" id="subform">
+		选择录入方式：</br>
+		</br> <input type="radio" value="2" name="逐个录入">逐个录入&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" value="3" name="批量录入"> 批量录入 </br>
+		<input type="hidden" name="teMethod" id="teMethod">
+		</br> <input type="button" value="确定" onclick="testradio();" />
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+package com.icss.action;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.icss.biz.AdminBiz;
+import com.icss.entity.Course;
+import com.icss.entity.Evaluation;
+import com.icss.entity.Question;
+import com.icss.entity.Sclass;
+import com.icss.entity.Teacher;
+import com.icss.util.PageList;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+
+/**
+ * 
+ * <p>
+ * Title:AdminAction
+ * </p>
+ * <p>
+ * Description:
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
+ * @author gjh
+ * @date2017-9-27上午11:50:32
+ */
+@Controller(value = "adminAction")
+public class AdminAction extends ActionSupport implements ModelDriven<Teacher> {
+	@Autowired
+	@Qualifier(value = "adminBiz")
+	AdminBiz adminBiz;
+
+	// 封装参数--录入教师信息方式
+	private String teMethod;
+
+	public void setTeMethod(String teMethod) {
+		this.teMethod = teMethod;
+	}
+
+	private Teacher teacher = new Teacher();
+
+	public Teacher getModel() {
+		// TODO Auto-generated method stub
+		return this.teacher;
+	}
+
+	// 封装班级参数
+	private Sclass sclass;
+
+	public void setSclass(Sclass sclass) {
+		this.sclass = sclass;
+	}
+
+	// 封装课程参数
+	private Course course;
+
+	public void setAdminBiz(AdminBiz adminBiz) {
+		this.adminBiz = adminBiz;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	// 封装问题参数
+	private Question question;
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+	
+	//封装参数
+	private int currentpage;
+
+	public void setCurrentpage(int currentpage) {
+		this.currentpage = currentpage;
+	}
+
+	// 判断录入老师/课程信息的方式：0---老师逐个录入，1---老师批量录入 2-课程逐个录入-3--课程批量录入
+	public String checkTeacherMethod() {
+		if ("0".equals(teMethod)) {
+			return "addTeacher";
+
+		} else if ("1".equals(teMethod)) {
+			return "addTeachers";
+		} else if ("2".equals(teMethod)) {
+			return "addCourse";
+		}
+
+		return "addCourses";
+	}
+
+	// 逐个录入老师信息
+	public String addTeacher() {
+		adminBiz.addTeacher(teacher);
+		return SUCCESS;
+
+	}
+
+	// 录入班级信息
+	public String addSclass() {
+		int i = sclass.getClCount();
+		System.out.println();
+		System.out.println(sclass.getClName());
+		adminBiz.addSclass(sclass);
+		return SUCCESS;
+
+	}
+
+	// 录入课程信息
+	public String addCourse() throws ParseException {
+		
+		adminBiz.addCourse(course);
+		return SUCCESS;
+	}
+
+	// 录入问题表
+	public String addQuestion() {
+		adminBiz.addQuestion(question);
+		return SUCCESS;
+
+	}
+	
+	//查看所有的评估问题
+	public String selectAllQuestion(){
+		List<Question> qlist=adminBiz.selectAllQuestion();
+		Map request = (Map) ActionContext.getContext().get("request");
+
+		request.put("qList", qlist);
+		return "selectAllQuestion";
+		
+	}
+	
+	//查看所有反馈信息，分页展示
+	public  String selectListEvaluation(){
+		PageList<Evaluation> page = new PageList<Evaluation>();
+		Map request = (Map) ActionContext.getContext().get("request");
+
+		int pageSize = 2;
+		// 获取用户传过来的参数：当前页,并判断是否为空，为空则默认第一页
+		if (currentpage != 0) {
+			currentpage = currentpage;
+		}
+		page.setCountPage(currentpage);
+		
+		// 获取当前页，及每页显示的条数
+		try {
+			adminBiz.selectListEvaluation(page, pageSize);
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return ERROR;
+		}
+		request.put("page", page);
+		//查看所有问题
+		List<Question> qlist=adminBiz.selectAllQuestion();
+	
+
+		request.put("qList", qlist);
+		return "evaluation";
+
+		
+
+	
+		
+	}
+	
+
+}

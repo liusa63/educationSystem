@@ -1,0 +1,297 @@
+package com.icss.action;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import com.icss.biz.AdminBiz;
+import com.icss.entity.Course;
+import com.icss.entity.Evaluation;
+import com.icss.entity.Major;
+import com.icss.entity.Question;
+import com.icss.entity.Sclass;
+import com.icss.entity.Teacher;
+
+import com.icss.util.PageList;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+
+/**
+ * 
+ * <p>
+ * Title:AdminAction
+ * </p>
+ * <p>
+ * Description:
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
+ * @author gjh
+ * @date2017-9-27上午11:50:32
+ */
+@Controller(value = "adminAction")
+public class AdminAction extends ActionSupport implements ModelDriven<Teacher> {
+	@Autowired
+	@Qualifier(value = "adminBiz")
+	AdminBiz adminBiz;
+
+	// 封装参数--录入教师信息方式
+	private String teMethod;
+
+	public void setTeMethod(String teMethod) {
+		this.teMethod = teMethod;
+	}
+
+	private Teacher teacher = new Teacher();
+
+	public Teacher getModel() {
+		// TODO Auto-generated method stub
+		return this.teacher;
+	}
+
+	// 封装班级参数
+	private Sclass sclass;
+
+	public void setSclass(Sclass sclass) {
+		this.sclass = sclass;
+	}
+
+	// 封装课程参数
+	private Course course;
+
+	public void setAdminBiz(AdminBiz adminBiz) {
+		this.adminBiz = adminBiz;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	
+	private String start;
+	private String end;
+	
+	
+
+	public void setStart(String start) {
+		this.start = start;
+	}
+
+	public void setEnd(String end) {
+		this.end = end;
+	}
+
+	// 封装问题参数
+	private Question question;
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+	
+	//封装参数
+	private int currentpage;
+
+	public void setCurrentpage(int currentpage) {
+		this.currentpage = currentpage;
+	}
+	
+	
+	private List<Major> mlist;
+	
+
+	public List<Major> getMlist() {
+		return mlist;
+	}
+	
+	public void setMlist(List<Major> mlist) {
+		this.mlist = mlist;
+	}
+	private List<Teacher> tlist;
+	
+	
+	public List<Teacher> getTlist() {
+		return tlist;
+	}
+
+	public void setTlist(List<Teacher> tlist) {
+		this.tlist = tlist;
+	}
+
+	//封装参数
+	private int maId;
+	
+
+	public void setMaId(int maId) {
+		this.maId = maId;
+	}
+	
+	private String tebehave;//班主任
+	
+
+	public void setTebehave(String tebehave) {
+		this.tebehave = tebehave;
+	}
+
+	// 判断录入老师/课程信息的方式：0---老师逐个录入，1---老师批量录入 2-课程逐个录入-3--课程批量录入
+	public String checkTeacherMethod() {
+		if ("0".equals(teMethod)) {
+			return "addTeacher";
+
+		} else if ("1".equals(teMethod)) {
+			return "addTeachers";
+		} else if ("2".equals(teMethod)) {
+			return "addCourse";
+		}
+
+		return "addCourses";
+	}
+
+	// 逐个录入老师信息
+	public String addTeacher() {
+		
+		adminBiz.addTeacher(teacher);
+		return "addSuccessTeacher";
+
+	}
+
+	// 录入班级信息
+	public String addSclass() {
+		Major major=adminBiz.selectByIdMajor(maId);
+		sclass.setMajor(major);		
+		adminBiz.addSclass(sclass);
+		return SUCCESS;
+
+	}
+
+	// 录入课程信息
+	public String addCourse() throws ParseException {	
+		System.out.println(start);
+		SimpleDateFormat df = new  SimpleDateFormat("yyyy-MM-dd");
+		Date startTime = df.parse(start);
+		Date endTime = df.parse(end);		
+		course.setCoStartTime(startTime);
+		course.setCoEndTime(endTime);		
+		System.out.println(course.getCoStartTime());
+		adminBiz.addCourse(course);
+		return SUCCESS;
+	}
+
+	// 录入问题表
+	public String addQuestion() {
+		adminBiz.addQuestion(question);
+		return SUCCESS;
+
+	}
+	
+	//查看所有的评估问题
+	public String selectAllQuestion(){
+		List<Question> qlist=adminBiz.selectAllQuestion();
+		Map request = (Map) ActionContext.getContext().get("request");
+
+		request.put("qList", qlist);
+		return "selectAllQuestion";
+		
+	}
+	
+	/*//查看所有反馈信息，分页展示
+	public  String selectListEvaluation(){
+		PageList<Evaluation> page = new PageList<Evaluation>();
+		Map request = (Map) ActionContext.getContext().get("request");
+
+		int pageSize = 2;
+		// 获取用户传过来的参数：当前页,并判断是否为空，为空则默认第一页
+		if (currentpage != 0) {
+			currentpage = currentpage;
+		}
+		page.setCountPage(currentpage);
+		List<Question> qlist=null;
+		// 获取当前页，及每页显示的条数
+		try {
+			qlist=adminBiz.selectAllQuestion();
+			adminBiz.selectListEvaluation(page, pageSize);
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return ERROR;
+		}
+		request.put("page", page);
+		//查看所有问题
+	
+		request.put("qlist", qlist);
+		return "evaluation";
+
+		
+
+	
+		
+	}*/
+	
+	
+	//分页查看所有教师信息
+	public String selectAllTeacher(){
+		PageList<Teacher> page = new PageList<Teacher>();
+		Map request = (Map) ActionContext.getContext().get("request");
+
+		int pageSize = 2;
+		// 获取用户传过来的参数：当前页,并判断是否为空，为空则默认第一页
+		if (currentpage != 0) {
+			currentpage = currentpage;
+		}
+		page.setCountPage(currentpage);
+		List<Major> mlist=null;
+		// 获取当前页，及每页显示的条数
+		try {
+		
+			adminBiz.selectListTeacher(page, pageSize);
+			//查看所有专业
+			mlist=adminBiz.selectAllMajor();
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return ERROR;
+		}
+		request.put("page", page);
+		request.put("mlist", mlist);
+		
+	
+		
+		return "teacher";
+
+	}
+	
+	//查询所有专业
+	public String selectAllMajor(){
+	 mlist=adminBiz.selectAllMajor();
+		return "selectMajor";
+		
+	}
+	
+	//查询所有班主任
+	public String selectByIdTeacher(){
+		tlist=adminBiz.selectByIdTeacher(tebehave);
+		return "AjaxTeacher";
+		
+	}
+	
+
+}

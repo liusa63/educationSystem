@@ -1,0 +1,44 @@
+package com.icss.biz.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.icss.biz.AdminBiz;
+import com.icss.dao.AdminDao;
+import com.icss.entity.Course;
+import com.icss.entity.Question;
+import com.icss.entity.Sclass;
+import com.icss.entity.Teacher;
+
+@Service(value="adminBiz")
+public class AdminBizImpl implements AdminBiz {
+	@Autowired
+	@Qualifier(value="adminDao")
+	AdminDao adminDao;
+
+	
+	//逐个添加教师信息
+	public void addTeacher(Teacher teacher) {
+		adminDao.addTeacher(teacher);
+		
+	}
+
+	//逐个添加班级信息
+	public void addSclass(Sclass sclass) {
+		adminDao.addSclass(sclass);
+		
+	}
+
+	public void addCourse(Course course) {
+		adminDao.addCourse(course);
+		
+	}
+	
+//添加问题
+	public void addQuestion(Question question) {
+		adminDao.addQuestion(question);
+		
+	}
+
+}

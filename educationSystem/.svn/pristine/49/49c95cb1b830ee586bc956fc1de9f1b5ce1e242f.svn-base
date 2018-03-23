@@ -1,0 +1,44 @@
+/**
+ * 
+ */
+package com.icss.dao;
+
+import java.util.List;
+
+import com.icss.entity.Course;
+import com.icss.entity.Major;
+import com.icss.entity.Sroll;
+import com.icss.entity.Student;
+import com.icss.entity.User;
+import com.icss.util.PageList;
+
+/**
+ *<p>Title:StudentDao</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月27日上午9:07:34
+ */
+public interface StudentDao {
+	
+	    //查询学生表的信息
+		public Student findStudent(String  stNum);
+		
+		//查询学籍
+		public Sroll findStudentInfo(String stNum);
+		
+		//修改学生密码
+		public void changeStudentPwd(User user);
+		
+		//查询学生所在专业
+		public Major findMajor(User user);
+		
+		//分页查询所有课程
+		public List<Course> findAllCourse(int begin, int max,Major major);
+
+		//查询本专业课程总数
+		public int selectCountCourse(int maId);
+		
+		
+
+}

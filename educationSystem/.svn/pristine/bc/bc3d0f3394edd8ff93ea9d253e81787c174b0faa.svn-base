@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt"  prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>管理员--专业</title>
+<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/project/normal_exam.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/js/lib/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+		
+</head>
+<body>
+ <div style="height:50px;">
+  
+  </div>
+    <div class="container">
+    <div class="table-zone">
+         <table class="no-data">
+            <thead>
+              <tr>
+              <td style="width:100px;">专业ID</td>
+              <td style="width:160px;">专业名</td>
+              <td style="width:110px;">操作</td>
+            </tr></thead>
+            <tbody>
+              
+              <c:forEach items="${majorList }" var="m">
+              <tr>
+                <td >${m.maId}</td>
+                <td >${m.maName }</td>
+                <td >
+                <a href="${pageContext.request.contextPath}/adminLittleAction!findMajorById?maid=${m.maId}"><span style="color:blue">修改|</span></a>
+                <a href="${pageContext.request.contextPath}/adminLittleAction!findClassByMajor?maid=${m.maId}"><span style="color:blue">|查看专业班级</span></a>
+                </td>
+              </tr>
+              
+              </c:forEach>
+            </tbody> 
+            
+            
+         </table>
+         </div>
+         </div>
+         
+</body>
+</html>

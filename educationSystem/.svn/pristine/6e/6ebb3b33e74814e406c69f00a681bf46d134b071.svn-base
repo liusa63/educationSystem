@@ -1,0 +1,96 @@
+package com.icss.dao.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
+import com.icss.dao.TeacherDao;
+import com.icss.entity.Course;
+import com.icss.entity.EnCourse;
+import com.icss.entity.Major;
+import com.icss.entity.Teacher;
+import com.icss.entity.User;
+/**
+ * 
+ * <p>Title:TecaherDaoImpl</p>
+ * <P>Description:</p>
+ * <p>Company:</p>
+ * @author jby
+ * @date2017-9-27下午3:10:08
+ */
+
+@Repository(value="teacherDao")
+public class TecaherDaoImpl extends HibernateDaoSupport implements TeacherDao {
+	
+	@Autowired
+	@Qualifier(value = "sessionFactory")
+	public void setSuperSessionFactory(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
+
+	//浏览个人信息--老师登录系统后，可浏览自己的个人基本信息，但没有修改或删除的权限。
+	public Teacher findByNum(String teNum) {
+		 List<Teacher> list=this.getHibernateTemplate().find("from Teacher where teNum=?",teNum);
+			Teacher teacher = null;
+			if (list != null && list.size() > 0) {
+				teacher = list.get(0);
+			}
+			return teacher;
+	}
+
+	//修改密码
+	public void updatePwd(User user) {
+		this.getHibernateTemplate().update(user);
+		
+	}
+
+	//查询专业
+	public Major findAllMajor(int maId) {
+		List<Major> list=this.getHibernateTemplate().find("from Major where maId=?",maId);
+		Major major=null;
+		if (list != null && list.size() > 0) {
+			major = list.get(0);
+		}
+		return major;
+	
+	}
+
+	//查询指定课程id 
+	public List<Course> findEnCourse(int teId) {
+		List<EnCourse> list = this.getHibernateTemplate().find("from EnCourse where teId=?", teId);
+		EnCourse enCourse = null;
+	    List<Course> list1=new ArrayList<Course>();
+		if (list != null && list.size() > 0) {
+			for(int i=0;i<list.size();i++){
+
+				int coId = list.get(i).getCoId();
+				Course course = new Course();
+				course.setCoId(coId);
+				list1.add(course);
+			}
+		}
+		return list1;
+	}
+
+	//查询课程的详情
+	public Course findCourse(int coId) {
+		List<Course> list= this.getHibernateTemplate().find("from Course where coId=?",coId);
+		Course course=null;
+		if(list!=null && list.size()>0){
+			course = list.get(0);
+		}
+		return course;
+	}
+
+	
+	
+	
+	
+	
+	
+}

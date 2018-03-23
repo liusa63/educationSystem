@@ -1,0 +1,60 @@
+package com.icss.action;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.icss.biz.AdminBiz;
+import com.icss.entity.Teacher;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+/**
+ * 
+ *<p>Title:AdminAction</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author gjh
+ *@date2017-9-27上午11:50:32
+ */
+@Controller(value="adminAction")
+public class AdminAction extends ActionSupport implements ModelDriven<Teacher>  {
+	@Autowired
+	@Qualifier(value="adminBiz")
+	AdminBiz adminBiz;
+	
+	//封装参数--录入教师信息方式
+	private String  teMethod;
+	public void setTeMethod(String teMethod) {
+		this.teMethod = teMethod;
+	}
+	
+	private Teacher teacher=new Teacher();
+	public Teacher getModel() {
+		// TODO Auto-generated method stub
+		return this.teacher;
+	}
+
+
+
+
+	//判断录入老师信息的方式：0---逐个录入，1---批量录入
+	public String checkTeacherMethod(){
+		if("0".equals(teMethod)){
+			return "addTeacher";
+			
+		}
+		
+		return "addTeachers";
+	}
+	
+	//逐个录入老师信息
+	public String addTeacher(){
+		adminBiz.addTeacher(teacher);
+		return SUCCESS;
+		
+	}
+
+
+
+	
+}

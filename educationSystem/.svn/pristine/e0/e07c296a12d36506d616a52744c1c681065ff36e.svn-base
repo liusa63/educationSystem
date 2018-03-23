@@ -1,0 +1,66 @@
+package com.icss.entity;
+
+import java.util.Date;
+
+public class Excourse {
+	private int exId;//选课id
+	private String exName;//选修课程名
+	
+	private String exWeek;//周次
+	private String exDay; //星期
+	private Date exStart;//开始时间
+	private Date exEnd;//结束时间
+	private String exRoom;//教室
+	private String exScore;//学分
+	public int getExId() {
+		return exId;
+	}
+	public void setExId(int exId) {
+		this.exId = exId;
+	}
+	public String getExName() {
+		return exName;
+	}
+	public void setExName(String exName) {
+		this.exName = exName;
+	}
+	public String getExWeek() {
+		return exWeek;
+	}
+	public void setExWeek(String exWeek) {
+		this.exWeek = exWeek;
+	}
+	public String getExDay() {
+		return exDay;
+	}
+	public void setExDay(String exDay) {
+		this.exDay = exDay;
+	}
+	
+	public Date getExStart() {
+		return exStart;
+	}
+	public void setExStart(Date exStart) {
+		this.exStart = exStart;
+	}
+	public Date getExEnd() {
+		return exEnd;
+	}
+	public void setExEnd(Date exEnd) {
+		this.exEnd = exEnd;
+	}
+	public String getExRoom() {
+		return exRoom;
+	}
+	public void setExRoom(String exRoom) {
+		this.exRoom = exRoom;
+	}
+	public String getExScore() {
+		return exScore;
+	}
+	public void setExScore(String exScore) {
+		this.exScore = exScore;
+	}
+	
+
+}

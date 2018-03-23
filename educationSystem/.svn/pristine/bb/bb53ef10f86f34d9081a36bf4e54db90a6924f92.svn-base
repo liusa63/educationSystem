@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC	
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+
+<struts>
+	<!-- 开启动态方法 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="struts" extends="json-default" namespace="/">
+
+
+		<!-- 全局异常 -->
+		<!-- <global-results> <result name="error">error.jsp</result> </global-results> 
+			<global-exception-mappings> <exception-mapping result="error" exception="java.lang.Exception"> 
+			</exception-mapping> </global-exception-mappings> -->
+
+
+		<!--登录 -->
+		<action name="loginAction" class="loginAction">
+			<result name="teacherLogin" type="redirectAction">teacherAction_findTeacher
+			</result>
+			<result name="studentLogin" type="redirectAction">studentAction_findStudent
+			</result>
+			<result name="adminLogin">/pages/main.jsp</result><!-- 管理员登录成功 -->
+			<result name="error">login.jsp</result>
+			<result name="adminError">adminLogin.jsp</result> <!-- 管理员登录失败 -->
+			<result name="updateSuccess">adminLogin.jsp</result>  <!-- 管理员修改密码 -->
+		</action>
+
+		<!-- 管理员 -->
+
+		<action name="adminAction" class="com.icss.action.AdminAction">
+			<result name="addTeacher">/pages/addTeacher.jsp</result>  <!-- 逐个录入老师 -->
+			<result name="addTeachers">/pages/addTeachers.jsp</result> <!-- 批量录入老师 -->
+			
+			<!-- 录入学校课程 -->
+			<result name="addSchoolCourse">/pages/addSchoolCourse.jsp</result> 
+			<result name="addCourseSuccess" type="redirectAction">adminAction!selectSchoolCourse</result>
+			<result name="addCourses">/pages/addBasicCourse.jsp</result> <!-- 查询所有专业 -->
+			
+			<!-- 教学评估 -->
+			<result name="addQuestionSuccess" type="redirectAction">adminAction!selectAllQuestion</result> 
+			<result name="addQuestionfalse">/query/addQuestion.jsp</result>
+			<result name="selectAllQuestion">/query/selectAllQuestion.jsp</result><!-- 查看评估表的所有问题 -->
+			
+			<result name="evaluation">/query/evaluation.jsp</result>
+			<result name="teacher">/backend/score_manage/teacher.jsp</result><!-- 查询所有教师信息 -->
+			<result name="selectSuccessMajor">/pages/addBasicCourse.jsp</result>
+
+			<!-- 查询所有专业 -->
+			<result name="selectMajor" type="json">
+				<param name="root">mlist</param>
+			</result>
+			<result name="addSuccessTeacher" type="redirectAction">adminAction!selectAllTeacher
+			</result>
+
+			<!-- 查询所有班主任 -->
+
+			<result name="AjaxTeacher" type="json">
+				<param name="root">tlist</param>
+			</result>
+
+			<!-- 查询所有选修课 -->
+
+			<result name="selectSuccessCourse" type="json">
+				<param name="root">clist</param>
+			</result>
+
+			<!-- 查询所有教室 -->
+
+			<result name="AjaxRoom" type="json">selectBasicCourse
+				<param name="root">rlist</param>
+			</result>
+			
+			<!-- 查询所有课程 -->
+			<result name="selectBasicCourse" type="json">
+				<param name="root">clist</param>
+			</result>
+			
+			<!-- 分页查看班级信息 -->
+			<result name="selectSuccessSclass">/pages/selectScalssAdmin.jsp</result>
+			
+			<!-- 修改班级信息 -->
+             <result name="selectSclassSuccess">/pages/updateSclass.jsp</result>
+             <result name="updateSuccess" type="redirectAction">adminAction!selectAllSclass</result>
+             
+             <!-- 修改教师信息 -->
+		     <result name="selectTeacherSuccess">/pages/selectTeacherAdmin.jsp</result>
+		     <result name="updateSucccessTeacher" type="redirectAction">adminAction!selectAllTeacher</result>
+		  
+		    <!--  分页查询课程 -->
+		     <result name="selectSuccessSchoolCourse">/project/selectSchoolCourse.jsp</result>
+		  
+            <!-- 修改学生成绩 -->
+		     <result name="selectGradeSuccess">/pages/updateStudentGrade.jsp</result>
+		     <result name="updateGradeSuccess" >/pages/updateGradeSuccess.jsp</result>
+		     
+		   <!--   查询选课列表 -->
+		     <result name="selectSuccessExcourse">/project/selectAllExcourse.jsp</result>
+		     <result name="findByIdExcourse">/pages/updateExcourse.jsp</result>
+		     <result name="updateSuccessExCourse" type="redirectAction">adminAction!selectAllExcourse</result>
+		    
+		  <!--   查看教学评估  -->
+		  <result name="selectSuccessTeacherCourse">/query/teacherCourse.jsp</result>
+		  <result name="successEvaluation">/pages/successEvaluation.jsp</result>
+		  
+		 <!--  查询学籍信息 -->
+		  <result name="selectSrollSuccess">/project/studentSroll.jsp</result>
+		     
+		</action>
+
+
+		
+		<!-- 学生 -->
+		<action name="studentAction_*" class="studentAction" method="{1}">
+			<result name="error"></result>
+			<!-- 基本信息 -->
+		    <result name="findStudentSuccess">/pages/studentMain.jsp</result>         <!-- 学生登录首页 -->
+		    <result name="findSrollSuccess">/pages/studenInfo.jsp</result>            <!-- 学籍信息 -->
+		    <result name="changePwdSuccess">login.jsp</result>                        <!-- 修改密码后重新登录 -->
+		    <!-- 必修课程 -->
+		    <result name="nowCourseList">/pages/studentNowCourse.jsp</result>         <!-- 本学期的课表 -->
+		    <result name="pageCourseSuccess">/pages/pageAllCourse.jsp</result>        <!-- 方案课程 -->
+		    <result name="finishedCourse">/pages/studentFinishedCourse.jsp</result>   <!-- 已经完成的课程 -->
+		    <result name="undoneCourse">/pages/studentUndoneCourse.jsp</result>       <!-- 待完成的课程 -->
+		    <!-- 选修课程 -->
+		    <result name="electiveList">/pages/studentElective.jsp</result>           <!-- 所有选修 -->
+		    <result name="testOver" type="json"> <param name="root">msg</param> </result>                 <!-- 异步判断选修是否重复 -->
+		    <result name="myExcourseList">/pages/studentMyExcourse.jsp</result>       <!-- 指定学生的选修课 -->
+		    <!-- 成绩 -->
+		    <result name="myGrade">/pages/myGrade.jsp</result>                        <!-- 成绩单 -->
+		    <!-- <result name="myPassGrade">/pages/myPassGrade.jsp</result> -->       <!-- 已通过的课程成绩 -->
+		    <result name="myFailGrade">/pages/myFailGrade.jsp</result>                <!-- 未及格的成绩 -->
+		    <!-- 评估 -->
+		    <result name="findQuestionSuccess">/pages/studentQuestion.jsp</result>    <!-- 评估 -->
+		    <result name="addEvaluationSuccess" type="redirectAction">studentAction_finishedCourse</result> <!-- 评估完成 -->
+		</action>
+
+
+		<!-- 老师 -->
+		<action name="teacherAction" class="teacherAction" >
+			<result name="findTeacherSuccess">/pages/teacherMain.jsp</result>
+			<result name="updatePwdSuccess">login.jsp</result>
+			<result name="findByNumSuccess">/pages/teacherDetail.jsp</result>
+			<result name="findTeacherCourseSuccess">pages/teacherCourse.jsp</result>
+		</action>
+		
+		
+		<!-- AdminLittleAction -->
+		<action name="adminLittleAction" class="adminLittleAction" method="{1}">
+			<!-- 专业 -->
+			<result name="majorList">/pages/majorList.jsp</result>                                         <!-- 所有专业 -->
+		    <result name="major">/pages/updateMajor.jsp</result>                                           <!-- 更新专业 -->
+		    <result name="updateMajorSuccess" type="redirectAction">adminLittleAction!findAllMajor</result><!-- 专业更新成功 -->
+			<result name="sclassSet">/pages/sclassSet.jsp</result>                                         <!-- 指定专业下的班级 -->
+			<result name="addMajorSuccess" type="redirectAction">adminLittleAction!findAllMajor</result>   <!-- 添加专业成功 -->
+			<result name="ifExistMajor" type="json"> <param name="root">msg</param></result>               <!-- 异步判断专业名是否重复 -->
+			<!-- 教室 -->
+			<result name="pageRoomSuccess">/pages/roomList.jsp</result>                                    <!-- 所有教室 -->
+			<result name="room">/pages/updateRoom.jsp</result>                                             <!-- 修改教室 -->
+			<result name="updateRoomSuccess" type="redirectAction">adminLittleAction!findAllRoom</result>  <!-- 教室修改成功 -->
+			<result name="addRoomSuccess" type="redirectAction">adminLittleAction!findAllRoom</result>     <!-- 添加教室成功 -->
+			<result name="ifExistRoom" type="json"> <param name="root">msg</param></result>                <!-- 异步判断教室名是否重复  -->
+		</action>
+		
+
+	</package>
+
+
+</struts>

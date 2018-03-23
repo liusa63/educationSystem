@@ -1,0 +1,171 @@
+package com.icss.action;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.icss.biz.AdminBiz;
+import com.icss.entity.Course;
+import com.icss.entity.Question;
+import com.icss.entity.Sclass;
+import com.icss.entity.Teacher;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+
+/**
+ * 
+ * <p>
+ * Title:AdminAction
+ * </p>
+ * <p>
+ * Description:
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
+ * @author gjh
+ * @date2017-9-27上午11:50:32
+ */
+@Controller(value = "adminAction")
+public class AdminAction extends ActionSupport implements ModelDriven<Teacher> {
+	@Autowired
+	@Qualifier(value = "adminBiz")
+	AdminBiz adminBiz;
+
+	// 封装参数--录入教师信息方式
+	private String teMethod;
+
+	public void setTeMethod(String teMethod) {
+		this.teMethod = teMethod;
+	}
+
+	private Teacher teacher = new Teacher();
+
+	public Teacher getModel() {
+		// TODO Auto-generated method stub
+		return this.teacher;
+	}
+
+	// 封装班级参数
+	private Sclass sclass;
+
+	public void setSclass(Sclass sclass) {
+		this.sclass = sclass;
+	}
+
+	// 封装课程参数
+	private Course course;
+
+	public void setAdminBiz(AdminBiz adminBiz) {
+		this.adminBiz = adminBiz;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	//封装问题参数
+	private Question question;
+	
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
+	private String coStart;
+	private String coEnd;
+	private String coStartTime;
+	private String coEndTime;
+
+	public void setCoStart(String coStart) {
+		this.coStart = coStart;
+	}
+
+	public void setCoEnd(String coEnd) {
+		this.coEnd = coEnd;
+	}
+
+	public void setCoStartTime(String coStartTime) {
+		this.coStartTime = coStartTime;
+	}
+
+	public void setCoEndTime(String coEndTime) {
+		this.coEndTime = coEndTime;
+	}
+	
+	
+
+	// 判断录入老师/课程信息的方式：0---老师逐个录入，1---老师批量录入 2-课程逐个录入-3--课程批量录入
+	public String checkTeacherMethod() {
+		if ("0".equals(teMethod)) {
+			return "addTeacher";
+
+		} else if ("1".equals(teMethod)) {
+			return "addTeachers";
+		} else if ("2".equals(teMethod)) {
+			return "addCourse";
+		}
+
+		return "addCourses";
+	}
+
+	// 逐个录入老师信息
+	public String addTeacher() {
+		adminBiz.addTeacher(teacher);
+		return SUCCESS;
+
+	}
+
+	// 录入班级信息
+	public String addSclass() {
+		int i = sclass.getClCount();
+		System.out.println();
+		System.out.println(sclass.getClName());
+		adminBiz.addSclass(sclass);
+		return SUCCESS;
+
+	}
+
+	// 录入课程信息
+	public String addCourse() throws ParseException {
+		// 获取当前时间
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd   HH:mm:ss");// 设置日期格式
+		SimpleDateFormat df1 = new SimpleDateFormat(" HH:mm:ss");// 设置日期格式
+
+		// String-->Date
+		Date s = df.parse(coStartTime);
+		Date e = df.parse(coEndTime);
+		Date s1 = df1.parse(coStart);
+		Date e1 = df1.parse(coEnd);
+		course.setCoStartTime(s);
+		course.setCoStartTime(e);
+		course.setCoEnd(e1);
+		course.setCoStart(s1);
+		adminBiz.addCourse(course);
+		return SUCCESS;
+	}
+	
+	//录入问题表
+	public String addQuestion(){
+		adminBiz.addQuestion(question);
+		return SUCCESS;
+		
+	}
+
+}

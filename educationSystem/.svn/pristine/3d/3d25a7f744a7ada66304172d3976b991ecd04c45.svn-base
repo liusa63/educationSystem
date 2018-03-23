@@ -1,0 +1,47 @@
+/**
+ * 
+ */
+package com.icss.biz.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.icss.biz.StudentBiz;
+import com.icss.dao.StudentDao;
+import com.icss.entity.Sroll;
+import com.icss.entity.Student;
+
+/**
+ *<p>Title:StudentBizImpl</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月27日上午9:06:48
+ */
+@Service(value="studentBiz")
+public class StudentBizImpl implements StudentBiz {
+	
+	@Autowired
+	@Qualifier(value="studentDao")
+	StudentDao studentDao;
+
+	/* 
+	 * 查询学生表中的信息
+	 */
+	public Student findStudent(String stNum) {
+		
+		return studentDao.findStudent(stNum);
+		
+	}
+
+	/* 
+	 * 查询学籍信息
+	 */
+	public Sroll findStudentInfo(String stNum) {
+		
+		return studentDao.findStudentInfo(stNum);
+	}
+	
+
+}

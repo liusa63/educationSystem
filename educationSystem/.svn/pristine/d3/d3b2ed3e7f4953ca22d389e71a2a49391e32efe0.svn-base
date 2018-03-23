@@ -1,0 +1,20 @@
+package com.icss.entity;
+
+public class StCourse {
+	private int scId;//Ö÷¼ü
+	private double scGrade;//³É¼¨
+	public int getScId() {
+		return scId;
+	}
+	public void setScId(int scId) {
+		this.scId = scId;
+	}
+	public double getScGrade() {
+		return scGrade;
+	}
+	public void setScGrade(double scGrade) {
+		this.scGrade = scGrade;
+	}
+	
+
+}

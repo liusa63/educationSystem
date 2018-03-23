@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>前台登录</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+
+	var ids="uNumber,uPwd";
+	var msg="请输入学（工）号,请输入密码";
+
+
+		//非空验证
+		function  checkNull(ids,msg){
+			  var idArray=ids.split(",");
+			   var msgArray=msg.split(",");
+			   for(var i=0;i<idArray.length;i++){
+				  var id= $("#"+idArray[i]).val();
+				  //如果为空，给出错误提示
+				  if(id==""){
+					  $("#"+idArray[i]+"Error").html(msgArray[i]);
+					  return false;
+				  }
+			   }
+			   return true;
+		 }
+		//登录
+		function loginfun(){
+			   //判断用户名和密码是否为空
+			   if(checkNull(ids,msg)){
+				   
+				   $("#loginForm").submit();
+			   }
+		}
+		
+		 //页面加载完成触发的事件
+			$(document).ready(function(){
+				//设置获取焦点触发的事件：错误提示消失
+				$("#uNumber").focus(function(){
+					$("#uNumber").val("");
+					$("#uNumberError").html("");
+				});
+				$("#uPwd").focus(function(){
+					$("#uPwd").val("");
+					$("#uPwdError").html("");
+				});
+				
+				//失去焦点触发的事件：判断内容是否为空，若为空给出错误提示
+				$("#uNumber").blur(function(){
+					var u=$("#uNumber").val();
+					if(u==""){
+						$("#uNumberError").html("学（工）号不能为空");
+					}
+				});
+				$("#uPwd").blur(function(){
+					var p=$("#uPwd").val();
+					if(p==""){
+						$("#uPwdError").html("密码不能为空");
+					}
+				});
+			});
+
+
+</script>
+
+</head>
+<body>
+
+<form action="loginAction"  method="post"  id="loginForm">
+   <input  type="text" name="uNumber" id="uNumber">
+   <span id="uNumberError"></span>
+   <input  type="text" name="uPwd" id="uPwd">
+   <span id="uPwdError"></span>
+   <input type="button" value="登录" onclick="loginfun()">
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+/**
+ * 
+ */
+package com.icss.action;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.icss.biz.StudentBiz;
+import com.icss.entity.Sroll;
+import com.icss.entity.Student;
+import com.icss.entity.User;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+
+/**
+ *<p>Title:StudentAction</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月27日上午9:10:57
+ */
+@Controller(value="studentAction")
+public class StudentAction extends ActionSupport{
+	
+	
+	@Autowired
+	@Qualifier(value="studentBiz")
+	StudentBiz studentBiz;
+	
+	//查询学生表的信息
+	public String findStudent(){
+		
+		//获取session中的User对象
+		Map<String,Object> session = ActionContext.getContext().getSession();
+		
+		User user = (User) session.get("user");
+		
+		try {
+			
+			//调用业务逻辑
+			Student student = studentBiz.findStudent(user.getUnumber());
+			
+			Map<String,Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+			
+			//返回给页面
+			request.put("student", student);
+			
+			return "findStudentSuccess";
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			return ERROR;
+		}
+		
+		
+	}
+	
+	
+	/**
+	 *查询学籍
+	 */
+	public String findInfo(){
+		
+		//获取session中的User对象
+		Map<String,Object> session = ActionContext.getContext().getSession();
+		
+		User user = (User) session.get("user");
+		
+       try {
+			
+			//调用业务逻辑
+    	   Sroll sroll = studentBiz.findStudentInfo(user.getUnumber());
+			
+			Map<String,Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+			
+			//返回给页面
+			request.put("sroll", sroll);
+			
+			return  "findSrollSuccess";
+			
+       } catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			return ERROR;
+		}
+		
+		
+	}
+	
+
+}

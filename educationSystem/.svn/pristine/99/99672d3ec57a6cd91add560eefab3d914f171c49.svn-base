@@ -1,0 +1,118 @@
+package com.icss.biz.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.icss.biz.AdminBiz;
+import com.icss.dao.AdminDao;
+import com.icss.entity.Course;
+import com.icss.entity.Evaluation;
+import com.icss.entity.Major;
+import com.icss.entity.Question;
+import com.icss.entity.Sclass;
+import com.icss.entity.Teacher;
+
+import com.icss.util.PageList;
+
+@Service(value="adminBiz")
+public class AdminBizImpl implements AdminBiz {
+	@Autowired
+	@Qualifier(value="adminDao")
+	AdminDao adminDao;
+
+	
+	//逐个添加教师信息
+	public void addTeacher(Teacher teacher) {
+		adminDao.addTeacher(teacher);
+		
+	}
+
+	//逐个添加班级信息
+	public void addSclass(Sclass sclass) {
+		adminDao.addSclass(sclass);
+		
+	}
+
+	public void addCourse(Course course) {
+		adminDao.addCourse(course);
+		
+	}
+	
+//添加问题
+	public void addQuestion(Question question) {
+		adminDao.addQuestion(question);
+		
+	}
+	
+//查看所有问题
+	public List<Question> selectAllQuestion() {
+	List<Question> qlist=	adminDao.selectAllQuestion();
+		return qlist;
+	}
+
+	//查看所有反馈信息，分页展示
+	/*public void selectListEvaluation(PageList<Evaluation> page, int pageSize) {
+		List<Evaluation> list=adminDao.selectListEvaluation(page, pageSize);
+				
+		
+		 page.setList(list);
+		 int totalCount=(Integer) adminDao.getTotal();
+				 
+		 page.setTotalNum(totalCount);
+		 int totalPage=0;
+		 if(totalCount%pageSize==0){
+			 totalPage=totalCount/pageSize;
+		 }else{
+			 totalPage=totalCount/pageSize+1;
+		 }
+		 page.setCountPage(totalPage);
+		
+	
+		
+
+		
+		
+	}*/
+
+	public void selectListTeacher(PageList<Teacher> page, int pageSize) {
+		List<Teacher> list=adminDao.selectListTeacher(page, pageSize);
+		
+		
+		 page.setList(list);
+		 int totalCount=(Integer) adminDao.getTotal();
+				 
+		 page.setTotalNum(totalCount);
+		 int totalPage=0;
+		 if(totalCount%pageSize==0){
+			 totalPage=totalCount/pageSize;
+		 }else{
+			 totalPage=totalCount/pageSize+1;
+		 }
+		 page.setCountPage(totalPage);
+		
+	
+		
+		
+	}
+//查询所有专业
+	public List<Major> selectAllMajor() {
+		List<Major> mlist=	adminDao.selectAllMajor();
+		return mlist;
+	}
+
+	public List<Teacher> selectByIdTeacher(String tebehave) {
+		List<Teacher> tlist=adminDao.selectByIdTeacher(tebehave);
+		return tlist;
+	}
+
+	public Major selectByIdMajor(int maId) {
+		Major major=adminDao.selectByIdMajor(maId);
+		return major;
+	}
+
+	
+
+}

@@ -1,0 +1,46 @@
+/**
+ * 
+ */
+package com.icss.entity;
+
+/**
+ *<p>Title:ChooseCourse</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月28日下午2:26:34
+ */
+public class ChooseCourse {
+	private  int  chId;//主键
+	private  int  stId;//学生外键
+	private  int  exId;//选课外键
+	private  int  teId;//老师外键
+	public int getChId() {
+		return chId;
+	}
+	public void setChId(int chId) {
+		this.chId = chId;
+	}
+	public int getStId() {
+		return stId;
+	}
+	public void setStId(int stId) {
+		this.stId = stId;
+	}
+	public int getExId() {
+		return exId;
+	}
+	public void setExId(int exId) {
+		this.exId = exId;
+	}
+	public int getTeId() {
+		return teId;
+	}
+	public void setTeId(int teId) {
+		this.teId = teId;
+	}
+	
+	
+	
+
+}

@@ -1,0 +1,178 @@
+package com.icss.action;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.icss.biz.TeacherBiz;
+import com.icss.entity.Course;
+import com.icss.entity.EnCourse;
+import com.icss.entity.Major;
+import com.icss.entity.Teacher;
+import com.icss.entity.User;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+/**
+ * 
+ * <p>Title:TeacherAction</p>
+ * <P>Description:</p>
+ * <p>Company:</p>
+ * @author jby
+ * @date2017-9-27下午3:00:00
+ */
+@Controller(value="teacherAction")
+public class TeacherAction extends ActionSupport implements ModelDriven<Teacher>{
+	
+	@Autowired
+	@Qualifier(value="teacherBiz")
+	TeacherBiz teacherBiz;
+
+	private Teacher teacher=new Teacher();
+	
+	public Teacher getModel() {
+		return this.teacher;
+	}
+	
+	private String repwds;
+	public void setRepwds(String repwds) {
+		this.repwds = repwds;
+	}
+
+	private Major major;
+	public void setMajor(Major major) {
+		this.major = major;
+	}
+	
+	private String type;
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	private List<Course> courseList;
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
+	}
+
+	private Course course;
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	
+	private int coId;
+	public void setCoId(int coId) {
+		this.coId = coId;
+	}
+
+	
+	/**
+	 *登录成功后，浏览个人信息
+	 * @return
+	 */
+	public String findTeacher(){
+		
+		Teacher teacher=null;
+		Major major=null;
+		
+		//获取session
+		Map<String,Object> session = ActionContext.getContext().getSession();
+		User user=(User) session.get("user");
+		try {
+			teacher=teacherBiz.findByNum(user.getUnumber());
+			major=teacherBiz.findAllMajor(teacher.getMaId());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+//			return ERROR;
+		}
+		
+		Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("teacher", teacher);
+		
+		Map<String, Object> request1 = (Map<String, Object>) ActionContext.getContext().get("request");
+		request1.put("major", major);
+	
+		System.out.println(type);
+		if("find".equals(type)){
+			return "findByNumSuccess";
+		}
+		
+		return "findTeacherSuccess";
+
+	}
+	
+    /**
+     * 修改密码
+     * @return
+     */
+	public String updatePwd(){
+
+		//获取session
+		Map<String,Object> session = ActionContext.getContext().getSession();
+		User user=(User) session.get("user");
+		
+		//修改密码
+		user.setUpwd(repwds);
+
+		try {
+			teacherBiz.updatePwd(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+//			return ERROR;
+		}
+
+		return "updatePwdSuccess";
+		
+	}
+
+
+	/**
+	 * 查看课表
+	 * 1--teNum根据teacher表查出teId
+	 * 2--teId根据en_course表查出coId集合
+	 * 3--coId集合根据course查出该课程的所有属性
+	 */
+	public String findTeacherCourse(){
+		Teacher teacher = null;
+		List<Course> courseList = null;
+		Course course=null;
+		int coId=0;
+		List<Course> list=new ArrayList<Course>();
+		
+		//获取session
+		Map<String,Object> session = ActionContext.getContext().getSession();
+		User user=(User) session.get("user");
+		
+		try {
+			//1--teNum根据teacher表查出teId
+			teacher=teacherBiz.findByNum(user.getUnumber());
+			
+			//2--teId根据en_course表查出coId
+			courseList=teacherBiz.findEnCourse(teacher.getTeId());
+		    for(int i=0;i<courseList.size();i++){
+		    	coId=courseList.get(i).getCoId();
+		    	//3--coId根据course查出该课程的所有属性
+			    course=teacherBiz.findCourse(coId);
+			    list.add(course);
+		    }
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+//			return ERROR;
+		}
+		Map request=(Map) ActionContext.getContext().get("request");
+		request.put("tcList", list);
+		
+		return "findTeacherCourseSuccess";
+		
+		
+	}
+	
+	
+
+}

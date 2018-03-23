@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.Teacher" table="teacher">
+		<id name="teId" column="te_id" type="integer">
+			<generator class="native"></generator>
+		</id>
+
+		<!-- 普通属性 -->
+		<property name="teNum" column="te_num" type="string"></property>
+		<property name="teName" column="te_name" type="string"></property>
+		<property name="teSalary" column="te_salary" type="double"></property>
+		<property name="tePhone" column="te_phone" type="string"></property>
+		<property name="teBehave" column="te_behave" type="string"></property>
+		
+		<property name="maId" column="ma_id" type="integer"></property>
+
+	</class>
+
+</hibernate-mapping>

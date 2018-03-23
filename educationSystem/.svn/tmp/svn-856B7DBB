@@ -1,0 +1,1728 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="../../assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Light Bootstrap Dashboard PRO by Creative Tim</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+     <!-- Canonical SEO -->
+    <link rel="canonical" href="https://www.creative-tim.com/product/light-bootstrap-dashboard-pro"/>
+
+    <!--  Social tags      -->
+    <meta name="keywords" content="creative tim, html dashboard, html css dashboard, web dashboard, bootstrap dashboard, bootstrap, css3 dashboard, bootstrap admin, light bootstrap dashboard, frontend, responsive bootstrap dashboard">
+
+    <meta name="description" content="Forget about boring dashboards, get an admin template designed to be simple and beautiful.">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Light Bootstrap Dashboard PRO by Creative Tim">
+    <meta itemprop="description" content="Forget about boring dashboards, get an admin template designed to be simple and beautiful.">
+
+    <meta itemprop="image" content="http://s3.amazonaws.com/creativetim_bucket/products/34/original/opt_lbd_pro_thumbnail.jpg">
+    <!-- Twitter Card data -->
+
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="@creativetim">
+    <meta name="twitter:title" content="Light Bootstrap Dashboard PRO by Creative Tim">
+
+    <meta name="twitter:description" content="Forget about boring dashboards, get an admin template designed to be simple and beautiful.">
+    <meta name="twitter:creator" content="@creativetim">
+    <meta name="twitter:image" content="http://s3.amazonaws.com/creativetim_bucket/products/34/original/opt_lbd_pro_thumbnail.jpg">
+    <meta name="twitter:data1" content="Light Bootstrap Dashboard PRO by Creative Tim">
+    <meta name="twitter:label1" content="Product Type">
+    <meta name="twitter:data2" content="$29">
+    <meta name="twitter:label2" content="Price">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Light Bootstrap Dashboard PRO by Creative Tim" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://demos.creative-tim.com/light-bootstrap-dashboard-pro/examples/dashboard.html" />
+    <meta property="og:image" content="http://s3.amazonaws.com/creativetim_bucket/products/34/original/opt_lbd_pro_thumbnail.jpg"/>
+    <meta property="og:description" content="Forget about boring dashboards, get an admin template designed to be simple and beautiful." />
+    <meta property="og:site_name" content="Creative Tim" />
+
+    <!-- Bootstrap core CSS     -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--  Light Bootstrap Dashboard core CSS    -->
+    <link href="../css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="../css/demo.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href='../css/685fd913f1e14aebad0cc9d3713ee469.css' rel='stylesheet' type='text/css'>
+    <link href="../css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar" data-color="orange" data-image="../../assets/img/full-screen-image-3.jpg">
+        <!--
+
+            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+            Tip 2: you can also add an image using data-image tag
+
+        -->
+
+        <div class="logo">
+            <a href="http://www.creative-tim.com" class="logo-text">
+                Creative Tim
+            </a>
+        </div>
+		<div class="logo logo-mini">
+			<a href="http://www.creative-tim.com" class="logo-text">
+				Ct
+			</a>
+		</div>
+
+    	<div class="sidebar-wrapper">
+
+            <div class="user">
+                <div class="photo">
+                    <img src="../picture/default-avatar.png" />
+                </div>
+                <div class="info">
+                    <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                        Tania Andrew
+                        <b class="caret"></b>
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <ul class="nav">
+                            <li><a href="#">My Profile</a></li>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="#">Settings</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="../dashboard.html">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a data-toggle="collapse" href="#componentsExamples" aria-expanded="true">
+                        <i class="pe-7s-plugin"></i>
+                        <p>Components
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse in" id="componentsExamples">
+                        <ul class="nav">
+                            <li><a href="buttons.html">Buttons</a></li>
+                            <li><a href="grid.html">Grid System</a></li>
+                            <li class="active"><a href="icons.html">Icons</a></li>
+                            <li><a href="notifications.html">Notifications</a></li>
+                            <li><a href="panels.html">Panels</a></li>
+                            <li><a href="sweet-alert.html">Sweet Alert</a></li>
+                            <li><a href="typography.html">Typography</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#formsExamples">
+                        <i class="pe-7s-note2"></i>
+                        <p>Forms
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="formsExamples">
+                        <ul class="nav">
+                            <li><a href="../forms/regular.html">Regular Forms</a></li>
+                            <li><a href="../forms/extended.html">Extended Forms</a></li>
+                            <li><a href="../forms/validation.html">Validation Forms</a></li>
+                            <li><a href="../forms/wizard.html">Wizard</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#tablesExamples">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>Tables
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="tablesExamples">
+                        <ul class="nav">
+                            <li><a href="../tables/regular.html">Regular Tables</a></li>
+                            <li><a href="../tables/extended.html">Extended Tables</a></li>
+                            <li><a href="../tables/bootstrap-table.html">Bootstrap Table</a></li>
+							<li><a href="../tables/datatables.net.html">DataTables.net</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#mapsExamples">
+                        <i class="pe-7s-map-marker"></i>
+                        <p>Maps
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="mapsExamples">
+                        <ul class="nav">
+                            <li><a href="../maps/google.html">Google Maps</a></li>
+                            <li><a href="../maps/vector.html">Vector Maps</a></li>
+                            <li><a href="../maps/fullscreen.html">Full Screen Map</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="../charts.html">
+                        <i class="pe-7s-graph1"></i>
+                        <p>Charts</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../calendar.html">
+                        <i class="pe-7s-date"></i>
+                        <p>Calendar</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#pagesExamples">
+                        <i class="pe-7s-gift"></i>
+                        <p>Pages
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="pagesExamples">
+                        <ul class="nav">
+                            <li><a href="../pages/login.html">Login Page</a></li>
+                            <li><a href="../pages/register.html">Register Page</a></li>
+                            <li><a href="../pages/lock.html">Lock Screen Page</a></li>
+                            <li><a href="../pages/user.html">User Page</a></li>
+                            <li><a href="#">More coming soon...</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+				<div class="navbar-minimize">
+					<button id="minimizeSidebar" class="btn btn-warning btn-fill btn-round btn-icon">
+						<i class="fa fa-ellipsis-v visible-on-sidebar-regular"></i>
+						<i class="fa fa-navicon visible-on-sidebar-mini"></i>
+					</button>
+				</div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Icons</a>
+                </div>
+                <div class="collapse navbar-collapse">
+
+                    <form class="navbar-form navbar-left navbar-search-form" role="search">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input type="text" value="" class="form-control" placeholder="Search...">
+                        </div>
+                    </form>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="../charts.html">
+                                <i class="fa fa-line-chart"></i>
+                                <p>Stats</p>
+                            </a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-gavel"></i>
+                                <p class="hidden-md hidden-lg">
+                                    Actions
+                                    <b class="caret"></b>
+                                </p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Create New Post</a></li>
+                                <li><a href="#">Manage Something</a></li>
+                                <li><a href="#">Do Nothing</a></li>
+                                <li><a href="#">Submit to live</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Another Action</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="notification">5</span>
+                                <p class="hidden-md hidden-lg">
+    								Notifications
+    								<b class="caret"></b>
+    							</p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Notification 1</a></li>
+                                <li><a href="#">Notification 2</a></li>
+                                <li><a href="#">Notification 3</a></li>
+                                <li><a href="#">Notification 4</a></li>
+                                <li><a href="#">Another notification</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown dropdown-with-icons">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-list"></i>
+                                <p class="hidden-md hidden-lg">
+    								More
+    								<b class="caret"></b>
+    							</p>
+                            </a>
+                            <ul class="dropdown-menu dropdown-with-icons">
+                                <li>
+                                    <a href="#">
+                                        <i class="pe-7s-mail"></i> Messages
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="pe-7s-help1"></i> Help Center
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="pe-7s-tools"></i> Settings
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <i class="pe-7s-lock"></i> Lock Screen
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-danger">
+                                        <i class="pe-7s-close-circle"></i>
+                                        Log out
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">202 Awesome Stroke Icons</h4>
+                                <p class="category">Handcrafted by our friends from <a target="_blank" href="http://themes-pixeden.com/font-demos/7-stroke/index.html">Pixeden</a></p>
+                            </div>
+                            <div class="content all-icons">
+                                <div class="row">
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-album"></i>
+                                      <input type="text" value="pe-7s-album">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-arc"></i>
+                                      <input type="text" value="pe-7s-arc">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-back-2"></i>
+                                      <input type="text" value="pe-7s-back-2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-bandaid"></i>
+                                      <input type="text" value="pe-7s-bandaid">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-car"></i>
+                                      <input type="text" value="pe-7s-car">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-diamond"></i>
+                                      <input type="text" value="pe-7s-diamond">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-door-lock"></i>
+                                      <input type="text" value="pe-7s-door-lock">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-eyedropper"></i>
+                                      <input type="text" value="pe-7s-eyedropper">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-female"></i>
+                                      <input type="text" value="pe-7s-female">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-gym"></i>
+                                      <input type="text" value="pe-7s-gym">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-hammer"></i>
+                                      <input type="text" value="pe-7s-hammer">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-headphones"></i>
+                                      <input type="text" value="pe-7s-headphones">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-helm"></i>
+                                      <input type="text" value="pe-7s-helm">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-hourglass"></i>
+                                      <input type="text" value="pe-7s-hourglass">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-leaf"></i>
+                                      <input type="text" value="pe-7s-leaf">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-magic-wand"></i>
+                                      <input type="text" value="pe-7s-magic-wand">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-male"></i>
+                                      <input type="text" value="pe-7s-male">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-map-2"></i>
+                                      <input type="text" value="pe-7s-map-2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-next-2"></i>
+                                      <input type="text" value="pe-7s-next-2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-paint-bucket"></i>
+                                      <input type="text" value="pe-7s-paint-bucket">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-pendrive"></i>
+                                      <input type="text" value="pe-7s-pendrive">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-photo"></i>
+                                      <input type="text" value="pe-7s-photo">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-piggy"></i>
+                                      <input type="text" value="pe-7s-piggy">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-plugin"></i>
+                                      <input type="text" value="pe-7s-plugin">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-refresh-2"></i>
+                                      <input type="text" value="pe-7s-refresh-2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-rocket"></i>
+                                      <input type="text" value="pe-7s-rocket">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-settings"></i>
+                                      <input type="text" value="pe-7s-settings">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-shield"></i>
+                                      <input type="text" value="pe-7s-shield">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-smile"></i>
+                                      <input type="text" value="pe-7s-smile">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-usb"></i>
+                                      <input type="text" value="pe-7s-usb">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-vector"></i>
+                                      <input type="text" value="pe-7s-vector">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-wine"></i>
+                                      <input type="text" value="pe-7s-wine">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-cloud-upload"></i>
+                                      <input type="text" value="pe-7s-cloud-upload">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-cash"></i>
+                                      <input type="text" value="pe-7s-cash">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-close"></i>
+                                      <input type="text" value="pe-7s-close">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-bluetooth"></i>
+                                      <input type="text" value="pe-7s-bluetooth">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-cloud-download"></i>
+                                      <input type="text" value="pe-7s-cloud-download">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-way"></i>
+                                      <input type="text" value="pe-7s-way">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-close-circle"></i>
+                                      <input type="text" value="pe-7s-close-circle">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-id"></i>
+                                      <input type="text" value="pe-7s-id">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-angle-up"></i>
+                                      <input type="text" value="pe-7s-angle-up">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-wristwatch"></i>
+                                      <input type="text" value="pe-7s-wristwatch">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-angle-up-circle"></i>
+                                      <input type="text" value="pe-7s-angle-up-circle">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-world"></i>
+                                      <input type="text" value="pe-7s-world">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-angle-right"></i>
+                                      <input type="text" value="pe-7s-angle-right">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-volume"></i>
+                                      <input type="text" value="pe-7s-volume">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-angle-right-circle"></i>
+                                      <input type="text" value="pe-7s-angle-right-circle">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-users"></i>
+                                      <input type="text" value="pe-7s-users">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-angle-left"></i>
+                                      <input type="text" value="pe-7s-angle-left">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-user-female"></i>
+                                      <input type="text" value="pe-7s-user-female">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-angle-left-circle"></i>
+                                      <input type="text" value="pe-7s-angle-left-circle">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-up-arrow"></i>
+                                      <input type="text" value="pe-7s-up-arrow">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-angle-down"></i>
+                                      <input type="text" value="pe-7s-angle-down">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-switch"></i>
+                                      <input type="text" value="pe-7s-switch">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-angle-down-circle"></i>
+                                      <input type="text" value="pe-7s-angle-down-circle">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-scissors"></i>
+                                      <input type="text" value="pe-7s-scissors">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-wallet"></i>
+                                      <input type="text" value="pe-7s-wallet">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-safe"></i>
+                                      <input type="text" value="pe-7s-safe">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-volume2"></i>
+                                      <input type="text" value="pe-7s-volume2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-volume1"></i>
+                                      <input type="text" value="pe-7s-volume1">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-voicemail"></i>
+                                      <input type="text" value="pe-7s-voicemail">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-video"></i>
+                                      <input type="text" value="pe-7s-video">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-user"></i>
+                                      <input type="text" value="pe-7s-user">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-upload"></i>
+                                      <input type="text" value="pe-7s-upload">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-unlock"></i>
+                                      <input type="text" value="pe-7s-unlock">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-umbrella"></i>
+                                      <input type="text" value="pe-7s-umbrella">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-trash"></i>
+                                      <input type="text" value="pe-7s-trash">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-tools"></i>
+                                      <input type="text" value="pe-7s-tools">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-timer"></i>
+                                      <input type="text" value="pe-7s-timer">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-ticket"></i>
+                                      <input type="text" value="pe-7s-ticket">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-target"></i>
+                                      <input type="text" value="pe-7s-target">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-sun"></i>
+                                      <input type="text" value="pe-7s-sun">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-study"></i>
+                                      <input type="text" value="pe-7s-study">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-stopwatch"></i>
+                                      <input type="text" value="pe-7s-stopwatch">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-star"></i>
+                                      <input type="text" value="pe-7s-star">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-speaker"></i>
+                                      <input type="text" value="pe-7s-speaker">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-signal"></i>
+                                      <input type="text" value="pe-7s-signal">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-shuffle"></i>
+                                      <input type="text" value="pe-7s-shuffle">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-shopbag"></i>
+                                      <input type="text" value="pe-7s-shopbag">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-share"></i>
+                                      <input type="text" value="pe-7s-share">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-server"></i>
+                                      <input type="text" value="pe-7s-server">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-search"></i>
+                                      <input type="text" value="pe-7s-search">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-film"></i>
+                                      <input type="text" value="pe-7s-film">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-science"></i>
+                                      <input type="text" value="pe-7s-science">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-disk"></i>
+                                      <input type="text" value="pe-7s-disk">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-ribbon"></i>
+                                      <input type="text" value="pe-7s-ribbon">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-repeat"></i>
+                                      <input type="text" value="pe-7s-repeat">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-refresh"></i>
+                                      <input type="text" value="pe-7s-refresh">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-add-user"></i>
+                                      <input type="text" value="pe-7s-add-user">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-refresh-cloud"></i>
+                                      <input type="text" value="pe-7s-refresh-cloud">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-paperclip"></i>
+                                      <input type="text" value="pe-7s-paperclip">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-radio"></i>
+                                      <input type="text" value="pe-7s-radio">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-note2"></i>
+                                      <input type="text" value="pe-7s-note2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-print"></i>
+                                      <input type="text" value="pe-7s-print">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-network"></i>
+                                      <input type="text" value="pe-7s-network">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-prev"></i>
+                                      <input type="text" value="pe-7s-prev">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-mute"></i>
+                                      <input type="text" value="pe-7s-mute">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-power"></i>
+                                      <input type="text" value="pe-7s-power">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-medal"></i>
+                                      <input type="text" value="pe-7s-medal">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-portfolio"></i>
+                                      <input type="text" value="pe-7s-portfolio">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-like2"></i>
+                                      <input type="text" value="pe-7s-like2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-plus"></i>
+                                      <input type="text" value="pe-7s-plus">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-left-arrow"></i>
+                                      <input type="text" value="pe-7s-left-arrow">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-play"></i>
+                                      <input type="text" value="pe-7s-play">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-key"></i>
+                                      <input type="text" value="pe-7s-key">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-plane"></i>
+                                      <input type="text" value="pe-7s-plane">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-joy"></i>
+                                      <input type="text" value="pe-7s-joy">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-photo-gallery"></i>
+                                      <input type="text" value="pe-7s-photo-gallery">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-pin"></i>
+                                      <input type="text" value="pe-7s-pin">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-phone"></i>
+                                      <input type="text" value="pe-7s-phone">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-plug"></i>
+                                      <input type="text" value="pe-7s-plug">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-pen"></i>
+                                      <input type="text" value="pe-7s-pen">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-right-arrow"></i>
+                                      <input type="text" value="pe-7s-right-arrow">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-paper-plane"></i>
+                                      <input type="text" value="pe-7s-paper-plane">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-delete-user"></i>
+                                      <input type="text" value="pe-7s-delete-user">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-paint"></i>
+                                      <input type="text" value="pe-7s-paint">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-bottom-arrow"></i>
+                                      <input type="text" value="pe-7s-bottom-arrow">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-notebook"></i>
+                                      <input type="text" value="pe-7s-notebook">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-note"></i>
+                                      <input type="text" value="pe-7s-note">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-next"></i>
+                                      <input type="text" value="pe-7s-next">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-news-paper"></i>
+                                      <input type="text" value="pe-7s-news-paper">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-musiclist"></i>
+                                      <input type="text" value="pe-7s-musiclist">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-music"></i>
+                                      <input type="text" value="pe-7s-music">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-mouse"></i>
+                                      <input type="text" value="pe-7s-mouse">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-more"></i>
+                                      <input type="text" value="pe-7s-more">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-moon"></i>
+                                      <input type="text" value="pe-7s-moon">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-monitor"></i>
+                                      <input type="text" value="pe-7s-monitor">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-micro"></i>
+                                      <input type="text" value="pe-7s-micro">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-menu"></i>
+                                      <input type="text" value="pe-7s-menu">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-map"></i>
+                                      <input type="text" value="pe-7s-map">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-map-marker"></i>
+                                      <input type="text" value="pe-7s-map-marker">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-mail"></i>
+                                      <input type="text" value="pe-7s-mail">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-mail-open"></i>
+                                      <input type="text" value="pe-7s-mail-open">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-mail-open-file"></i>
+                                      <input type="text" value="pe-7s-mail-open-file">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-magnet"></i>
+                                      <input type="text" value="pe-7s-magnet">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-loop"></i>
+                                      <input type="text" value="pe-7s-loop">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-look"></i>
+                                      <input type="text" value="pe-7s-look">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-lock"></i>
+                                      <input type="text" value="pe-7s-lock">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-lintern"></i>
+                                      <input type="text" value="pe-7s-lintern">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-link"></i>
+                                      <input type="text" value="pe-7s-link">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-like"></i>
+                                      <input type="text" value="pe-7s-like">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-light"></i>
+                                      <input type="text" value="pe-7s-light">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-less"></i>
+                                      <input type="text" value="pe-7s-less">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-keypad"></i>
+                                      <input type="text" value="pe-7s-keypad">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-junk"></i>
+                                      <input type="text" value="pe-7s-junk">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-info"></i>
+                                      <input type="text" value="pe-7s-info">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-home"></i>
+                                      <input type="text" value="pe-7s-home">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-help2"></i>
+                                      <input type="text" value="pe-7s-help2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-help1"></i>
+                                      <input type="text" value="pe-7s-help1">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-graph3"></i>
+                                      <input type="text" value="pe-7s-graph3">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-graph2"></i>
+                                      <input type="text" value="pe-7s-graph2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-graph1"></i>
+                                      <input type="text" value="pe-7s-graph1">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-graph"></i>
+                                      <input type="text" value="pe-7s-graph">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-global"></i>
+                                      <input type="text" value="pe-7s-global">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-gleam"></i>
+                                      <input type="text" value="pe-7s-gleam">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-glasses"></i>
+                                      <input type="text" value="pe-7s-glasses">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-gift"></i>
+                                      <input type="text" value="pe-7s-gift">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-folder"></i>
+                                      <input type="text" value="pe-7s-folder">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-flag"></i>
+                                      <input type="text" value="pe-7s-flag">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-filter"></i>
+                                      <input type="text" value="pe-7s-filter">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-file"></i>
+                                      <input type="text" value="pe-7s-file">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-expand1"></i>
+                                      <input type="text" value="pe-7s-expand1">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-exapnd2"></i>
+                                      <input type="text" value="pe-7s-exapnd2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-edit"></i>
+                                      <input type="text" value="pe-7s-edit">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-drop"></i>
+                                      <input type="text" value="pe-7s-drop">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-drawer"></i>
+                                      <input type="text" value="pe-7s-drawer">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-download"></i>
+                                      <input type="text" value="pe-7s-download">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-display2"></i>
+                                      <input type="text" value="pe-7s-display2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-display1"></i>
+                                      <input type="text" value="pe-7s-display1">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-diskette"></i>
+                                      <input type="text" value="pe-7s-diskette">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-date"></i>
+                                      <input type="text" value="pe-7s-date">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-cup"></i>
+                                      <input type="text" value="pe-7s-cup">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-culture"></i>
+                                      <input type="text" value="pe-7s-culture">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-crop"></i>
+                                      <input type="text" value="pe-7s-crop">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-credit"></i>
+                                      <input type="text" value="pe-7s-credit">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-copy-file"></i>
+                                      <input type="text" value="pe-7s-copy-file">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-config"></i>
+                                      <input type="text" value="pe-7s-config">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-compass"></i>
+                                      <input type="text" value="pe-7s-compass">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-comment"></i>
+                                      <input type="text" value="pe-7s-comment">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-coffee"></i>
+                                      <input type="text" value="pe-7s-coffee">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-cloud"></i>
+                                      <input type="text" value="pe-7s-cloud">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-clock"></i>
+                                      <input type="text" value="pe-7s-clock">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-check"></i>
+                                      <input type="text" value="pe-7s-check">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-chat"></i>
+                                      <input type="text" value="pe-7s-chat">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-cart"></i>
+                                      <input type="text" value="pe-7s-cart">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-camera"></i>
+                                      <input type="text" value="pe-7s-camera">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-call"></i>
+                                      <input type="text" value="pe-7s-call">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-calculator"></i>
+                                      <input type="text" value="pe-7s-calculator">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-browser"></i>
+                                      <input type="text" value="pe-7s-browser">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-box2"></i>
+                                      <input type="text" value="pe-7s-box2">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-box1"></i>
+                                      <input type="text" value="pe-7s-box1">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-bookmarks"></i>
+                                      <input type="text" value="pe-7s-bookmarks">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-bicycle"></i>
+                                      <input type="text" value="pe-7s-bicycle">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-bell"></i>
+                                      <input type="text" value="pe-7s-bell">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-battery"></i>
+                                      <input type="text" value="pe-7s-battery">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-ball"></i>
+                                      <input type="text" value="pe-7s-ball">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-back"></i>
+                                      <input type="text" value="pe-7s-back">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-attention"></i>
+                                      <input type="text" value="pe-7s-attention">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-anchor"></i>
+                                      <input type="text" value="pe-7s-anchor">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-albums"></i>
+                                      <input type="text" value="pe-7s-albums">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-alarm"></i>
+                                      <input type="text" value="pe-7s-alarm">
+                                    </div>
+
+                                  </div>
+                                  <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                    <div class="font-icon-detail"><i class="pe-7s-airplay"></i>
+                                      <input type="text" value="pe-7s-airplay">
+                                    </div>
+
+                                  </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Font Awesome Icons</h4>
+                                <p class="category">Check out more on their <a target="_blank" href="http://fortawesome.github.io/Font-Awesome/">website</a>.</p>
+                            </div>
+                            <div class="content all-icons">
+                                <div class="container-fluid">
+
+                                  <div class="row">
+                                      <h5>Web Application Icons</h5>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-adjust"></i> adjust</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-anchor"></i> anchor</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-archive"></i> archive</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-area-chart"></i> area-chart</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-arrows"></i> arrows</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-arrows-h"></i> arrows-h</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-arrows-v"></i> arrows-v</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-asterisk"></i> asterisk</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-at"></i> at</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-automobile"></i> automobile <span class="text-muted">(alias)</span></a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-balance-scale"></i> balance-scale</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-ban"></i> ban</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bank"></i> bank <span class="text-muted">(alias)</span></a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bar-chart"></i> bar-chart</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bar-chart-o"></i> bar-chart-o <span class="text-muted">(alias)</span></a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-barcode"></i> barcode</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bars"></i> bars</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-battery-0"></i> battery-0 <span class="text-muted">(alias)</span></a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-battery-1"></i> battery-1 <span class="text-muted">(alias)</span></a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-battery-2"></i> battery-2 <span class="text-muted">(alias)</span></a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-battery-3"></i> battery-3 <span class="text-muted">(alias)</span></a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-battery-4"></i> battery-4 <span class="text-muted">(alias)</span></a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-battery-empty"></i> battery-empty</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-battery-full"></i> battery-full</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-battery-half"></i> battery-half</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-battery-quarter"></i> battery-quarter</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-battery-three-quarters"></i> battery-three-quarters</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bed"></i> bed</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-beer"></i> beer</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bell"></i> bell</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bell-o"></i> bell-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bell-slash"></i> bell-slash</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bell-slash-o"></i> bell-slash-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bicycle"></i> bicycle</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-binoculars"></i> binoculars</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-birthday-cake"></i> birthday-cake</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bolt"></i> bolt</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bomb"></i> bomb</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-book"></i> book</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bookmark"></i> bookmark</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bookmark-o"></i> bookmark-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-briefcase"></i> briefcase</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bug"></i> bug</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-building"></i> building</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-building-o"></i> building-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bullhorn"></i> bullhorn</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bullseye"></i> bullseye</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-bus"></i> bus</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-cab"></i> cab <span class="text-muted">(alias)</span></a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-calculator"></i> calculator</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-calendar"></i> calendar</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-calendar-check-o"></i> calendar-check-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-calendar-minus-o"></i> calendar-minus-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-calendar-o"></i> calendar-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-calendar-plus-o"></i> calendar-plus-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-calendar-times-o"></i> calendar-times-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-camera"></i> camera</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-camera-retro"></i> camera-retro</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-car"></i> car</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-caret-square-o-down"></i> caret-square-o-down</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-caret-square-o-left"></i> caret-square-o-left</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-caret-square-o-right"></i> caret-square-o-right</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-caret-square-o-up"></i> caret-square-o-up</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-cart-arrow-down"></i> cart-arrow-down</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-cart-plus"></i> cart-plus</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-cc"></i> cc</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-certificate"></i> certificate</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-check"></i> check</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-check-circle"></i> check-circle</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-check-circle-o"></i> check-circle-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-check-square"></i> check-square</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-check-square-o"></i> check-square-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-child"></i> child</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-circle"></i> circle</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-circle-o"></i> circle-o</a></div>
+
+                                      <div class="font-icon-container col-md-3 col-sm-4"><a><i class="fa fa-circle-o-notch"></i> circle-o-notch</a></div>
+
+                         

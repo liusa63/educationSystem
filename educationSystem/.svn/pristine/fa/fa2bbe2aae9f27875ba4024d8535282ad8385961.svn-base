@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.ChooseCourse" table="ex_te_stu">
+		<id name="chId" column="id" type="integer">
+			<generator class="native"></generator>
+		</id>
+		<!-- 普通属性 -->
+		<property name="stId" column="st_id" type="integer"></property>
+		<property name="exId" column="ex_id" type="integer"></property>
+        <property name="teId" column="te_id" type="integer"></property>
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,139 @@
+/**
+ * 
+ */
+package com.icss.dao.impl;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
+import com.icss.dao.StudentDao;
+import com.icss.entity.Course;
+import com.icss.entity.Major;
+import com.icss.entity.Sroll;
+import com.icss.entity.Student;
+import com.icss.entity.User;
+
+/**
+ *<p>Title:StudentDaoImpl</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月27日上午9:08:01
+ */
+@Repository(value="studentDao")
+public class StudentDaoImpl extends HibernateDaoSupport implements StudentDao {
+	
+	@Autowired
+	@Qualifier(value="sessionFactory")
+	public void setSuperSessionFactory(SessionFactory sessionFactory){
+		
+		super.setSessionFactory(sessionFactory);
+	}
+
+	/* 
+	 * 查询学生表中信息
+	 */
+	public Student findStudent(String stNum) {
+		
+		String hql = "From Student where stNum=?";	
+		
+		List<Student> list = this.getHibernateTemplate().find(hql, stNum);
+		
+		Student student = null;
+		
+		if(list != null && list.size()>0){
+			
+			student = list.get(0);
+			
+		}
+		return student;
+	}
+
+	/* 
+	 * 查询学籍
+	 */
+	public Sroll findStudentInfo(String stNum) {
+		
+        String hql = "From Sroll where srNumber=?";	
+		
+		List<Sroll> list = this.getHibernateTemplate().find(hql, stNum);
+		
+		Sroll sroll = null;
+		
+		if(list != null && list.size()>0){
+			
+			sroll = list.get(0);
+			
+		}
+		
+		return sroll;
+	}
+
+	/* 
+	 * 修改密码
+	 */
+	public void changeStudentPwd(User user) {
+		
+		this.getHibernateTemplate().update(user);
+		
+		
+	}
+
+	/* 
+	 * 分页查询学生的所有课程（本专业的所有课程）
+	 */
+	public List<Course> findAllCourse(int begin, int max,Major major) {
+		
+		String hql ="from Course where maId=?"; //查询持久化类
+		Query query = this.getSession().createQuery(hql);
+		
+		query.setInteger(0, major.getMaId());
+		
+		query.setFirstResult(begin);//起始条数
+		query.setMaxResults(max);//每页展示的条数
+		
+		List<Course> list = query.list();
+		
+		return list;
+	}
+
+	/* 
+	 * 查询学生所在专业
+	 */
+	public Major findMajor(User user) {
+		
+		Student student = findStudent(user.getUnumber());
+		
+		Major major= student.getSclass().getMajor();
+		
+		return major;
+	}
+	
+	/* 
+	 * 查询学生所在专业的总课程数
+	 */
+	public int selectCountCourse(int maId){
+		
+		int count = 0;
+		
+		String hql="From Course where maId=?";
+		
+		List<Course> list = this.getHibernateTemplate().find(hql, maId);
+		
+		if(list != null && list.size()>0){
+			
+			count = list.size();
+			
+		}
+		
+		return count;
+	}
+	
+
+}

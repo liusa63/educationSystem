@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.Course" table="course">
+		<id name="scId" column="sc_id" type="integer">
+			<generator class="native"></generator>
+		</id>
+		<!-- 普通属性 -->
+		
+		<property name="scGrade" column="sc_grade" type="string"></property>
+
+	</class>
+
+</hibernate-mapping>

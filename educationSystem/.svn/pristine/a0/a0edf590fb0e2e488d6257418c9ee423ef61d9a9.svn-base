@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.Course" table="course">
+		<id name="coId" column="co_id" type="integer">
+			<generator class="native"></generator>
+		</id>
+		<!-- 普通属性 -->
+
+		<property name="coName" column="co_name" type="string"></property>
+		<property name="coScore" column="co_score" type="string"></property>
+		<property name="coStatus" column="co_status" type="string"></property>
+		<property name="coWeek" column="co_week" type="string"></property>
+		<property name="coDay" column="co_day" type="string"></property>
+		<property name="coStart" column="co_start" type="date"></property>
+		<property name="coEnd" column="co_end" type="date"></property>
+		<property name="coRoom" column="co_room" type="string"></property>
+		<property name="coStartTime" column="co_starttime" type="date"></property>
+		<property name="coEndTime" column="co_endtime" type="date"></property>
+
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,76 @@
+/**
+ * 
+ */
+package com.icss.dao.impl;
+
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
+import com.icss.dao.StudentDao;
+import com.icss.entity.Sroll;
+import com.icss.entity.Student;
+
+/**
+ *<p>Title:StudentDaoImpl</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月27日上午9:08:01
+ */
+@Repository(value="studentDao")
+public class StudentDaoImpl extends HibernateDaoSupport implements StudentDao {
+	
+	@Autowired
+	@Qualifier(value="sessionFactory")
+	public void setSuperSessionFactory(SessionFactory sessionFactory){
+		
+		super.setSessionFactory(sessionFactory);
+	}
+
+	/* 
+	 * 查询学生表中信息
+	 */
+	public Student findStudent(String stNum) {
+		
+		String hql = "From Student where stNum=?";	
+		
+		List<Student> list = this.getHibernateTemplate().find(hql, stNum);
+		
+		Student student = null;
+		
+		if(list != null && list.size()>0){
+			
+			student = list.get(0);
+			
+		}
+		return student;
+	}
+
+	/* 
+	 * 查询学籍
+	 */
+	public Sroll findStudentInfo(String stNum) {
+		
+        String hql = "From Sroll where srNumber=?";	
+		
+		List<Sroll> list = this.getHibernateTemplate().find(hql, stNum);
+		
+		Sroll sroll = null;
+		
+		if(list != null && list.size()>0){
+			
+			sroll = list.get(0);
+			
+		}
+		
+		return sroll;
+	}
+	
+	
+
+}

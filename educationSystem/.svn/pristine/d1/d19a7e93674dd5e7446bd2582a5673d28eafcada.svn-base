@@ -1,0 +1,31 @@
+package com.icss.dao.impl;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
+import com.icss.dao.AdminDao;
+import com.icss.entity.Teacher;
+import com.icss.entity.User;
+@Repository(value="adminDao")
+public class AdminDaoImpl extends HibernateDaoSupport implements AdminDao{
+	
+	@Autowired
+	@Qualifier(value="sessionFactory")
+	public void funSessionFactory(SessionFactory sessionFactory){
+		super.setSessionFactory(sessionFactory);
+	}
+	
+
+	public void addTeacher(Teacher teacher) {
+		this.getHibernateTemplate().save(teacher);
+		User user=new User();
+		user.setUnumber(teacher.getTeNum());
+	    user.setUrole(2);
+	    this.getHibernateTemplate().save(user);
+		
+	}
+
+}

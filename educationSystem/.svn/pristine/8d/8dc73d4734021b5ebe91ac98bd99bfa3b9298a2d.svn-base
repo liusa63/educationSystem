@@ -1,0 +1,15 @@
+package com.icss.entity;
+
+public class TeCourse {
+	private int teId;
+
+	public int getTeId() {
+		return teId;
+	}
+
+	public void setTeId(int teId) {
+		this.teId = teId;
+	}
+
+	
+}

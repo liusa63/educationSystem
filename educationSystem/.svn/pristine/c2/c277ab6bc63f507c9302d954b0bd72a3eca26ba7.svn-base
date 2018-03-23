@@ -1,0 +1,26 @@
+package com.icss.biz;
+
+import java.util.List;
+
+import com.icss.entity.Course;
+import com.icss.entity.Major;
+import com.icss.entity.Teacher;
+import com.icss.entity.User;
+
+public interface TeacherBiz {
+	
+	//浏览个人信息--老师登录系统后，可浏览自己的个人基本信息，但没有修改或删除的权限。
+	public Teacher findByNum(String teNum);
+
+	//修改密码
+	public void updatePwd(User user);
+	
+	//查询指定专业名称
+	public Major findAllMajor(int maId);
+	
+	//查询指定课程id
+	public List<Course> findEnCourse(int teId); 
+	
+	//查询课程详情
+	public Course findCourse(int coId);
+}

@@ -1,0 +1,164 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <title>Insert title here</title>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript">
+
+var ids="qcontext,qa,qb,qc,qd";
+var msg="请输入问题,请输入选项内容,请输入选项内容,请输入选项内容";
+
+
+	//非空验证
+	function  checkNull(ids,msg){
+		  var idArray=ids.split(",");
+		   var msgArray=msg.split(",");
+		   for(var i=0;i<idArray.length;i++){
+			  var id= $("#"+idArray[i]).val();
+			  //如果为空，给出错误提示
+			  if(id==""){
+				  $("#"+idArray[i]+"Error").html(msgArray[i]);
+				  return false;
+			  }
+		   }
+		   return true;
+	 }
+	
+	
+	 //页面加载完成触发的事件
+		$(document).ready(function(){
+			//设置获取焦点触发的事件：错误提示消失
+			$("#qcontext").focus(function(){
+				$("#qcontext").val("");
+				$("#qcontextError").html("");
+			});
+			$("#qa").focus(function(){
+				$("#qa").val("");
+				$("#qaError").html("");
+			});
+			$("#qb").focus(function(){
+				$("#qb").val("");
+				$("#qbError").html("");
+			});
+			$("#qc").focus(function(){
+				$("#qc").val("");
+				$("#qcError").html("");
+			});
+			$("#qd").focus(function(){
+				$("#qd").val("");
+				$("#qdError").html("");
+			});
+			
+			
+			//失去焦点触发的事件：判断内容是否为空，若为空给出错误提示
+			$("#qcontext").blur(function(){
+				var u=$("#qcontext").val();
+				if(u==""){
+					$("#qcontextError").html("问题不能为空");
+				}
+			});
+			$("#qa").blur(function(){
+				var p=$("#qa").val();
+				if(p==""){
+					$("#qaError").html("选项不能为空");
+				}
+			});
+			$("#qb").blur(function(){
+				var p=$("#qb").val();
+				if(p==""){
+					$("#qbError").html("选项不能为空");
+				}
+			});
+			$("#qc").blur(function(){
+				var p=$("#qc").val();
+				if(p==""){
+					$("#qcError").html("选项不能为空");
+				}
+			});
+			
+			$("#qd").blur(function(){
+				var p=$("#coStart").val();
+				if(p==""){
+					$("#qdError").html("选项不能为空");
+				}
+			});
+			
+			
+		});
+
+
+function testradio(){
+	
+	 if(checkNull(ids,msg)){
+		
+			
+		
+				 $("#formadd").submit();    
+			}
+		  
+	   
+	
+}
+
+
+
+
+</script>
+</head>
+<body>
+<form id="formadd" action="${pageContext.request.contextPath }/adminAction!addQuestion" method="post">
+		<table>
+			
+			<tr>
+				<td>问题:</td>
+				
+				<td>&nbsp;&nbsp;<input type="text" name="question.qcontent" id="qcontext"/>
+				<span id="qcontextError"></span>
+				
+				</td>
+			</tr>
+					<tr>
+				<td>选项A:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="question.qa" id="qa" />
+				<span id="qaError"></span>
+
+				</td>
+			
+				<tr>
+				<td>选项B:</td>
+				<td>&nbsp;&nbsp;
+				<input type="text" name="question.qb" id="qb" />
+				<span id="qbError"></span>
+				</td>
+			</tr>
+			
+				<tr>
+				<td>选项C:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="question.qc" id="qc"/>
+				<span id="qcError"></span>
+				
+
+				</td>
+			</tr>
+				<tr>
+				<td>选项D:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="question.qd" id="qd"/>
+				<span id="qdError"></span>
+				
+
+				</td>
+			</tr>
+			
+		 
+			<tr>
+		      		
+				<td><input type="button" value="提交" onclick="testradio();" />	</td>			
+			</tr>
+		</table>
+
+	</form>
+</body>	

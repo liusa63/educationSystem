@@ -1,0 +1,274 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>教务系统--学生</title>
+    <link href="${pageContext.request.contextPath }/student/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath }/student/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath }/student/css/demo.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath }/student/css/font-awesome.min.css" rel="stylesheet">
+    <link href='${pageContext.request.contextPath }/student/css/685fd913f1e14aebad0cc9d3713ee469.css' rel='stylesheet' type='text/css'>
+    <link href="${pageContext.request.contextPath }/student/css/pe-icon-7-stroke.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+
+
+</script>
+
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar" data-color="orange" data-image="../../assets/img/full-screen-image-3.jpg">
+       
+        <div class="logo">
+            <a href="#" class="logo-text">
+                                       操作栏
+            </a>
+        </div>
+		
+
+    	<div class="sidebar-wrapper">
+
+            <div class="user">
+                <div class="photo">
+                    <img src="${pageContext.request.contextPath }/student/picture/default-avatar.png" />
+                       <%-- <img src="/static/${sroll.srImg}"/> --%>
+               
+                </div>
+                <div class="info">
+                    <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                       ${student.stName }
+                    </a>
+                    
+                </div>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="studentAction_findStudent">
+                        <i class="pe-7s-graph"></i>
+                        <p>首页</p>
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="collapse" href="#componentsExamples">
+                        <i class="pe-7s-plugin"></i>
+                        <p>个人信息
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="componentsExamples">
+                        <ul class="nav">
+                            <li><a href="studentAction_findInfo">基本信息</a></li>
+                            <li><a href="${pageContext.request.contextPath }/pages/changeStudentPwd.jsp">修改密码</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a data-toggle="collapse" href="#formsExamples">
+                        <i class="pe-7s-note2"></i>
+                        <p>课表
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="formsExamples">
+                        <ul class="nav">
+                            <li><a href="#">学期课表</a></li>
+                            <li><a href="${pageContext.request.contextPath }/studentAction_AllCourse">全部课程</a></li>
+                            <li><a href="#">已完成课程</a></li>
+                            <li><a href="#">未完成课程</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#tablesExamples">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>选课
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="tablesExamples">
+                        <ul class="nav">
+                            <li><a href="#">已选课程</a></li>
+                            <li><a href="#">我要选课</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#mapsExamples">
+                        <i class="pe-7s-map-marker"></i>
+                        <p>成绩
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="mapsExamples">
+                        <ul class="nav">
+                            <li><a href="#">本学期成绩</a></li>
+                            <li><a href="#">通过成绩</a></li>
+                            <li><a href="#">未通过</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+
+
+                <li class="active">
+                    <a data-toggle="collapse" href="#pagesExamples" area-expanded="true">
+                        <i class="pe-7s-gift"></i>
+                        <p>备用栏
+                           <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse in" id="pagesExamples">
+                        <ul class="nav">
+                            <li><a href="#">Login Page</a></li>
+                            <li><a href="#">Register Page</a></li>
+                            <li><a href="#">Lock Screen Page</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+    	</div>
+    </div>
+</div>
+
+
+<div class="fixed-plugin">
+    <div class="dropdown show-dropdown">
+        <a href="#" data-toggle="dropdown"> 
+        <i class="fa fa-cog fa-2x"> </i>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="header-title">Background Style</li>
+            <li class="adjustments-line">
+                <a href="javascript:void(0)" class="switch-trigger">
+                    <p>Background Image</p>
+                    <div class="switch"
+                        data-on-label="ON"
+                        data-off-label="OFF">
+                        <input type="checkbox" checked/>
+                    </div>
+                    <div class="clearfix"></div>
+                </a>
+            </li>
+            <li class="adjustments-line">
+                <a href="javascript:void(0)" class="switch-trigger">
+                    <p>Filters</p>
+                    <div class="pull-right">
+                        <span class="badge filter" data-color="black"></span>
+                        <span class="badge filter badge-azure" data-color="azure"></span>
+                        <span class="badge filter badge-green" data-color="green"></span>
+                        <span class="badge filter badge-orange active" data-color="orange"></span>
+                        <span class="badge filter badge-red" data-color="red"></span>
+                        <span class="badge filter badge-purple" data-color="purple"></span>
+                    </div>
+                    <div class="clearfix"></div>
+                </a>
+            </li>
+            <li class="header-title">Sidebar Images</li>
+            <li class="active">
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="${pageContext.request.contextPath }/student/picture/full-screen-image-1.jpg">
+                </a>
+            </li>
+            <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="${pageContext.request.contextPath }/student/picture/full-screen-image-2.jpg">
+                </a>
+            </li>
+            <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="${pageContext.request.contextPath }/student/picture/full-screen-image-3.jpg">
+                </a>
+            </li>
+            <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="${pageContext.request.contextPath }/student/picture/full-screen-image-4.jpg">
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+
+
+  <!--   Core JS Files and PerfectScrollbar library inside jquery.ui   -->
+    <script src="${pageContext.request.contextPath }/student/js/jquery.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath }/student/js/jquery-ui.min.js" type="text/javascript"></script> 
+	<script src="${pageContext.request.contextPath }/student/js/bootstrap.min.js" type="text/javascript"></script>
+	
+	<!--  Forms Validations Plugin -->
+	<script src="${pageContext.request.contextPath }/student/js/jquery.validate.min.js"></script>
+	
+	<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+	<script src="${pageContext.request.contextPath }/student/js/moment.min.js"></script>
+	
+    <!--  Date Time Picker Plugin is included in this js file -->
+    <script src="${pageContext.request.contextPath }/student/js/bootstrap-datetimepicker.js"></script>
+    
+    <!--  Select Picker Plugin -->
+    <script src="${pageContext.request.contextPath }/student/js/bootstrap-selectpicker.js"></script>
+    
+	<!--  Checkbox, Radio, Switch and Tags Input Plugins -->
+	<script src="${pageContext.request.contextPath }/student/js/bootstrap-checkbox-radio-switch-tags.js"></script>
+	
+	<!--  Charts Plugin -->
+	<script src="${pageContext.request.contextPath }/student/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="${pageContext.request.contextPath }/student/js/bootstrap-notify.js"></script>
+    
+    <!-- Sweet Alert 2 plugin -->
+	<script src="${pageContext.request.contextPath }/student/js/sweetalert2.js"></script>
+        
+    <!-- Vector Map plugin -->
+	<script src="${pageContext.request.contextPath }/student/js/jquery-jvectormap.js"></script>
+	
+    <!--  Google Maps Plugin    -->
+    <script src="${pageContext.request.contextPath }/student/js/aa743e8f448a4792bad10d201a7080f6.js"></script>
+	
+	<!-- Wizard Plugin    -->
+    <script src="${pageContext.request.contextPath }/student/js/jquery.bootstrap.wizard.min.js"></script>
+
+    <!--  Datatable Plugin    -->
+    <script src="${pageContext.request.contextPath }/student/js/bootstrap-table.js"></script>
+    
+    <!--  Full Calendar Plugin    -->
+    <script src="${pageContext.request.contextPath }/student/js/fullcalendar.min.js"></script>
+    
+    <!-- Light Bootstrap Dashboard Core javascript and methods -->
+	<script src="${pageContext.request.contextPath }/student/js/light-bootstrap-dashboard.js"></script>
+	
+	<!--   Sharrre Library    -->
+    <script src="${pageContext.request.contextPath }/student/js/jquery.sharrre.js"></script>
+	
+	<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+	<script src="${pageContext.request.contextPath }/student/js/demo.js"></script>
+	    
+    <script type="text/javascript">
+        $().ready(function(){
+            lbd.checkFullPageBackgroundImage();
+            
+            setTimeout(function(){
+                // after 1000 ms we add the class animated to the login/register card
+                $('.card').removeClass('card-hidden');
+            }, 700)
+        });
+    </script>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-46172202-1', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+
+</html>

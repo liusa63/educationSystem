@@ -1,0 +1,153 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript">
+
+var ids="teNum,teName,tePhone,teSalary";
+var msg="请输入工号,请输入姓名,请输入联系方式,请输入工资";
+
+
+	//非空验证
+	function  checkNull(ids,msg){
+		  var idArray=ids.split(",");
+		   var msgArray=msg.split(",");
+		   for(var i=0;i<idArray.length;i++){
+			  var id= $("#"+idArray[i]).val();
+			  //如果为空，给出错误提示
+			  if(id==""){
+				  $("#"+idArray[i]+"Error").html(msgArray[i]);
+				  return false;
+			  }
+		   }
+		   return true;
+	 }
+	
+	
+	 //页面加载完成触发的事件
+		$(document).ready(function(){
+			//设置获取焦点触发的事件：错误提示消失
+			$("#teNum").focus(function(){
+				$("#teNum").val("");
+				$("#teNumError").html("");
+			});
+			$("#teName").focus(function(){
+				$("#teName").val("");
+				$("#teNameError").html("");
+			});
+			$("#tePhone").focus(function(){
+				$("#tePhone").val("");
+				$("#tePhoneError").html("");
+			});
+			$("#teSalary").focus(function(){
+				$("#teSalary").val("");
+				$("#teSalaryError").html("");
+			});
+			
+			//失去焦点触发的事件：判断内容是否为空，若为空给出错误提示
+			$("#teNum").blur(function(){
+				var u=$("#teNum").val();
+				if(u==""){
+					$("#teNumrError").html("工号不能为空");
+				}
+			});
+			$("#teName").blur(function(){
+				var p=$("#teName").val();
+				if(p==""){
+					$("#teNameError").html("姓名不能为空");
+				}
+			});
+			$("#tePhone").blur(function(){
+				var p=$("#tePhone").val();
+				if(p==""){
+					$("#tePhoneError").html("联系电话不能为空");
+				}
+			});
+			$("#teSalary").blur(function(){
+				var p=$("#teSalary").val();
+				if(p==""){
+					$("#teSalaryError").html("工资不能为空");
+				}
+			});
+		});
+
+
+//获取选中单选框
+function testradio(){
+	
+	 if(checkNull(ids,msg)){
+		 var v = $(":radio:checked").val();
+			alert(v);
+			if(v!=undefined){
+				$("#tname").val(v);
+				 $("#formadd").submit();    
+			}else{
+				alert("请选择身份");
+			}
+		  
+	   }
+	
+}
+
+
+
+
+</script>
+</head>
+<body>
+<form id="formadd" action="adminAction!addTeacher" method="post">
+		<table>
+			<tr>
+				<td>教师工号:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="teNum" id="teNum"/>
+				<span id="teNumError"></span>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td>教师姓名:</td>
+				
+				<td>&nbsp;&nbsp;<input type="text" name="teName" id="teName"/>
+				<span id="teNameError"></span>
+				
+				</td>
+			</tr>
+					<tr>
+				<td>联系方式:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="tePhone" id="tePhone" />
+				<span id="tePhoneError"></span>
+
+				</td>
+			</tr>
+				<tr>
+				<td>工资:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="teSalary" id="teSalary"/>
+				<span id="teSalaryError"></span>
+				
+
+				</td>
+			</tr>
+				<tr>
+				<td>身份:</td>
+				<td>
+				<input type="radio" value="1" name="teachername">上课老师
+	            <input type="radio" value="2" name="teachername">班主任
+				</td>
+			</tr>
+			
+			
+			<tr>		  
+		      		<td><input type="hidden" id="tname" name="teBehave"/>	</td>	
+				<td><input type="button" value="提交" onclick="testradio();" />	</td>			
+			</tr>
+		</table>
+
+	</form>
+
+</body>
+</html>

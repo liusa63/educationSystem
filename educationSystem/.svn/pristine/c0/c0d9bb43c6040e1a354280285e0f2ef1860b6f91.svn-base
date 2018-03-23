@@ -1,0 +1,375 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link href="${pageContext.request.contextPath }/css/base.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/project/normal_exam.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/js/lib/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.1.9.2.min.js"></script>
+<link href="${pageContext.request.contextPath }/css/base.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/project/normal_exam.css"rel="stylesheet">
+<link href="${pageContext.request.contextPath }/js/lib/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript">
+	/* 遍历所有专业 */
+	$(function() {
+		$.ajax({
+					type : "post",
+					url : "${pageContext.request.contextPath }/adminAction!selectAllMajor",
+					success : function(mlist) {						
+						var str = "<select id='ma1'>";
+						str += "<option value='undefined'>" + "请选择专业"+ "<option>"; 
+						
+						for ( var i = 0; i < mlist.length; i++) {
+							str += "<option value="+mlist[i].maId+">"+ mlist[i].maName + "<option>";
+							
+							
+						}
+						str += "</select>";
+						 $("#content0").html(str);
+						
+					},
+					error : function() {
+						alert("失败");
+					}
+				})
+				
+			$.ajax({
+					type : "post",
+					url : "${pageContext.request.contextPath }/adminAction!selectAllMajor",
+					success : function(mlist) {						
+						var str = "<select id='ma2'>";
+						str += "<option value='undefined'>" + "请选择专业"+ "<option>"; 
+						
+						for ( var i = 0; i < mlist.length; i++) {
+							str += "<option value="+mlist[i].maId+">"+ mlist[i].maName + "<option>";
+							
+							
+						}
+						str += "</select>";
+						
+						$("#content1").html(str);
+						
+					},
+					error : function() {
+						alert("失败");
+					}
+				})
+				
+				$.ajax({
+					type : "post",
+					url : "${pageContext.request.contextPath }/adminAction!selectAllMajor",
+					success : function(mlist) {						
+						var str = "<select id='ma3'>";
+						str += "<option value='undefined'>" + "请选择专业"+ "<option>"; 
+						
+						for ( var i = 0; i < mlist.length; i++) {
+							str += "<option value="+mlist[i].maId+">"+ mlist[i].maName + "<option>";
+							
+							
+						}
+						str += "</select>";
+						
+						$("#content2").html(str);
+						
+					},
+					error : function() {
+						alert("失败");
+					}
+				})
+				$.ajax({
+					type : "post",
+					url : "${pageContext.request.contextPath }/adminAction!selectAllMajor",
+					success : function(mlist) {						
+						var str = "<select id='ma4'>";
+						str += "<option value='undefined'>" + "请选择专业"+ "<option>"; 
+						
+						for ( var i = 0; i < mlist.length; i++) {
+							str += "<option value="+mlist[i].maId+">"+ mlist[i].maName + "<option>";
+							
+							
+						}
+						str += "</select>";
+						
+						$("#content3").html(str); 
+						
+					},
+					error : function() {
+						alert("失败");
+					}
+				})
+				$.ajax({
+					type : "post",
+					url : "${pageContext.request.contextPath }/adminAction!selectAllMajor",
+					success : function(mlist) {						
+						var str = "<select id='ma5'>";
+						str += "<option value='undefined'>" + "请选择专业"+ "<option>"; 
+						
+						for ( var i = 0; i < mlist.length; i++) {
+							str += "<option value="+mlist[i].maId+">"+ mlist[i].maName + "<option>";
+													
+						}
+						str += "</select>";
+						
+						$("#content4").html(str); 
+					},
+					error : function() {
+						alert("失败");
+					}
+				})
+	})
+	function inputTeacher() {
+		var mid1 = $("#ma1>option:selected").val();
+		var mid2 = $("#ma2>option:selected").val();
+		var mid3 = $("#ma3>option:selected").val();
+		var mid4 = $("#ma4>option:selected").val();
+		var mid5 = $("#ma5>option:selected").val();
+		if (mid1!= undefined) {
+			$("#a2").val(mid1);
+			$("#b2").val(mid2);
+			$("#c2").val(mid3);
+			$("#d2").val(mid4);
+			$("#e2").val(mid5);
+			var tid1 = $("#tebe1>option:selected").val();
+			var tid2 = $("#tebe2>option:selected").val();
+			var tid3 = $("#tebe3>option:selected").val();
+			var tid4 = $("#tebe4>option:selected").val();
+			var tid5 = $("#tebe5>option:selected").val();
+			if (tid1 != undefined) {
+				$("#a1").val(tid1);
+				$("#b1").val(tid2);
+				$("#c1").val(tid3);
+				$("#d1").val(tid4);
+				$("#e1").val(tid5);
+				$("#subform").submit();
+			} else {
+				alert("请选择专业");
+			}
+		} else {
+			alert("请选择专业");
+		}
+	}
+	
+	/*  function addTeacher(){
+		$("#addte").before('
+				$.ajax({
+					type : 'post',
+					url : '${pageContext.request.contextPath }/adminAction!selectAllMajor',
+					success : function(mlist) {						
+						var str = "<select id='ma5'>";
+						str += "<option value='undefined'>" + "请选择专业"+ "<option>"; 
+						
+						for ( var i = 0; i < mlist.length; i++) {
+							str += "<option value="+mlist[i].maId+">"+ mlist[i].maName + "<option>";						
+						}
+						str += "</select>";						
+						$("#content5").html(str); 
+					},
+					error : function() {
+						alert("失败");
+					}
+				})
+				<td><input type="text" name="teachers[0].teNum" id="tnum1"></td>
+				<td><input type="text" name="teachers[0].teName"
+					id="tname1"></td>
+
+				<td><input type="text" name="teachers[0].tePhone"
+					id="tphone1"></td>
+
+				<td><select id="tebe1">
+						<option value="1">讲师</option>
+						<option value="2">班主任</option>
+				</select> <input type="hidden" id="a1" name="teachers[0].teBehave"></td>
+				<td><input type="text" value="" name="teachers[0].teSalary"
+					id="tsalary1"></td>
+				<td><span id="content5"></span> <input type="hidden"
+					id="a2" name="teachers[0].maId"></td>
+	);
+
+	}  */
+</script>
+</head>
+<body>
+	<div class="container">
+		<div id="inner-hd">
+			<div class="crumbs">
+				<i class="crumbs-arrow"></i> <a href="javascript:;"
+					class="crumbs-label">教师信息</a>
+			</div>
+		</div>
+
+		<div id="inner-bd">
+			<div class="kv-group-outer">
+				<div class="kv-group clearfix">
+					<div class="kv-item">
+						<div class="item-lt">专业：</div>
+						<div class="item-rt">
+							<select>
+								<option>2015</option>
+							</select>
+						</div>
+					</div>
+					<div class="kv-item">
+						<div class="item-lt">周期：</div>
+						<div class="item-rt">
+							<select>
+								<option>第一季度</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="button-group">
+				<div class="button current">
+					<i class="iconfont">&#xe76a;</i> <span class="button-label"
+						onclick="inputTeacher();">录入</span>
+				</div>
+				 <div class="button current add">
+				 <i class="iconfont">&#xe620;</i>
+		          <a href="/educationSystem/pages/addTeachers.jsp"><span class="button-label" onclick="addTeacher()" > 添加一行</span></a>     
+		        </div>
+
+
+				<div class="tip">提示：</div>
+			</div>
+			<div class="table-zone">
+				<form
+					action="${pageContext.request.contextPath }/adminAction!addTeachers"
+					method="post" id="subform">
+					<table>
+						<thead>
+							<tr>
+
+								<td class="name">教师工号</td>
+								<td class="name">教师姓名</td>
+								<td class="name">联系方式</td>
+								<td class="name">身份</td>
+								<td class="name">工资</td>
+								<td class="name">专业</td>
+
+
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+
+								<td><input type="text" name="teachers[0].teNum" id="tnum1"></td>
+								<td><input type="text" name="teachers[0].teName"
+									id="tname1"></td>
+
+								<td><input type="text" name="teachers[0].tePhone"
+									id="tphone1"></td>
+
+								<td><select id="tebe1">
+										<option value="1">讲师</option>
+										<option value="2">班主任</option>
+								</select> <input type="hidden" id="a1" name="teachers[0].teBehave"></td>
+								<td><input type="text" value="" name="teachers[0].teSalary"
+									id="tsalary1"></td>
+								<td><span id="content0"></span> <input type="hidden"
+									id="a2" name="teachers[0].maId"></td>
+							</tr>
+							<tr>
+
+								<td><input type="text" name="teachers[1].teNum" id="tnum2"></td>
+								<td><input type="text" name="teachers[1].teName"
+									id="tname2"></td>
+
+								<td><input type="text" name="teachers[1].tePhone"
+									id="tphone2"></td>
+
+								<td><select id="tebe2">
+										<option value="1">讲师</option>
+										<option value="2">班主任</option>
+								</select> <input type="hidden" id="b1" name="teachers[1].teBehave"></td>
+
+								<td><input type="text" value="" name="teachers[1].teSalary"
+									id="tsalary2"></td>
+								<td><span id="content1"></span> <input type="hidden"
+									id="b2" name="teachers[1].maId"></td>
+
+							</tr>
+							<tr>
+
+								<td><input type="text" name="teachers[2].teNum" id="tnum3"></td>
+								<td><input type="text" name="teachers[2].teName"
+									id="tname3"></td>
+
+								<td><input type="text" name="teachers[2].tePhone"
+									id="tphone3"></td>
+
+								<td><select id="tebe3">
+										<option value="1">讲师</option>
+										<option value="2">班主任</option>
+								</select> <input type="hidden" id="c1" name="teachers[2].teBehave"></td>
+
+								<td><input type="text" name="teachers[2].teSalary"
+									id="tsalary3"></td>
+								<td><span id="content2"></span> <input type="hidden"
+									id="c2" name="teachers[2].maId"></td>
+
+							</tr>
+							<tr>
+
+								<td><input type="text" name="teachers[3].teNum" id="tnum3"></td>
+								<td><input type="text" name="teachers[3].teName"
+									id="tname3"></td>
+
+								<td><input type="text" name="teachers[3].tePhone"
+									id="tphone3"></td>
+
+								<td><select id="tebe4">
+										<option value="1">讲师</option>
+										<option value="2">班主任</option>
+								</select> <input type="hidden" id="d1" name="teachers[3].teBehave"></td>
+
+								<td><input type="text" name="teachers[3].teSalary"
+									id="tsalary3"></td>
+								<td><span id="content3"></span> <input type="hidden"
+									id="d2" name="teachers[3].maId"></td>
+
+							</tr>
+							<tr>
+
+								<td><input type="text" name="teachers[4].teNum" id="tnum3"></td>
+								<td><input type="text" name="teachers[4].teName"
+									id="tname3"></td>
+
+								<td><input type="text" name="teachers[4].tePhone"
+									id="tphone3"></td>
+
+								<td><select id="tebe5">
+										<option value="1">讲师</option>
+										<option value="2">班主任</option>
+								</select> 
+								<input type="hidden" id="e1" name="teachers[4].teBehave">
+								</td>
+
+								<td><input type="text" name="teachers[4].teSalary"
+									id="tsalary3"></td>
+								<td><span id="content4"></span> 
+								<input type="hidden" id="e2" name="teachers[4].maId"></td>
+							</tr>
+							<tr id="addte"></tr>
+							
+						</tbody>
+					</table>
+				</form>
+				<div class="note">
+					<span>注：</span>
+				</div>
+			</div>
+		</div>
+		<div id="inner-ft"></div>
+	</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,315 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link href="${pageContext.request.contextPath }/css/base.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath }/css/project/normal_exam.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath }/js/lib/umeditor/themes/default/css/umeditor.css"
+	type="text/css" rel="stylesheet">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript">
+var tnums="tnum1,tnum2,tnum3";
+var tnames="tename1,tename2,tename3";
+var tphones="tephone1,tephone2,tephone3";
+var tbehave="a1,b1,c1";
+var tsalarys="tsalary1,tsalary2,tsalary3";
+var tmajor="a2,b2,c2";
+	function  testradio(tnums,tnames,tphones,tbehave,tsalarys,tmajor){
+		var mid1=$("#ma1>option:selected").val();
+		var mid2=$("#ma2>option:selected").val();
+		var mid3=$("#ma3>option:selected").val();
+		 $("#a2").val(mid1);		
+		 $("#b2").val(mid2);
+		$("#c2").val(mid3); 
+		var tb1=$("#tebe1>option:selected").val();
+		var tb2=$("#tebe2>option:selected").val();
+		var tb3=$("#tebe3>option:selected").val();
+		 $("#a1").val(tb1);
+		 $("#b1").val(tb2);
+		 $("#c1").val(tb3);
+		 
+		   var numArray=tnums.split(",");
+		   var nameArray=tnames.split(",");
+		   var phoneArray=tphones.split(",");
+		   var behaveArray=tbehave.split(",");
+		   var salaryArray=tsalarys.split(",");
+		   var majorArray=tmajor.split(",");
+		   for(var i=0;i<numArray.length;i++){
+			  var tenum1=$("#"+numArray[i]).val();
+			  var tename1=$("#"+nameArray[i]).val();
+			  var tephone1=$("#"+phoneArray[i]).val();
+			  var tebehave1=$("#"+behaveArray[i]).val();
+			  var tesalary1=$("#"+salaryArray[i]).val();
+			  var temajor1=$("#"+majorArray[i]).val();
+			  $.ajax({
+					type:"post",
+					url:"${pageContext.request.contextPath }/adminAction!addTeachers?teNum="+tenum1+"&&teName="+tename1
+							+"&&tePhone="+tephone1+"&&teBehave="+tebehave1+"&&teSalary="+tesalary1+"&&maId="+temajor1,
+					success:function(msg){
+						alert("添加一条");
+					},
+					error:function(){
+						alert("失败");
+					}
+					
+					
+				})
+
+		   }
+		   return true;
+	 }
+
+//获取选中单选框
+/* function testradio(){
+	
+	 if(checkNull(ids,msg)){
+		 var v = $(":radio:checked").val();
+			alert(v);
+			if(v!=undefined){
+				$("#tname").val(v);
+				var id=$("#ma>option:selected").val();
+				if(id!=undefined){
+					$("#aa").val(id);
+					 $("#formadd").submit();   
+				}else{
+					alert("请选择专业");
+				}
+				 
+			}else{
+				alert("请选择身份");
+			}
+		  
+	   }
+	
+} */
+
+/* 遍历所有专业 */
+ $(function(){
+	
+	$.ajax({
+		type:"post",
+		url:"adminAction!selectAllMajor",
+		success:function(mlist){
+			alert(1);
+		   alert(mlist.size);
+		 	var str="<select id='ma1'>";
+			str+="<option value='undefined'>"+"请选择专业"+"<option>";
+			for(var i=0;i<mlist.length;i++){
+				str+="<option value="+mlist[i].maId+">"+mlist[i].maName+"<option>";
+			}
+			str+="</select>";
+			$("#content1").html(str); 
+			$("#content2").html(str); 
+			$("#content3").html(str); 
+			/* $("#content4").html(str); 
+			$("#content5").html(str);  */
+		},
+		error:function(){
+			alert("失败");
+		}
+		
+		
+	})
+
+}) 
+
+</script>
+</head>
+<body>
+	<div class="container">
+		<div id="inner-hd">
+			<div class="crumbs">
+				<i class="crumbs-arrow"></i> <a href="javascript:;"
+					class="crumbs-label">教师信息</a>
+			</div>
+		</div>
+
+		<div id="inner-bd">
+			<div class="kv-group-outer">
+				<div class="kv-group clearfix">
+					<div class="kv-item">
+						<div class="item-lt">专业：</div>
+						<div class="item-rt">
+							<select>
+								<option>2015</option>
+							</select>
+						</div>
+					</div>
+					<div class="kv-item">
+						<div class="item-lt">周期：</div>
+						<div class="item-rt">
+							<select>
+								<option>第一季度</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="button-group">
+				<div class="button current">
+					<i class="iconfont">&#xe76a;</i> <span
+						class="button-label" onclick="testradio();">录入</span>
+				</div>
+
+				<div class="button">
+					<i class="iconfont"></i> <span class="button-label"
+						onclick="updateteacher();">修改</span>
+					<form action="/educationSystem/adminAction!findByIdTeacher"
+						id="formsub">
+						<input type="hidden" id="aa" name="teId">
+					</form>
+				</div>
+				<div class="tip">提示：</div>
+			</div>
+			<div class="table-zone">
+			<table>
+					<thead>
+						<tr>
+							
+							<td class="name">教师工号</td>
+							<td class="name">教师姓名</td>
+							<td class="name">联系方式</td>
+							<td class="name">身份</td>
+							<td class="name">工资</td>
+							<td class="name">专业</td>
+							
+
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr>
+							
+							<td><input type="text" value="" name="teNum" id="tnum1"></td>
+							<td><input type="text" value="" name="teName" id="tname1"></td>
+
+							<td><input type="text" value="" name="tePhone" id="tphone1"></td>
+
+							<td>
+							<select id="tebe1">							
+							<option value="1">讲师</option>
+							<option value="2">班主任</option>
+							</select>
+							<input type="hidden" id="a1" name="teBahave">
+							</td>
+							<td><input type="text" value="" name="teSalary" id="tsalary1"></td>
+							<td>
+							<span id="content1"></span>
+							<input type="hidden" id="a2" name="maId">
+							</td>						
+						</tr>
+						<tr>
+							
+							<td><input type="text" value="" name="teNum" id="tnum2"></td>
+							<td><input type="text" value="" name="teName" id="tname2"></td>
+
+							<td><input type="text" value="" name="tePhone" id="tphone2"></td>
+
+							<td>
+							<select id="tebe2">							
+							<option value="1">讲师</option>
+							<option value="2">班主任</option>
+							</select>
+							<input type="hidden" id="b1" name="teBahave">
+							</td>
+
+							<td><input type="text" value="" name="teSalary" id="tsalary2"></td>
+							<td>
+							<span id="content2"></span>
+							<input type="hidden" id="b2" name="maId">
+							</td>
+							
+						</tr>
+						<tr>
+							
+							<td><input type="text" value="" name="teNum" id="tnum3"></td>
+							<td><input type="text" value="" name="teName" id="tname3"></td>
+
+							<td><input type="text" value="" name="tePhone" id="tphone3"></td>
+
+							<td>
+							<select id="tebe3">							
+							<option value="1">讲师</option>
+							<option value="2">班主任</option>
+							</select>
+							<input type="hidden" id="c1" name="teBahave">
+							</td>
+
+							<td><input type="text"  name="teSalary" id="tsalary3"></td>
+							<td>
+							<span id="content3"></span>
+							<input type="hidden" id="c2" name="maId">
+							</td>
+							
+						</tr>
+						<!-- <tr>
+							
+							<td><input type="text" value="" name="teacher" id="tnum4"></td>
+							<td><input type="text" value="" name="teacher" id="tname4"></td>
+
+							<td><input type="text" value="" name="teacher" id="tphone4"></td>
+
+							<td>
+							<select>							
+							<option value="1">讲师</option>
+							<option value="2">班主任</option>
+							</select>
+							<input type="hidden" id="d1">
+							</td>
+
+							<td><input type="text" value="" name="teacher" id="tsalary4"></td>
+							<td>
+							<span id="content4"></span>
+							<input type="hidden" id="d2">
+							</td>
+							
+						</tr>
+						<tr>
+							
+							<td><input type="text" value="" name="teacher" id="tnum5"></td>
+							<td><input type="text" value="" name="teacher" id="tname5"></td>
+
+							<td><input type="text" value="" name="teacher" id="tphone5"></td>
+
+							<td>
+							<select>							
+							<option value="1">讲师</option>
+							<option value="2">班主任</option>
+							</select>
+							<input type="hidden" id="e1">
+							</td>
+
+							<td><input type="text" value="" name="teacher" id="tsalary5"></td>
+							<td>
+							<span id="content5"></span>
+							<input type="hidden" id="e2">
+							</td>
+							
+						</tr>
+ -->
+						
+					</tbody>
+				</table>
+
+				<div class="note">
+					<span>注：</span>
+
+				</div>
+			</div>
+		</div>
+		<div id="inner-ft"></div>
+	</div>
+
+
+
+</body>
+</html>

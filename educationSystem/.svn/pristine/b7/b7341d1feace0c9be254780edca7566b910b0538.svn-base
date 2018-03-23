@@ -1,0 +1,565 @@
+package com.icss.dao.impl;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
+import com.icss.dao.TeacherDao;
+import com.icss.entity.Course;
+import com.icss.entity.EnCourse;
+import com.icss.entity.EnCourseVo;
+import com.icss.entity.Evaluation;
+import com.icss.entity.EvaluationVo;
+import com.icss.entity.Excourse;
+import com.icss.entity.ExcourseVo;
+import com.icss.entity.Grade;
+import com.icss.entity.Major;
+import com.icss.entity.Question;
+import com.icss.entity.Room;
+import com.icss.entity.Sclass;
+import com.icss.entity.Student;
+import com.icss.entity.Teacher;
+import com.icss.entity.TeacherVo;
+import com.icss.entity.User;
+
+/**
+ * 
+ * <p>Title:TecaherDaoImpz </p>
+ * <P>Description:</p>
+ * <p> Company:</p>
+ * @author jby
+ * @date2017-9-30上午8:32:16
+ */
+
+@Repository(value = "teacherDao")
+public class TecaherDaoImpl extends HibernateDaoSupport implements TeacherDao {
+
+	@Autowired
+	@Qualifier(value = "sessionFactory")
+	public void setSuperSessionFactory(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
+
+	// 浏览个人信息--老师登录系统后，可浏览自己的个人基本信息，但没有修改或删除的权限。
+	public TeacherVo findTeacher(String teNum) {
+
+		TeacherVo teacherVo = new TeacherVo();
+		// 获取teacher的信息
+		List<Teacher> list = this.getHibernateTemplate().find(
+				"from Teacher where teNum=?", teNum);
+
+		Teacher teacher = list.get(0);
+		teacherVo.setTeId(teacher.getTeId());
+		teacherVo.setTeNum(teacher.getTeNum());
+		teacherVo.setTeName(teacher.getTeName());
+		teacherVo.setTeBehave(teacher.getTeBehave());
+		teacherVo.setTePhone(teacher.getTePhone());
+		teacherVo.setTeSalary(teacher.getTeSalary());
+
+		// 获取教师所对应的专业信息
+		List<Major> list1 = this.getHibernateTemplate().find(
+				"from Major where maId=?", teacher.getMaId());
+		Major major = list1.get(0);
+		teacherVo.setMaName(major.getMaName());
+
+		return teacherVo;
+
+	}
+
+	// 修改密码
+	public void updatePwd(User user) {
+		this.getHibernateTemplate().update(user);
+	}
+
+	// 获取教师id
+	public Teacher findByNum(String teNum) {
+		List<Teacher> list = this.getHibernateTemplate().find(
+				"from Teacher where teNum=?", teNum);
+		Teacher teacher = null;
+		if (list != null && list.size() > 0) {
+			teacher = list.get(0);
+		}
+		return teacher;
+	}
+
+	// 查询课程的详情 第一种方式
+	public Course findCourse(int coId) {
+		List<Course> list = this.getHibernateTemplate().find(
+				"from Course where coId=?", coId);
+		Course course = null;
+		List<Course> list1 = new ArrayList<Course>();
+		if (list != null && list.size() > 0) {
+			course = list.get(0);
+		}
+		return course;
+	}
+
+	// 获取课程 第二种方式
+	public Course change(int coId) {
+
+		Course course = (Course) this.getSession().get(Course.class, coId);
+
+		return course;
+
+	}
+
+	// 分页查询所有必修课程
+	public List<EnCourseVo> findPageCourse(int firstResult, int pageSize,
+			int teId) {
+
+		List<EnCourseVo> enCourseVos = new ArrayList<EnCourseVo>();
+
+		String hql = "from EnCourse where teId=? order by coId";
+		Query query = this.getSession().createQuery(hql);
+		query.setInteger(0, teId);
+
+		query.setFirstResult(firstResult);// 开始位置（从0开始）
+		query.setMaxResults(pageSize);// 每页显示最多条数
+
+		List<EnCourse> list = query.list();
+
+		if (list != null && list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				EnCourse enCourse = list.get(i);
+
+				EnCourseVo vo = new EnCourseVo();
+
+				Course course = change(enCourse.getCoId());
+				vo.setCoName(course.getCoName());// 课程名
+				vo.setCoScore(course.getCoScore());// 学分
+				vo.setCoEndTime(course.getCoEndTime());// 学期末
+				vo.setCoStartTime(course.getCoStartTime());// 学期始
+				vo.setCoWeek(course.getCoWeek());
+				vo.setEnDay(enCourse.getEnDay());
+				vo.setEnEnd(enCourse.getEnEnd());
+				vo.setEnStart(enCourse.getEnStart());
+
+				Room room = findRoomByRoid(enCourse.getRoId());
+				vo.setRoName(room.getRoName());// 教室名
+
+				enCourseVos.add(vo);
+
+			}
+		}
+
+		return enCourseVos;
+
+	}
+
+	// 查询课程的总条数
+	public int selectCountCourse(int teId) {
+
+		List list = this.getHibernateTemplate().find(
+				"select count(*) from EnCourse where teId=? order by coId",
+				teId);
+
+		Number num = (Number) list.get(0);
+
+		return num.intValue();
+
+	}
+
+	// 遍历问题表，将问题添加到评估表的表头，取代答案1...
+	public List<Question> selectQuestion() {
+		List<Question> list = this.getHibernateTemplate().find("from Question");
+		return list;
+	}
+
+	// 先根据teId找到该教师带的所有课程，根据课程查看所有评估，计算每个问题的平均分
+	public List<EnCourse> selectByTeId(int teId) {
+
+		List<EnCourse> encList = this.getHibernateTemplate().find(
+				"from EnCourse where teId=?", teId);
+
+		return encList;
+
+	}
+
+	// 根据课程查看所有评估，计算每个问题的平均分
+	public EvaluationVo selectByCoId(int coId, int teId) {
+
+		EvaluationVo evaluationVo = new EvaluationVo();
+
+		// 求老师所带的所有课程的名称
+		Course course = findCourse(coId);
+
+		evaluationVo.setCoName(course.getCoName());
+
+		// 求每个问题的平均分
+		// 问题1
+		String hql = "select avg(answer1) from Evaluation where coId = ? and teId = ?";
+		Query query = this.getSession().createQuery(hql);
+		query.setInteger(0, coId);
+		query.setInteger(1, teId);
+
+		double listAn1 = (Double) query.uniqueResult();
+		evaluationVo.setAnswer1(listAn1);
+
+		System.out.println(evaluationVo.getAnswer1());
+
+		// 问题2
+		String hql2 = "select avg(answer2) from Evaluation where coId = ? and teId = ?";
+		Query query2 = this.getSession().createQuery(hql2);
+		query2.setInteger(0, coId);
+		query2.setInteger(1, teId);
+
+		double listAn2 = (Double) query2.uniqueResult();
+		evaluationVo.setAnswer2(listAn2);
+
+		// 问题3
+		String hql3 = "select avg(answer3) from Evaluation where coId = ? and teId = ?";
+		Query query3 = this.getSession().createQuery(hql);
+		query3.setInteger(0, coId);
+		query3.setInteger(1, teId);
+
+		double listAn3 = (Double) query3.uniqueResult();
+		evaluationVo.setAnswer3(listAn3);
+
+		// 问题4
+		String hq4 = "select avg(answer4) from Evaluation where coId = ? and teId = ?";
+		Query query4 = this.getSession().createQuery(hq4);
+		query4.setInteger(0, coId);
+		query4.setInteger(1, teId);
+
+		double listAn4 = (Double) query4.uniqueResult();
+		evaluationVo.setAnswer4(listAn4);
+
+		// 问题5
+		String hql5 = "select avg(answer5) from Evaluation where coId = ? and teId = ?";
+		Query query5 = this.getSession().createQuery(hql);
+		query5.setInteger(0, coId);
+		query5.setInteger(1, teId);
+
+		double listAn5 = (Double) query5.uniqueResult();
+		evaluationVo.setAnswer5(listAn5);
+
+		return evaluationVo;
+
+	}
+
+	// 分页查询所有评估
+	public List<EvaluationVo> findPageEva(int firstResult, int pageSize,
+			int teId) {
+
+		List<EvaluationVo> evaList = new ArrayList<EvaluationVo>();
+
+		String hql = "from EnCourse where teId=?";
+		Query query = this.getSession().createQuery(hql);
+		query.setInteger(0, teId);
+
+		query.setFirstResult(firstResult);// 开始位置（从0开始）
+		query.setMaxResults(pageSize);// 每页显示最多条数
+
+		List<EnCourse> list = query.list();
+
+		System.out.println(list);
+		System.out.println(list.size());
+
+		if (list != null && list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+
+				EvaluationVo evaluationVo = new EvaluationVo();
+				evaluationVo = selectByCoId(list.get(i).getCoId(), teId);
+
+				evaList.add(evaluationVo);
+			}
+		}
+
+		return evaList;
+	}
+
+	// 查询指定教师评估总数-----根据Evalution
+	public int selectCountEva(int teId) {
+
+		List list = this.getHibernateTemplate().find(
+				"select count(*) from EnCourse where teId=?", teId);
+
+		Number num = (Number) list.get(0);
+
+		return num.intValue();
+	}
+
+	// 查询班级 ---根据班级id查询班级信息
+	public Sclass findSclass(int clId) {
+
+		Sclass sclass = (Sclass) this.getSession().get(Sclass.class, clId);
+
+		return sclass;
+
+	}
+
+	// 查询指定课程id
+	public List<Course> findCourseList(int teId) {
+
+		List<EnCourse> list = this.getHibernateTemplate().find(
+				"from EnCourse where teId=?", teId);// 根据teId获取EnCourse集合
+
+		List<Course> list1 = new ArrayList<Course>();
+		if (list != null && list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+
+				int coId = list.get(i).getCoId();// 遍历获取到每个coId
+				Course course = new Course();
+				course = findCourse(coId);// 给课程表setCoId
+				list1.add(course);// 添加到课程表集合中
+
+			}
+		}
+		return list1;
+	}
+
+	// 查询班级---根据课程id和教师id
+	public List<Sclass> selectSclassByCoIdAndTeId(int coId, int teId) {
+		List<Sclass> scList = new ArrayList<Sclass>();
+
+		List<EnCourse> list = this.getHibernateTemplate().find(
+				"from EnCourse where coId=? and teId=?", coId, teId);
+		for (int i = 0; i < list.size(); i++) {
+			EnCourse enCourse = list.get(i);
+			Sclass sclass = new Sclass();
+			sclass = findSclass(list.get(i).getClId());
+			scList.add(sclass);
+		}
+
+		return scList;
+	}
+
+	// 班级信息
+	public List<Sclass> selectSclassByTeId(int teId) {
+
+		List<Sclass> sclasses = this.getHibernateTemplate().find(
+				"from Sclass where teId=?", teId);
+
+		return sclasses;
+	}
+
+	// 获取班级里面的学生
+	public Set<Student> selectByClId(int clId) {
+		Set<Student> students = new HashSet<Student>();
+		Sclass sclass = (Sclass) this.getSession().get(Sclass.class, clId);
+		students = sclass.getStudents();
+		return students;
+	}
+
+	// 录入成绩
+	public void addGrade(Grade grade) {
+
+		this.getHibernateTemplate().save(grade);
+
+	}
+
+	// 判断是否已经录入过成绩
+	public Grade selectByConameAndStnum(String coName, String stNum) {
+		List<Grade> grades = this.getHibernateTemplate().find(
+				"from Grade where coName=? and stNum = ?", coName, stNum);
+		Grade grade = null;
+		for (int i = 0; i < grades.size(); i++) {
+			grade = grades.get(i);
+		}
+
+		return grade;
+	}
+
+	// 分页查询所有成绩(必修选修都有)
+	public List<Grade> findPageGrade(int firstResult, int pageSize) {
+
+		String hql = "from Grade ";
+		Query query = this.getSession().createQuery(hql);
+
+		query.setFirstResult(firstResult);// 开始位置（从0开始）
+		query.setMaxResults(pageSize);// 每页显示最多条数
+
+		List<Grade> list = query.list();
+
+		return list;
+	}
+
+	// 查询成绩总条数(必修选修都有)
+	public int selectCountGrade() {
+
+		List list = this.getHibernateTemplate().find(
+				"select count(*) from Grade");
+
+		Number num = (Number) list.get(0);
+
+		return num.intValue();
+	}
+
+	// 分页查询所有成绩------根据课程分类
+	public List<Grade> selectPageGradeByCourse(int firstResult, int pageSize,
+			String coName) {
+		String hql = "from Grade where coName = ?";
+		Query query = this.getSession().createQuery(hql);
+		query.setString(0, coName);
+
+		query.setFirstResult(firstResult);// 开始位置（从0开始）
+		query.setMaxResults(pageSize);// 每页显示最多条数
+
+		List<Grade> list = query.list();
+
+		return list;
+	}
+
+	// 查询成绩总条数------根据课程分类
+	public int selectGradeByCourse(String coName) {
+		List list = this.getHibernateTemplate()
+				.find("select count(*) from Grade where coName=? and stNum=?",
+						coName);
+
+		Number num = (Number) list.get(0);
+
+		return num.intValue();
+	}
+
+	// 查询一个班级的成绩
+	public List<Grade> selectGrades(int clid, String coName) {
+		List<Grade> grades = new ArrayList<Grade>();
+		Set<Student> list = selectByClId(clid);
+		for (Student s : list) {
+			String stNum = s.getStNum();
+			Grade grade = selectByConameAndStnum(coName, stNum);
+			grades.add(grade);
+		}
+		return grades;
+	}
+
+	// 根据教室Id查询教室详情
+	public Room findRoomByRoid(int roId) {
+		Room room = (Room) this.getSession().get(Room.class, roId);
+		return room;
+	}
+
+	// 分页查询所有选修课程
+	public List<ExcourseVo> findPageExcourse(int firstResult, int pageSize,
+			int teId) {
+		List<ExcourseVo> excourseVos = new ArrayList<ExcourseVo>();
+
+		String hql = "from Excourse where teId=? order by exId";
+		Query query = this.getSession().createQuery(hql);
+		query.setInteger(0, teId);
+
+		query.setFirstResult(firstResult);// 开始位置（从0开始）
+		query.setMaxResults(pageSize);// 每页显示最多条数
+
+		List<Excourse> excourses = query.list();
+
+		if (excourses != null && excourses.size() > 0) {
+			for (int i = 0; i < excourses.size(); i++) {
+				Excourse excourse = excourses.get(i);
+				ExcourseVo vo = new ExcourseVo();// 每次循环需要创建新对象，否则会覆盖上一次的值
+				vo.setExName(excourse.getExName());// 课程名
+				vo.setExScore(excourse.getExScore());// 学分
+				vo.setExWeek(excourse.getExWeek());// 周次
+				vo.setExDay(excourse.getExDay());// 星期
+				vo.setExStart(excourse.getExStart());// 开始时间
+				vo.setExEnd(excourse.getExEnd());// 结束时间
+
+				Room room = findRoomByRoid(excourse.getRoId());
+				vo.setRoName(room.getRoName());// 教室名
+
+				excourseVos.add(vo);
+
+			}
+		}
+
+		return excourseVos;
+
+	}
+
+	
+	// 查询教师选修课程总数---根据Excourse选修课程表
+	public int selectCountExcourse(int teId) {
+
+		List list = this.getHibernateTemplate().find(
+				"select count(*) from Excourse where teId=? order by exId",
+				teId);
+
+		Number num = (Number) list.get(0);
+
+		return num.intValue();
+	}
+
+	
+	//查询选修课----根据教师id
+	public List<Excourse> selectEncourseByTeid(int teId) {
+		
+		return this.getHibernateTemplate().find("from Excourse where teId = ?", teId);
+	}
+
+	//查询选修某门课的学生集合----根据选修课id
+	public Set<Student> selectByExname(int exId) {
+		List<Excourse> excourses = this.getHibernateTemplate().find("from Excourse where  exId = ?",  exId);
+		Set<Student> stus = null;
+		for(int i=0;i<excourses.size();i++){
+			Excourse excourse = excourses.get(i);
+			stus = excourse.getStudents();
+		}
+		return stus;
+	}
+
+	//查询某选修课详情----根据根据选修课名称exName
+	public Excourse selectExcourseByExname(int exId) {
+		List<Excourse> excourses = this.getHibernateTemplate().find("from Excourse where exId = ?", exId);
+		Excourse excourse = null;
+		for(int i=0;i<excourses.size();i++){
+		    excourse = excourses.get(i);
+		}
+		return excourse;
+	}
+
+	
+	// 判断是否已经录入过成绩
+	public Grade selectByExnameAndStnum(String coName, String stNum) {
+		List<Grade> grades = this.getHibernateTemplate().find(
+				"from Grade where coName=? and stNum = ?", coName, stNum);
+		Grade grade = null;
+		for (int i = 0; i < grades.size(); i++) {
+			grade = grades.get(i);
+		}
+		return grade;
+	}
+
+	//查询选修成绩----根据课程名称
+	public List<Grade> selectExGrades(String coName) {
+		List<Grade> grades = this.getHibernateTemplate().find(
+				"from Grade where coName=?",coName);
+		return grades;
+	}
+
+	
+	/**********************分页展示查询出的成绩***********************/
+	
+	//指定课程、指定班级的成绩
+//	public List<Grade> pageGradeByConameAndClid(int firstResult, int pageSize,String coName,int clId) {
+//
+//		String hql = "from Grade where coName = ? ";
+//		Query query = this.getSession().createQuery(hql);
+//
+//		query.setFirstResult(firstResult);// 开始位置（从0开始）
+//		query.setMaxResults(pageSize);// 每页显示最多条数
+//
+//		List<Grade> list = query.list();
+//
+//		return list;
+//	}
+
+	// 查询成绩总条数
+//	public int countGradeByConameAndClid() {
+//
+//		List list = this.getHibernateTemplate().find(
+//				"select count(*) from Grade");
+//
+//		Number num = (Number) list.get(0);
+//
+//		return num.intValue();
+//	}
+	
+}

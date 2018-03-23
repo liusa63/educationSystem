@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.Excourse" table="excourse">
+		<id name="exId" column="ex_id" type="integer">
+			<generator class="native"></generator>
+		</id>
+		<!-- 普通属性 -->
+		<property name="exName" column="ex_name" type="string"></property>
+		<property name="exCount" column="ex_count" type="integer"></property>
+	    <property name="exWeek" column="ex_week" type="string"></property>
+		<property name="exDay" column="ex_day" type="string"></property>
+		<property name="exStart" column="ex_start" type="string"></property>
+		<property name="exEnd" column="ex_end" type="string"></property>
+		<property name="roId" column="ro_id" type="integer"></property>
+		<property name="exScore" column="ex_score" type="string"></property>
+		<property name="teId" column="te_id" type="integer"></property>
+	</class>
+
+</hibernate-mapping>

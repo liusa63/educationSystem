@@ -1,0 +1,294 @@
+/**
+ * 
+ */
+package com.icss.dao.impl;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
+import com.icss.dao.StudentDao;
+import com.icss.entity.Course;
+import com.icss.entity.CourseVo;
+import com.icss.entity.Grade;
+import com.icss.entity.Major;
+import com.icss.entity.Sroll;
+import com.icss.entity.Student;
+import com.icss.entity.User;
+import com.opensymphony.xwork2.ActionContext;
+
+/**
+ *<p>Title:StudentDaoImpl</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月27日上午9:08:01
+ */
+@Repository(value="studentDao")
+public class StudentDaoImpl extends HibernateDaoSupport implements StudentDao {
+	
+	@Autowired
+	@Qualifier(value="sessionFactory")
+	public void setSuperSessionFactory(SessionFactory sessionFactory){
+		
+		super.setSessionFactory(sessionFactory);
+	}
+
+	/* 
+	 * 查询学生表中信息
+	 */
+	public Student findStudent(String stNum) {
+		
+		String hql = "From Student where stNum=?";	
+		
+		List<Student> list = this.getHibernateTemplate().find(hql, stNum);
+		
+		Student student = null;
+		
+		if(list != null && list.size()>0){
+			
+			student = list.get(0);
+			
+		}
+		return student;
+	}
+
+	/* 
+	 * 查询学籍
+	 */
+	public Sroll findStudentInfo(String stNum) {
+		
+        String hql = "From Sroll where srNumber=?";	
+		
+		List<Sroll> list = this.getHibernateTemplate().find(hql, stNum);
+		
+		Sroll sroll = null;
+		
+		if(list != null && list.size()>0){
+			
+			sroll = list.get(0);
+			
+		}
+		
+		return sroll;
+	}
+
+	/* 
+	 * 修改密码
+	 */
+	public void changeStudentPwd(User user) {
+		
+		this.getHibernateTemplate().update(user);
+		
+		
+	}
+
+	/* 
+	 * 分页查询学生的所有课程（本专业的所有课程）
+	 */
+	public List<Course> findAllCourse(int begin, int max,Major major) {
+		
+		String hql ="from Course where maId=? Order by coStartTime asc"; //查询持久化类
+		Query query = this.getSession().createQuery(hql);
+		
+		query.setInteger(0, major.getMaId());
+		
+		query.setFirstResult(begin);//起始条数
+		query.setMaxResults(max);//每页展示的条数
+		
+		List<Course> list = query.list();
+		
+		if(list != null && list.size()>0){
+			
+			return list;
+		}
+		
+		return null;
+		
+	}
+
+	/* 
+	 * 查询学生所在专业
+	 */
+	public Major findMajor(User user) {
+		
+		Student student = findStudent(user.getUnumber());
+		
+		Major major= student.getSclass().getMajor();
+		
+		return major;
+	}
+	
+	/* 
+	 * 查询学生所在专业的总课程数
+	 */
+	public int selectCountCourse(int maId){
+		
+		int count = 0;
+		
+		String hql="From Course where maId=?";
+		
+		List<Course> list = this.getHibernateTemplate().find(hql, maId);
+		
+		if(list != null && list.size()>0){
+			
+			count = list.size();
+			
+		}
+		
+		return count;
+	}
+	
+	
+	
+	
+	
+	
+	/* 
+	 * 分页查询已完成的课程
+	 */
+	public List<CourseVo> finishedCourse(int begin, int max,Major major,String date,User user) {
+		
+		List<CourseVo> listVo = new ArrayList<CourseVo>();
+		
+		/**
+		 * 查询课程
+		 */
+		String hql ="from Course where maId=? and  coEndTime < ? Order by coStartTime asc" ; //查询持久化类
+		Query query = this.getSession().createQuery(hql);
+		
+		query.setInteger(0, major.getMaId());
+		query.setString(1, date);
+		
+		query.setFirstResult(begin);//起始条数
+		query.setMaxResults(max);//每页展示的条数
+		
+		List<Course> list = query.list();
+		
+		if(list !=null && list.size()>0){
+			
+			for(int i=0;i<list.size();i++){
+				
+				CourseVo vo = new CourseVo();
+				
+				String cname = list.get(i).getCoName();//获取课程名
+				
+				vo.setCoName(cname);//set课程名
+				vo.setCoScore(list.get(i).getCoScore());//set课程学分
+				vo.setCoStatus(list.get(i).getCoStatus());//set课程属性
+				vo.setCoStartTime(list.get(i).getCoStartTime());//set课程起始时间
+				vo.setCoEndTime(list.get(i).getCoEndTime());//set课程结束时间
+				
+				
+				/**
+				 * 查询成绩
+				 */
+				String num = user.getUnumber();//获取学号
+				
+				String hql1 = "from Grade where stNum=? and coName=?";
+				
+				Query query1 = this.getSession().createQuery(hql1);
+				
+				query1.setString(0, num);
+				query1.setString(1, cname);
+				
+				List<Grade> grade =  query1.list();
+				System.out.println(grade);
+				
+				if(grade != null && grade.size()>0){
+					 
+					vo.setScore(grade.get(0).getScore());//set成绩
+					
+				}
+				
+				listVo.add(vo);
+				
+			}
+			
+		}
+		
+		return listVo;
+	}
+
+	/* 
+	 *查询已完成的课程总数
+	 */
+	public int selectFinishedCountCourse(int maId,String date) {
+        
+		int count = 0;
+		String hql ="from Course where maId=? and  coEndTime < ? " ; //查询持久化类
+		Query query = this.getSession().createQuery(hql);
+		
+		query.setInteger(0, maId);
+		query.setString(1, date);
+		
+		List<Course> list = query.list();
+		
+		if(list != null && list.size()>0){
+			
+			count = list.size();
+			
+		}
+		
+		return count;
+	}
+
+	/* 
+	 *分页查询未完成的课程
+	 */
+	public List<Course> undoneCourse(int begin, int max, Major major,String date) {
+		
+		String hql ="from Course where maId=? and  coEndTime > ? Order by coStartTime asc" ; //查询持久化类
+		Query query = this.getSession().createQuery(hql);
+		
+		query.setInteger(0, major.getMaId());
+		query.setString(1, date);
+		
+		query.setFirstResult(begin);//起始条数
+		query.setMaxResults(max);//每页展示的条数
+		
+		List<Course> list = query.list();
+		
+		if(list != null && list.size()>0){
+			
+			return list;
+			
+		}
+		
+		return null;
+	}
+
+	/*
+	 * 查询未完成的课程总数
+	 */
+	public int selectUndoneCountCourse(int maId, String date) {
+		int count = 0;
+		String hql ="from Course where maId=? and  coEndTime > ?" ; //查询持久化类
+		Query query = this.getSession().createQuery(hql);
+		
+		query.setInteger(0, maId);
+		query.setString(1, date);
+		
+		List<Course> list = query.list();
+		
+		if(list != null && list.size()>0){
+			
+			count = list.size();
+			
+		}
+		
+		return count;
+	}
+	
+	
+	
+
+}

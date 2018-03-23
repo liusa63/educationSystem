@@ -1,0 +1,63 @@
+package com.icss.entity;
+
+public class EvaluationVo {
+
+	private double answer1;
+	private double answer2;
+	private double answer3;
+	private double answer4;
+	private double answer5;
+	
+	private String coName;// ¿Î³ÌÃû
+
+
+	public double getAnswer1() {
+		return answer1;
+	}
+
+	public void setAnswer1(double answer1) {
+		this.answer1 = answer1;
+	}
+
+	public double getAnswer2() {
+		return answer2;
+	}
+
+	public void setAnswer2(double answer2) {
+		this.answer2 = answer2;
+	}
+
+	public double getAnswer3() {
+		return answer3;
+	}
+
+	public void setAnswer3(double answer3) {
+		this.answer3 = answer3;
+	}
+
+	public double getAnswer4() {
+		return answer4;
+	}
+
+	public void setAnswer4(double answer4) {
+		this.answer4 = answer4;
+	}
+
+	public double getAnswer5() {
+		return answer5;
+	}
+
+	public void setAnswer5(double answer5) {
+		this.answer5 = answer5;
+	}
+
+
+	public String getCoName() {
+		return coName;
+	}
+
+	public void setCoName(String coName) {
+		this.coName = coName;
+	}
+
+}

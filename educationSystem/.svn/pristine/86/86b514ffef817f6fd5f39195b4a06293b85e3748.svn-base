@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC	
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+
+<struts>
+     <!-- 开启动态方法 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="struts" extends="struts-default" namespace="/">
+
+		  <!-- 全局异常-->
+		 <global-results>  
+		   <result name="error">error.jsp</result>  
+		 </global-results>  
+		 <global-exception-mappings>  
+		       <exception-mapping result="error" exception="java.lang.Exception">
+		       </exception-mapping>
+		</global-exception-mappings>
+		
+		
+		<action name="loginAction" class="loginAction" method="userLogin">
+		    <result name="success">list.jsp</result>
+		</action>
+		
+		
+		
+		
+		
+
+	</package>
+</struts>

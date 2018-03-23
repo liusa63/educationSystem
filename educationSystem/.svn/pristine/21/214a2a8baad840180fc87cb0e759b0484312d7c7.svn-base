@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>修改密码</title>
+<link href="${pageContext.request.contextPath }/css/base.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath }/css/backend/modify_pwd.css"
+	rel="stylesheet">
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript">
+
+	var ids="uNumber,uPwd";
+	var msg="请输入用户名,请输入密码";
+
+
+		//非空验证
+		function  checkNull(ids,msg){
+			  var idArray=ids.split(",");
+			   var msgArray=msg.split(",");
+			   for(var i=0;i<idArray.length;i++){
+				  var id= $("#"+idArray[i]).val();
+				  //如果为空，给出错误提示
+				  if(id==""){
+					  $("#"+idArray[i]+"Error").html(msgArray[i]);
+					  return false;
+				  }
+			   }
+			   return true;
+		 }
+		//登录
+		function loginfun(){
+			   //判断用户名和密码是否为空
+			   if(checkNull(ids,msg)){
+				   
+				   $("#loginForm").submit();
+			   }
+		}
+		
+		 //页面加载完成触发的事件
+			$(document).ready(function(){
+				//设置获取焦点触发的事件：错误提示消失
+				$("#uNumber").focus(function(){
+					$("#uNumber").val("");
+					$("#uNumberError").html("");
+				});
+				$("#uPwd").focus(function(){
+					$("#uPwd").val("");
+					$("#uPwdError").html("");
+				});
+				
+				//失去焦点触发的事件：判断内容是否为空，若为空给出错误提示
+				$("#uNumber").blur(function(){
+					var u=$("#uNumber").val();
+					if(u==""){
+						$("#uNumberError").html("用户名不能为空");
+					}
+				});
+				$("#uPwd").blur(function(){
+					var p=$("#uPwd").val();
+					if(p==""){
+						$("#uPwdError").html("密码不能为空");
+					}
+				});
+			});
+
+
+</script>
+	
+</head>
+<body>
+	<form id="formadd" action="loginAction!updatePassword" method="post">
+		<table>
+			<tr>
+				<td>输入用户名:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="unumber" id="uNumber" /> <span
+					id="teNumError"></span>
+
+				</td>
+			</tr>
+
+
+			<tr>
+				<td>输入新的密码:</td>
+				<td>&nbsp;&nbsp;<input type="password" name="upwd" id="uPwd">
+					 <span id="upwd"></span>
+
+				</td>
+			</tr>
+
+			<tr>
+
+				<td><input type="hidden" id="tname" name="teBehave" /></td>
+				<td><input type="button" value="提交" onclick="testradio();" />
+				</td>
+			</tr>
+		</table>
+
+	</form>
+
+
+
+</body>
+</html>

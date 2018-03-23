@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>录入班级信息</title> 
+<link href="${pageContext.request.contextPath }/css/base.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/backend/reationship.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/js/lib/ztree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript">
+
+var ids="clName,clCount";
+var msg="请输入班级名称,请输入班级人数";
+
+
+	//非空验证
+	function  checkNull(ids,msg){
+		  var idArray=ids.split(",");
+		   var msgArray=msg.split(",");
+		   for(var i=0;i<idArray.length;i++){
+			  var id= $("#"+idArray[i]).val();
+			  //如果为空，给出错误提示
+			  if(id==""){
+				  $("#"+idArray[i]+"Error").html(msgArray[i]);
+				  return false;
+			  }
+		   }
+		   return true;
+	 }
+	
+	
+	 //页面加载完成触发的事件
+		$(document).ready(function(){
+			//设置获取焦点触发的事件：错误提示消失
+			$("#clName").focus(function(){
+				$("#clName").val("");
+				$("#clNameError").html("");
+			});
+			$("#clCount").focus(function(){
+				$("#clCount").val("");
+				$("#clCountError").html("");
+			});
+			
+			
+			//失去焦点触发的事件：判断内容是否为空，若为空给出错误提示
+			$("#clName").blur(function(){
+				var u=$("#clName").val();
+				if(u==""){
+					$("#clNameError").html("班级名称不能为空");
+				}
+			});
+			$("#clCount").blur(function(){
+				var p=$("#clCount").val();
+				if(p==""){
+					$("#clCountError").html("班级人数不能为空");
+				}
+			});
+			
+		});
+
+
+
+function sub(){
+	
+	 if(checkNull(ids,msg)){
+		$("#formadd").submit();
+		  
+	   }
+	
+}
+
+
+
+
+
+
+</script>
+</head> 
+<body>
+  
+    <form id="formadd" action="${pageContext.request.contextPath }/adminAction!addSclass" method="post">
+		<table>
+			<tr>
+				<td>班级名称:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="clName" id="clName"/>
+				<span id="clNameError"></span>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td>班级人数:</td>
+				
+				<td>&nbsp;&nbsp;<input type="text" name="clCount" id="clCount"/>
+				<span id="clCountError"></span>
+                
+				</td>
+			</tr>
+			<tr>
+				
+				
+				<td>&nbsp;&nbsp;<input type="button" value="提交" onclick="sub();"/>
+                
+				</td>
+			</tr>
+			
+			
+			
+		</table>
+
+	</form>
+</body> 
+</html>

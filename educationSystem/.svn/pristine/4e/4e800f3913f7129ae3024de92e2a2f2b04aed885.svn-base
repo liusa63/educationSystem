@@ -1,0 +1,282 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link
+	href="${pageContext.request.contextPath }/js/lib/datepicker/css/bootstrap.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath }/js/lib/datepicker/css/bootstrap-datepicker.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/base.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath }/css/pages/statistics_query/year.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript">
+	var ids = "exScore,exCount,exWeek";
+	var msg = "请输入学分,请输入课余量,请输入周次";
+
+	//非空验证
+	function checkNull(ids, msg) {
+		var idArray = ids.split(",");
+		var msgArray = msg.split(",");
+		for ( var i = 0; i < idArray.length; i++) {
+			var id = $("#" + idArray[i]).val();
+			//如果为空，给出错误提示
+			if (id == "") {
+				$("#" + idArray[i] + "Error").html(msgArray[i]);
+				return false;
+			}
+		}
+		return true;
+	}
+
+	//页面加载完成触发的事件
+	$(document).ready(function() {
+		//设置获取焦点触发的事件：错误提示消失
+
+		$("#exScore").focus(function() {
+			$("#exScore").val("");
+			$("#exScoreError").html("");
+		});
+		$("#exCount").focus(function() {
+			$("#exCount").val("");
+			$("#exCountError").html("");
+		});
+		$("#exWeek").focus(function() {
+			$("#exWeek").val("");
+			$("#exWeekError").html("");
+		});
+
+		//失去焦点触发的事件：判断内容是否为空，若为空给出错误提示
+		$("#exScore").blur(function() {
+			var u = $("#exScore").val();
+			if (u == "") {
+				$("#exScoreError").html("课程名不能为空");
+			}
+		});
+		$("#exCount").blur(function() {
+			var p = $("#exCount").val();
+			if (p == "") {
+				$("#exCountError").html("学分不能为空");
+			}
+		});
+		$("#exWeek").blur(function() {
+			var p = $("#exWeek").val();
+			if (p == "") {
+				$("#exWeekError").html("周次不能为空");
+			}
+		});
+
+	});
+
+	//获取选中下拉框
+	function testradio() {
+
+		if (checkNull(ids, msg)) {
+
+			var coid = $("#co>option:selected").val(); /* 选择课程 */
+			if (coid != undefined) {
+				$("#aa").val(coid);
+				
+				var week = $("#we>option:selected").val(); /* 选择星期 */
+				if (week != undefined) {
+					$("#weekend").val(week);
+					
+					var roid = $("#ro>option:selected").val();/* 选择教室 */
+					if (roid != undefined) {
+						$("#bb").val(roid);
+					
+						var teid = $("#te>option:selected").val(); /* 选择老师 */
+						if (teid != undefined) {
+							$("#cc").val(teid);
+							alert(teid);
+							$("#formadd").submit();
+						} else {
+							alert("请选择老师");
+						}
+
+					} else {
+						alert("请选择教室");
+					}
+
+				} else {
+					alert("请选择星期");
+				}
+
+			} else {
+				alert("请选择课程");
+			}
+
+		}
+	}
+	/* 遍历所有课程 */
+	$(function() {
+
+		$
+				.ajax({
+					type : "post",
+					url : "${pageContext.request.contextPath }/adminAction!selectAllCourse?costatus=2",
+					success : function(clist) {
+						
+						var str = "<select id='co'>";
+						for ( var i = 0; i < clist.length; i++) {
+							str += "<option value="+clist[i].coName+">"
+									+ clist[i].coName + "<option>";
+						}
+						str += "</select>";
+						$("#content1").html(str);
+					},
+					error : function() {
+						alert("失败");
+					}
+
+				})
+
+	})
+
+	/* 遍历所有教室 */
+	$(function() {
+
+		$
+				.ajax({
+					type : "post",
+					url : "${pageContext.request.contextPath }/adminAction!selectAjaxRoom",
+					success : function(rlist) {
+						
+						var str = "<select id='ro'>";
+						for ( var i = 0; i < rlist.length; i++) {
+							str += "<option value="+rlist[i].roId+">"
+									+ rlist[i].roName + "<option>";
+						}
+						str += "</select>";
+						$("#content2").html(str);
+					},
+					error : function() {
+						alert("失败");
+					}
+
+				})
+
+	})
+
+	/* 遍历所有教师 */
+	$
+			.ajax(
+					{
+						type : "post",
+						url : "${pageContext.request.contextPath }/adminAction!selectByIdTeacher?tebehave=1",
+						success : function(tlist) {
+
+							var str = "<select id='te'>";
+							for ( var i = 0; i < tlist.length; i++) {
+								str += "<option value="+tlist[i].teId+">"
+										+ tlist[i].teName + "<option>";
+							}
+							str += "</select>";
+							$("#content3").html(str);
+						},
+						error : function() {
+							alert("失败");
+						}
+
+					})
+</script>
+</head>
+<body>
+
+	<div class="container">
+		<div id="inner-hd">
+			<div class="crumbs">
+				<i class="crumbs-arrow"></i> <a href="javascript:;"
+					class="crumbs-label">教师信息登记表</a>
+			</div>
+		</div>
+
+		<div id="inner-bd">
+			<div class="kv-group-outer"></div>
+			<div>
+				<div class="button current">
+					<i class="iconfont">&#xe76a;</i> <span class="button-label"
+						onclick="testradio();">保存</span>
+				</div>
+
+
+			</div>
+			<br> <br>
+
+			<div class="button-group">
+				<form id="formadd"
+					action="${pageContext.request.contextPath }/adminAction!addExCourse"
+					method="post">
+
+					<table class="kv-table">
+						<tbody>
+							<tr>
+								<td class="kv-label">选择课程</td>
+								<td class="kv-content"><span id="content1"></span> <input
+									type="hidden" name="excourse.exName" id="aa" /></td>
+
+								<td class="kv-label">学分</td>
+								<td class="kv-content"><input type="text"
+									name="excourse.exScore" id="exScore" /> <span
+									id="exScoreError"></span></td>
+								<td class="kv-label">周次</td>
+								<td class="kv-content multi">
+									<div class="textarea-wrap">
+										<input type="text" name="excourse.exWeek" id="exWeek" /> <span
+											id="exWeekError"></span>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="kv-label">课余量</td>
+								<td class="kv-content" colspan="2"><input type="text"
+									name="excourse.exCount" id="exCount" /> <span
+									id="exCountError"></span></td>
+
+
+								<td class="kv-label">星期</td>
+								<td class="kv-content" colspan="2"><select id="we">
+										<option value="星期一">星期一</option>
+										<option value="星期二">星期二</option>
+										<option value="星期三">星期三</option>
+										<option value="星期四">星期四</option>
+										<option value="星期五">星期五</option>
+										<option value="星期六">星期六</option>
+								</select> <input type="hidden" name="excourse.exDay" id="weekend" /></td>
+
+
+							</tr>
+
+							<tr>
+								<td class="kv-label">选择教室</td>
+								<td class="kv-content" colspan="2"><span id="content2"></span>
+									<input type="hidden" name="excourse.roId" id="bb" /></td>
+								<td class="kv-label">选择老师</td>
+								<td class="kv-content" colspan="2"><span id="content3"></span>
+									<input type="hidden" name="excourse.teId" id="cc" /></td>
+
+							</tr>
+
+
+						</tbody>
+
+					</table>
+				</form>
+
+			</div>
+
+			<div id="inner-ft"></div>
+		</div>
+	</div>
+
+</body>
+</html>

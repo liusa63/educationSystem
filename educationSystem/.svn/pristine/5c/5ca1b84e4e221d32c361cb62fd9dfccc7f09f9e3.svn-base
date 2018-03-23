@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.Major" table="major" lazy="false">
+		<id name="maId" column="ma_id" type="integer">
+			<generator class="native"></generator>
+		</id>
+		<!-- 普通属性 -->
+		
+		<property name="maName" column="ma_name" type="string"></property>
+		
+	   <!--专业中的班级集合 -->
+		
+		 <set name="sclasses" table="sclass"  lazy="false">
+	    <key>
+	   <!--  name:生成数据库表中的外键字段（列名）名称 -->
+	    <column name="ma_id"> </column>
+	    </key>
+	    
+	    <one-to-many class="com.icss.entity.Sclass" />
+	  </set>
+		
+	</class>
+
+</hibernate-mapping>

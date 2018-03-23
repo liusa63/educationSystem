@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.Sclass" table="sclass" lazy="false">
+		<id name="clId" column="cl_id" type="integer">
+			<generator class="native"></generator>
+		</id>
+
+		<!-- 普通属性 -->
+
+		<property name="clName" column="cl_name" type="string"></property>
+		<property name="clCount" column="cl_count" type="integer"></property>
+		<property name="teId" column="te_id" type="integer"></property>  <!-- 班主任id -->
+
+		<!-- 班级中的学生集合 -->
+		<set name="students" table="student" lazy="false" >
+			<key update="false">
+				<!-- name:生成数据库表中的外键字段（列名）名称 -->
+				<column name="cl_id">
+				</column>
+			</key>
+
+			<one-to-many class="com.icss.entity.Student" />
+		</set>
+
+		<!-- 班级与专业 -->
+		<many-to-one  lazy="false" name="major" column="ma_id"
+			class="com.icss.entity.Major">
+		</many-to-one>
+
+
+
+	</class>
+
+
+
+
+</hibernate-mapping>

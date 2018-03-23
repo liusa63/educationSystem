@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+       
+    <!--  支持注解 -->
+	<context:annotation-config></context:annotation-config>
+	
+    <!-- 扫描注解	 -->
+	<context:component-scan base-package="com.icss"></context:component-scan>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean>
+
+
+	<!-- 声明事务 -->
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+	<!-- 2.设置事务相关方法，隔离级别，传播行为，是否是只读事务 -->
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+
+		<tx:attributes>
+			<tx:method name="add*" isolation="DEFAULT" propagation="REQUIRED"
+				read-only="false" />
+				
+			<tx:method name="update*" isolation="DEFAULT" propagation="REQUIRED"
+				read-only="false" />
+			<tx:method name="delete*" isolation="DEFAULT" propagation="REQUIRED"
+				read-only="false" />
+			<tx:method name="select*" isolation="DEFAULT" propagation="REQUIRED"
+				read-only="true" />
+
+		</tx:attributes>
+	</tx:advice>
+	<!-- 3.aop（(目标类) 切入点和切面增强结合 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.icss.biz.*.*(..))"
+			id="txPoincut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPoincut" />
+	</aop:config>
+
+</beans>
+

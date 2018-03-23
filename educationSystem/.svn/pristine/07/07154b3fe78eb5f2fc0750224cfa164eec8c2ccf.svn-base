@@ -1,0 +1,56 @@
+/**
+ * 
+ */
+package com.icss.dao.impl;
+
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
+import com.icss.dao.LoginDao;
+import com.icss.entity.User;
+
+/**
+ *<p>Title:LoginDaoImpl</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月26日下午8:01:23
+ */
+@Repository(value="loginDao")
+public class LoginDaoImpl  extends HibernateDaoSupport implements LoginDao{
+
+	@Autowired
+	@Qualifier(value="sessionFactory")
+	public void setSuperSessionFactory(SessionFactory sessionFactory){
+		
+		super.setSessionFactory(sessionFactory);
+	}
+	
+	
+	public User login(User user) {
+		
+
+		String hql="from User where unumber=? and upwd=?";
+
+
+		List<User>  userList = this.getHibernateTemplate().find(hql,user.getUnumber(),user.getUpwd());
+
+		
+		User user1 = null;
+		
+		if(userList != null && userList.size()>0){
+			
+			user1 = userList.get(0);
+			
+		}
+		
+		return user1;
+	}
+	
+
+}

@@ -1,0 +1,5 @@
+package com.icss.dao.impl;
+
+public class AdminDaoImpl {
+
+}

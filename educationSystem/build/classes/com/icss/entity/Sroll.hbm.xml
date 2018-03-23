@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.Sroll" table="sroll">
+		<id name="srId" column="sr_id" type="integer">
+			<generator class="native"></generator>
+		</id>
+		<!-- 普通属性 -->
+		<property name="srNumber" column="sr_num" type="string"></property>
+		<property name="srName" column="sr_name" type="string"></property>
+		<property name="srSex" column="sr_sex" type="string"></property>
+		<property name="srAddress" column="sr_address" type="string"></property>
+	    <property name="srImg" column="sr_img" type="string"></property>
+		<property name="srTime" column="sr_time" type="date"></property>
+		<property name="srBirthday" column="sr_birthday" type="date"></property>
+		<property name="srIdCard" column="sr_idCard" type="string"></property>
+		<property name="srIsRoll" column="sr_isRoll" type="string"></property>
+	</class>
+
+</hibernate-mapping>

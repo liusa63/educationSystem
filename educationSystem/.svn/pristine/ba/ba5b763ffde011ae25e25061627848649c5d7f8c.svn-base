@@ -1,0 +1,32 @@
+package com.icss.action;
+
+import com.opensymphony.xwork2.ActionSupport;
+/**
+ * 
+ *<p>Title:AdminAction</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author gjh
+ *@date2017-9-27上午11:50:32
+ */
+public class AdminAction extends ActionSupport  {
+	
+	//封装参数--录入教师信息方式
+	private String  teMethod;
+	public void setTeMethod(String teMethod) {
+		this.teMethod = teMethod;
+	}
+
+
+
+	//判断录入老师信息的方式：0---逐个录入，1---批量录入
+	public String checkTeacherMethod(){
+		if("0".equals(teMethod)){
+			return "addTeacher";
+			
+		}
+		
+		return "addTeachers";
+	}
+
+}

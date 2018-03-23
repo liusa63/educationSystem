@@ -1,0 +1,192 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>录入班级信息</title> 
+
+
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript">
+
+var ids="clName,clCount";
+var msg="请输入班级名称,请输入班级人数";
+
+
+	//非空验证
+	function  checkNull(ids,msg){
+		  var idArray=ids.split(",");
+		   var msgArray=msg.split(",");
+		   for(var i=0;i<idArray.length;i++){
+			  var id= $("#"+idArray[i]).val();
+			  //如果为空，给出错误提示
+			  if(id==""){
+				  $("#"+idArray[i]+"Error").html(msgArray[i]);
+				  return false;
+			  }
+		   }
+		   return true;
+	 }
+	
+	
+	 //页面加载完成触发的事件
+		$(document).ready(function(){
+			//设置获取焦点触发的事件：错误提示消失
+			$("#clName").focus(function(){
+				$("#clName").val("");
+				$("#clNameError").html("");
+			});
+			$("#clCount").focus(function(){
+				$("#clCount").val("");
+				$("#clCountError").html("");
+			});
+			
+			
+			//失去焦点触发的事件：判断内容是否为空，若为空给出错误提示
+			$("#clName").blur(function(){
+				var u=$("#clName").val();
+				if(u==""){
+					$("#clNameError").html("班级名称不能为空");
+				}
+			});
+			$("#clCount").blur(function(){
+				var p=$("#clCount").val();
+				if(p==""){
+					$("#clCountError").html("班级人数不能为空");
+				}
+			});
+			
+		});
+
+		
+
+function sub(){
+	
+	 if(checkNull(ids,msg)){
+		 var maid=$("#ma>option:selected").val();
+		 if(maid!=undefined){
+				$("#aa").val(maid);
+				var teid=$("#te>option:selected").val();
+				 if(teid!=undefined){
+						$("#bb").val(teid);
+						
+						 $("#formadd").submit();   
+					}else{
+						alert("请选择班主任");
+					}
+				
+			}else{
+				alert("请选择专业");
+			}
+		
+		  
+	   }	
+}
+
+
+/* 遍历所有专业 */
+$(function(){
+	
+	$.ajax({
+		type:"post",
+		url:"${pageContext.request.contextPath }/adminAction!selectAllMajor",
+		success:function(mlist){
+			 alert(1);
+		   alert(mlist.size);  
+		 	var str="<select id='ma'>";
+			for(var i=0;i<mlist.length;i++){
+				str+="<option value="+mlist[i].maId+">"+mlist[i].maName+"<option>";
+			}
+			str+="</select>";
+			$("#content").html(str); 
+		},
+		error:function(){
+			alert("失败");
+		}
+		
+		
+	})
+
+}) 
+
+/* 遍历所有教师表 */
+$(function(){
+	
+	$.ajax({
+		type:"post",
+		url:"${pageContext.request.contextPath }/adminAction!selectByIdTeacher?tebehave=2",
+		success:function(tlist){
+			alert(1);
+		   alert(tlist);
+		 	var str="<select id='te'>";
+			for(var i=0;i<tlist.length;i++){
+				str+="<option value="+tlist[i].teId+">"+tlist[i].teName+"<option>";
+			}
+			str+="</select>";
+			$("#content1").html(str); 
+		},
+		error:function(){
+			alert("失败");
+		}
+		
+		
+	})
+
+}) 
+
+
+
+
+
+</script>
+</head> 
+<body>
+  
+    <form id="formadd" action="${pageContext.request.contextPath }/adminAction!addSclass" method="post">
+		<table>
+			<tr>
+				<td>班级名称:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="clName" id="clName"/>
+				<span id="clNameError"></span>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td>班级人数:</td>
+				
+				<td>&nbsp;&nbsp;<input type="text" name="clCount" id="clCount"/>
+				<span id="clCountError"></span>
+                
+				</td>
+			</tr>
+			 <tr>
+			
+			<td>选择专业:</td>
+			<td><span id="content"></span>
+				</td>			
+			</tr>
+			<tr>
+			
+			<td>选择班主任:</td>
+			<td><span id="content1"></span>
+				</td>			
+			</tr>
+			<tr>
+				
+				 <td><input type="hidden" name="maId" id=aa />	
+				  <td><input type="hidden" name="teId" id=bb />		
+				<td>&nbsp;&nbsp;<input type="button" value="提交" onclick="sub();"/>
+                
+				</td>
+			</tr>
+			
+			
+			
+		</table>
+
+	</form>
+</body> 
+</html>

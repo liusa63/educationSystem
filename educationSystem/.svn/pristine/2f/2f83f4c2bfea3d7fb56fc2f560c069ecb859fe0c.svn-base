@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC	
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+
+<struts>
+     <!-- 开启动态方法 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="struts" extends="struts-default" namespace="/">
+
+		  <!-- 全局异常-->
+		<!--  <global-results>  
+		   <result name="error">error.jsp</result>  
+		 </global-results>  
+		 <global-exception-mappings>  
+		       <exception-mapping result="error" exception="java.lang.Exception">
+		       </exception-mapping>
+		</global-exception-mappings> -->
+		
+		<!--登录  -->
+		<action name="loginAction" class="loginAction">
+		    <result name="teacherLogin" >teacherAction</result>
+		    <result name="studentLogin" type="redirectAction">studentAction_findStudent</result>
+		    <result name="error">login.jsp</result>
+		</action>
+		
+		<!-- 学生 -->
+		<action name="studentAction_*"  class="studentAction"  method="{1}">
+		    <result name="findStudentSuccess">/pages/studentMain.jsp</result>
+		    <result name="error"></result>
+		    <result name="findSrollSuccess">/pages/studenInfo.jsp</result>
+		</action>
+		
+		
+		
+
+	</package>
+</struts>

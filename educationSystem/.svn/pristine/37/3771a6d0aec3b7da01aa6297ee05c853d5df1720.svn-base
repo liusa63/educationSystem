@@ -1,0 +1,5 @@
+package com.icss.biz;
+
+public interface AdminBiz {
+
+}

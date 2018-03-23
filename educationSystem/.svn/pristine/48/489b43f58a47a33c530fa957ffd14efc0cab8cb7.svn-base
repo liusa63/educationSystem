@@ -1,0 +1,84 @@
+package com.icss.entity;
+
+import java.util.Date;
+
+public class Course {
+	private int coId;//课程id
+	private String coName;//课程名
+	private String coScore;//学分
+	private String coStatus;//属性
+	private String coWeek;//周次
+	private String coDay;//星期
+	private Date coStart;//开始时间
+	private Date coEnd;//结束时间
+	
+	private Date coStartTime;//学期开始时间
+	private Date coEndTime;//学期结束时间
+	
+	public int getCoId() {
+		return coId;
+	}
+	public void setCoId(int coId) {
+		this.coId = coId;
+	}
+	public String getCoName() {
+		return coName;
+	}
+	public void setCoName(String coName) {
+		this.coName = coName;
+	}
+	public String getCoScore() {
+		return coScore;
+	}
+	public void setCoScore(String coScore) {
+		this.coScore = coScore;
+	}
+	public String getCoStatus() {
+		return coStatus;
+	}
+	public void setCoStatus(String coStatus) {
+		this.coStatus = coStatus;
+	}
+	public String getCoWeek() {
+		return coWeek;
+	}
+	public void setCoWeek(String coWeek) {
+		this.coWeek = coWeek;
+	}
+	public String getCoDay() {
+		return coDay;
+	}
+	public void setCoDay(String coDay) {
+		this.coDay = coDay;
+	}
+	public Date getCoStart() {
+		return coStart;
+	}
+	public void setCoStart(Date coStart) {
+		this.coStart = coStart;
+	}
+	public Date getCoEnd() {
+		return coEnd;
+	}
+	public void setCoEnd(Date coEnd) {
+		this.coEnd = coEnd;
+	}
+	
+	public Date getCoStartTime() {
+		return coStartTime;
+	}
+	public void setCoStartTime(Date coStartTime) {
+		this.coStartTime = coStartTime;
+	}
+	public Date getCoEndTime() {
+		return coEndTime;
+	}
+	public void setCoEndTime(Date coEndTime) {
+		this.coEndTime = coEndTime;
+	}
+	
+	
+	
+	
+
+}

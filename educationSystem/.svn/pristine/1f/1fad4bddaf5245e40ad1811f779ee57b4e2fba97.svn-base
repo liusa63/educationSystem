@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.Question" table="question">
+		<id name="qId" column="q_id" type="integer">
+			<generator class="native"></generator>
+		</id>
+
+		<!-- 普通属性 -->
+		<property name="qContext" column="q_context" type="string"></property>
+		<property name="qA" column="q_a" type="string"></property>
+		<property name="qB" column="q_b" type="string"></property>
+		<property name="qC" column="q_c" type="string"></property>
+		<property name="qD" column="q_d" type="string"></property>
+        
+	</class>
+
+</hibernate-mapping>

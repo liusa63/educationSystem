@@ -1,0 +1,86 @@
+package com.icss.dao.impl;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
+import com.icss.dao.AdminDao;
+import com.icss.entity.Course;
+import com.icss.entity.Evaluation;
+import com.icss.entity.Question;
+import com.icss.entity.Sclass;
+import com.icss.entity.Teacher;
+import com.icss.entity.User;
+
+import com.icss.util.PageList;
+@Repository(value="adminDao")
+public class AdminDaoImpl extends HibernateDaoSupport implements AdminDao{
+	
+	@Autowired
+	@Qualifier(value="sessionFactory")
+	public void funSessionFactory(SessionFactory sessionFactory){
+		super.setSessionFactory(sessionFactory);
+	}
+	
+	//逐个添加教师信息
+	public void addTeacher(Teacher teacher) {
+		this.getHibernateTemplate().save(teacher);
+		User user=new User();
+		user.setUnumber(teacher.getTeNum());
+	    user.setUrole(2);
+	    this.getHibernateTemplate().save(user);
+		
+	}
+
+	//逐个添加班级信息
+	public void addSclass(Sclass sclass) {
+		this.getHibernateTemplate().save(sclass);
+		
+	}
+    
+	//逐个添加课程信息
+	public void addCourse(Course course) {
+		this.getHibernateTemplate().save(course);
+		
+	}
+	
+	
+//添加问题
+	public void addQuestion(Question question) {
+		this.getHibernateTemplate().save(question);
+		
+	}
+
+//查看所有问题
+
+	public List<Question> selectAllQuestion() {
+		// TODO Auto-generated method stub
+		return this.getHibernateTemplate().find("from Question");
+	}
+
+	
+	//获取反馈列表
+
+	public List<Evaluation> selectListEvaluation(PageList<Evaluation> page,
+			int pageSize) {
+		String hql = " from co_te_ev";
+		Query query=this.getSession().createQuery(hql);
+		query.setFirstResult((page.getCountPage()-1)*pageSize);
+		query.setMaxResults(pageSize);
+		List<Evaluation> list = query.list();
+		return list;
+	}
+
+	//获取总条数
+	public int getTotal() {
+		List<Evaluation> list=this.getHibernateTemplate().find("from Evaluation");
+		int totalcount= list.size();
+		return totalcount;
+	}
+
+}

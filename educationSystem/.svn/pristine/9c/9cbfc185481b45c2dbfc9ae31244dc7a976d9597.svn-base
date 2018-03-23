@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+package com.icss.dao;
+
+import com.icss.entity.Sroll;
+import com.icss.entity.Student;
+
+/**
+ *<p>Title:StudentDao</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月27日上午9:07:34
+ */
+public interface StudentDao {
+	
+	    //查询学生表的信息
+		public Student findStudent(String  stNum);
+		
+		//查询学籍
+		public Sroll findStudentInfo(String stNum);
+
+}

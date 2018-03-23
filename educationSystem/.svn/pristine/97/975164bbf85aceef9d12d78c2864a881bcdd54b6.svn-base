@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.User" table="user">
+		<id name="uId" column="u_id" type="integer">
+			<generator class="native"></generator>
+		</id>
+
+		<!-- 普通属性 -->
+		<property name="unumber" column="u_number" type="string"></property>
+		<property name="upwd" column="u_pwd" type="string"></property>
+		<property name="urole" column="u_role" type="integer"></property>
+		<property name="ustatus" column="u_status" type="integer"></property>
+	
+	</class>
+
+</hibernate-mapping>

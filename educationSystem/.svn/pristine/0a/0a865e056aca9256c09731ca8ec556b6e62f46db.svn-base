@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.Evaluation" table="co_te_ev">
+		<id name="id" column="id" type="integer">
+			<generator class="native"></generator>
+		</id>
+
+		<!-- 普通属性 -->
+		<property name="answer1" column="answer1" type="string"></property>
+		<property name="answer2" column="answer2" type="string"></property>
+		<property name="answer3" column="answer3" type="string"></property>
+		<property name="answer4" column="answer4" type="string"></property>
+		<property name="answer5" column="answer5" type="string"></property>
+		<property name="coId" column="co_id" type="integer"></property>
+		<property name="teId" column="te_id" type="integer"></property>
+        <property name="stNum" column="st_num" type="string"></property>
+	</class>
+
+</hibernate-mapping>

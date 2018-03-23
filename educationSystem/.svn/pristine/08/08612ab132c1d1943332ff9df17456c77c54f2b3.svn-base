@@ -1,0 +1,42 @@
+package com.icss.entity;
+
+public class User {
+	private int uid; //id
+	private String uNumber; //Ñ§ºÅ/¹¤ºÅ
+	private String uPwd; //ÃÜÂë
+	private int uRole; //½ÇÉ«
+	private int uStatus; //×´Ì¬
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+	public String getuNumber() {
+		return uNumber;
+	}
+	public void setuNumber(String uNumber) {
+		this.uNumber = uNumber;
+	}
+	public String getuPwd() {
+		return uPwd;
+	}
+	public void setuPwd(String uPwd) {
+		this.uPwd = uPwd;
+	}
+	public int getuRole() {
+		return uRole;
+	}
+	public void setuRole(int uRole) {
+		this.uRole = uRole;
+	}
+	public int getuStatus() {
+		return uStatus;
+	}
+	public void setuStatus(int uStatus) {
+		this.uStatus = uStatus;
+	}
+	
+	
+
+}

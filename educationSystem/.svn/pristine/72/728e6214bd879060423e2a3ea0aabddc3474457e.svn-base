@@ -1,0 +1,46 @@
+/**
+ * 
+ */
+package com.icss.biz;
+
+import java.util.Date;
+
+import com.icss.entity.Course;
+import com.icss.entity.CourseVo;
+import com.icss.entity.Sroll;
+import com.icss.entity.Student;
+import com.icss.entity.User;
+import com.icss.util.PageList;
+
+
+/**
+ *<p>Title:StudentBiz</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月27日上午9:06:26
+ */
+public interface StudentBiz {
+	
+	//查询学生表的信息
+	public Student findStudent(String  stNum);
+	
+	//查询学籍信息
+	public Sroll findStudentInfo(String  stNum);
+	
+	//修改学生密码
+	public void changeStudentPwd(User user);
+	
+	//分页查询所有课程
+	public  PageList findAllCourse(PageList<Course> page, int max,User user); 
+	
+	//分页查询已完成课程
+	public  PageList finishedCourse(PageList<CourseVo> page, int max,User user,String date);
+	
+	//分页查询未完成课程
+	public  PageList undoneCourse(PageList<Course> page, int max,User user,String date);
+		
+	
+	
+
+}

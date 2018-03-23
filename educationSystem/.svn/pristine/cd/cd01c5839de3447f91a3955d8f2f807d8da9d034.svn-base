@@ -1,0 +1,65 @@
+/**
+ * 
+ */
+package com.icss.action;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.icss.biz.LoginBiz;
+import com.icss.dao.LoginDao;
+import com.icss.entity.User;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+
+
+/**
+ *<p>Title:LoginAction</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月26日下午7:55:37
+ */
+@Controller(value="loginAction")
+public class LoginAction extends ActionSupport implements ModelDriven<User>{
+	
+	private User user = new User();
+	
+
+	public User getModel() {
+		return this.user;
+	}
+	
+	@Autowired
+	@Qualifier(value="loginBiz")
+	LoginBiz loginBiz;
+	
+	
+	
+	public  String  userLogin(){
+		
+		System.out.println(user.getUnumber());
+		System.out.println(user.getUpwd());
+		
+		User u = loginBiz.login(user);
+		
+		if(u!=null){
+			
+			Map<String,Object> session = ActionContext.getContext().getSession();
+			
+			session.put("user", user);
+			
+		}
+		
+		return "success";
+	}
+
+	
+	
+	
+
+}

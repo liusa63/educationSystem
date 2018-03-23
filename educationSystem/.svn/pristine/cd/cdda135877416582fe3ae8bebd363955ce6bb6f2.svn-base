@@ -1,0 +1,126 @@
+package com.icss.dao.impl;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
+import com.icss.dao.AdminDao;
+import com.icss.entity.Course;
+import com.icss.entity.Evaluation;
+import com.icss.entity.Major;
+import com.icss.entity.Question;
+import com.icss.entity.Sclass;
+import com.icss.entity.Teacher;
+import com.icss.entity.User;
+
+import com.icss.util.PageList;
+
+@Repository(value = "adminDao")
+public class AdminDaoImpl extends HibernateDaoSupport implements AdminDao {
+
+	@Autowired
+	@Qualifier(value = "sessionFactory")
+	public void funSessionFactory(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
+
+	// 逐个添加教师信息
+	public void addTeacher(Teacher teacher) {
+		this.getHibernateTemplate().save(teacher);
+		User user = new User();
+		user.setUnumber(teacher.getTeNum());
+		user.setUrole(2);
+		this.getHibernateTemplate().save(user);
+
+	}
+
+	// 逐个添加班级信息
+	public void addSclass(Sclass sclass) {
+		this.getHibernateTemplate().save(sclass);
+
+	}
+
+	// 逐个添加课程信息
+	public void addCourse(Course course) {
+		this.getHibernateTemplate().save(course);
+
+	}
+
+	// 添加问题
+	public void addQuestion(Question question) {
+		this.getHibernateTemplate().save(question);
+
+	}
+
+	// 查看所有问题
+
+	public List<Question> selectAllQuestion() {
+		// TODO Auto-generated method stub
+		return this.getHibernateTemplate().find("from Question");
+	}
+
+	// 获取反馈列表
+
+/*	public List<Evaluation> selectListEvaluation(PageList<Evaluation> page,
+			int pageSize) {
+		String hql = "from Evaluation";
+		Query query = this.getSession().createQuery(hql);
+		System.out.println(page.getCurrentPage());
+		query.setFirstResult((page.getCountPage() - 1) * pageSize);
+		query.setMaxResults(pageSize);
+		List<Evaluation> list = query.list();
+		return list;
+	}
+*/
+	// 获取总条数
+	/*public int getTotal() {
+		List<Evaluation> list = this.getHibernateTemplate().find("from Evaluation");
+		int totalcount = list.size();
+		return totalcount;
+	}*/
+
+	public List<Teacher> selectListTeacher(PageList<Teacher> page, int pageSize) {
+		String hql = "from Teacher";
+		Query query = this.getSession().createQuery(hql);
+		System.out.println(page.getCurrentPage());
+		query.setFirstResult((page.getCountPage() - 1) * pageSize);
+		query.setMaxResults(pageSize);
+		List<Teacher> list = query.list();
+		return list;
+		
+	}
+	public int getTotal() {
+		List<Teacher> list = this.getHibernateTemplate().find("from Teacher");
+		int totalcount = list.size();
+		return totalcount;
+	}
+//查询所有专业
+	public List<Major> selectAllMajor() {
+		// TODO Auto-generated method stub
+		return this.getHibernateTemplate().find("from Major");
+	}
+
+	//查询班主任
+	public List<Teacher> selectByIdTeacher(String tebehave) {
+		String hql = "from Teacher where teBehave=?";
+		Query query = this.getSession().createQuery(hql);
+		query.setString(0, tebehave);
+		List<Teacher> list=query.list();
+		return list;
+	}
+
+	public Major selectByIdMajor(int maId) {
+		String hql = "from Major where maId=?";
+		Query query = this.getSession().createQuery(hql);
+		query.setInteger(0, maId);
+		List<Major> list=query.list();
+		Major major=list.get(0);
+		return major;
+	}
+
+}

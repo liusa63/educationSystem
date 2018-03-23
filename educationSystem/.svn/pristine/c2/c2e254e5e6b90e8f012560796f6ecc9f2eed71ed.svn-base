@@ -1,0 +1,36 @@
+/**
+ * 
+ */
+package com.icss.entity;
+
+/**
+ *<p>Title:CourseVo</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月28日上午10:18:29
+ */
+public class CourseVo {
+	private int coId;//课程id
+	private String coName;//课程名
+	private String coScore;//学分
+	private String coStatus;//属性
+	private int maId;//专业
+	private String coWeek;//周次
+	private String coDay;//星期
+	private String coStart;//开始时间
+	private String coEnd;//结束时间
+	private String coStartTime;//学期开始时间
+	private String coEndTime;//学期结束时间
+	private int exId;//选课id
+	private String exName;//选修课程名
+	private int exCount;//课余量
+	private String exWeek;//周次
+	private String exDay; //星期
+	private String exStart;//开始时间
+	private String exEnd;//结束时间
+	private int roId;//教室
+	private String exScore;//学分
+	
+	
+}

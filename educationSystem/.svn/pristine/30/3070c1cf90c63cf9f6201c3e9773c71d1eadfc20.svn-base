@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC	
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+
+<struts>
+	<!-- 开启动态方法 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="struts" extends="json-default" namespace="/">
+
+
+		<!-- 全局异常-->
+		 <!-- <global-results>  
+		 		<result name="error">error.jsp</result>  
+		 </global-results>  
+		 <global-exception-mappings>  
+		       <exception-mapping result="error" exception="java.lang.Exception">
+		       </exception-mapping>
+		</global-exception-mappings> --> 
+		
+
+		<!--登录  -->
+		<action name="loginAction" class="loginAction">
+     	    <result name="teacherLogin" type="redirectAction">teacherAction_findTeacher</result> 
+		    <result name="studentLogin" type="redirectAction">studentAction_findStudent</result>
+			<result name="adminLogin">/pages/main.jsp</result><!-- 管理员登录成功 -->
+			<result name="error">login.jsp</result>
+			<result name="adminError">adminLogin.jsp</result> <!-- 管理员登录失败 -->
+			<result name="updateSuccess">adminLogin.jsp</result>  <!-- 管理员修改密码 -->
+		</action>
+
+       <!-- 管理员 -->
+
+		<action name="adminAction" class="com.icss.action.AdminAction">
+			<result name="addTeacher">/pages/addTeacher.jsp</result>  <!-- 逐个录入老师 -->
+			<result name="addTeachers">/pages/addTeachers.jsp</result> <!-- 批量录入老师 -->
+			<result name="addCourse">/pages/addSchoolCourse.jsp</result> <!-- 逐个录入学校课程 -->
+			<result name="addCourse">/pages/addSchoolCourse.jsp</result> <!-- 批量录入学校课程 -->
+			<result name="selectAllQuestion">/query/selectAllQuestion.jsp</result>
+			<result name="evaluation">/query/evaluation.jsp</result>
+			<result name="teacher">/backend/score_manage/teacher.jsp</result><!-- 查询所有教师信息 -->
+			<result  name="selectMajor" type="json">
+		        <param name="root">mlist</param>
+		        
+		</result><!-- 查询所有专业 -->
+		<result name="addSuccessTeacher" type="redirectAction" >adminAction!selectAllTeacher</result>
+		<result  name="AjaxTeacher" type="json">
+		        <param name="root">tlist</param>
+		        
+		</result>
+		
+		</action>
+
+
+		<!-- 学生 -->
+		<action name="studentAction_*" class="studentAction" method="{1}">
+			<result name="error"></result>
+		    <result name="findStudentSuccess">/pages/studentMain.jsp</result>
+		    <result name="findSrollSuccess">/pages/studenInfo.jsp</result>
+		    <result name="changePwdSuccess">login.jsp</result>
+		    <result name="pageCourseSuccess">/pages/pageAllCourse.jsp</result>
+		    <result name="finishedCourse">/pages/studentFinishedCourse.jsp</result>
+		    <result name="undoneCourse">/pages/studentUndoneCourse.jsp</result>
+		    <result name="electiveList">/pages/studentElective.jsp</result>
+		
+		
+		</action>
+
+		
+		<!-- 老师 -->
+		<action name="teacherAction_*" class="teacherAction" method="{1}">
+		 	<result name="findTeacherSuccess">/pages/teacherMain.jsp</result>
+		 	<result name="updatePwdSuccess">login.jsp</result>
+		 	<result name="findByNumSuccess">/pages/teacherDetail.jsp</result> 
+		 	<result name="findTeacherCourseSuccess">pages/teacherCourse.jsp</result>
+		</action>
+				
+</package>
+	
+
+</struts>

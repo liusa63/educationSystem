@@ -1,0 +1,194 @@
+/**
+ * 
+ */
+package com.icss.action;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+
+import com.icss.biz.StudentBiz;
+import com.icss.entity.Course;
+import com.icss.entity.Sroll;
+import com.icss.entity.Student;
+import com.icss.entity.User;
+
+import com.icss.util.PageList;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+
+/**
+ *<p>Title:StudentAction</p>
+ *<p>Description:</p>
+ *<p>Company:</p>
+ * @author: LiuSa
+ * @date: 2017年9月27日上午9:10:57
+ */
+@Controller(value="studentAction")
+public class StudentAction extends ActionSupport{
+	
+	
+	@Autowired
+	@Qualifier(value="studentBiz")
+	StudentBiz studentBiz;
+	
+	private String upwd;
+	
+	public void setUpwd(String upwd) {
+		this.upwd = upwd;
+	}
+     
+	private PageList<Course> page = new PageList<Course>();
+	
+	public void setPage(PageList<Course> page) {
+		this.page = page;
+	}
+
+
+	/**
+	 * 查询学生表中的信息
+	 */
+	public String findStudent(){
+		
+		//获取session中的User对象
+		Map<String,Object> session = ActionContext.getContext().getSession();
+		
+		User user = (User) session.get("user");
+		
+		try {
+			
+			//调用业务逻辑
+			Student student = studentBiz.findStudent(user.getUnumber());
+			
+			Map<String,Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+			
+			//返回给页面
+			request.put("student", student);
+			
+			return "findStudentSuccess";
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			return ERROR;
+		}
+		
+		
+	}
+	
+	
+	/**
+	 *查询学籍
+	 */
+	public String findInfo(){
+		
+		//获取session中的User对象
+		Map<String,Object> session = ActionContext.getContext().getSession();
+		
+		User user = (User) session.get("user");
+		
+       try {
+			
+			//调用业务逻辑
+    	   Sroll sroll = studentBiz.findStudentInfo(user.getUnumber());
+			
+			Map<String,Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+			
+			//返回给页面
+			request.put("sroll", sroll);
+			
+			return  "findSrollSuccess";
+			
+       } catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			return ERROR;
+		}
+		
+		
+	}
+	
+	/**
+	 * 修改学生密码
+	 */
+	public  String  changePwd(){
+		
+		//获取session中的User对象
+		Map<String,Object> session = ActionContext.getContext().getSession();
+		
+		User user = (User) session.get("user");
+		
+		//修改用户的密码
+		user.setUpwd(upwd);
+		
+		try {
+			
+			//保存新密码
+			studentBiz.changeStudentPwd(user);
+			
+			//移除session中的User信息
+			session.remove(user);
+			
+			//返回登录页面，重新登录
+			return "changePwdSuccess";
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			return ERROR;
+		}
+		
+	}
+	
+	/**
+	 * 
+	 * 分页查询所有课程
+	 */
+	public String AllCourse(){
+		
+		//获取session中的User对象
+		Map<String,Object> session = ActionContext.getContext().getSession();
+		
+		User user = (User) session.get("user");
+     
+		try {
+			
+			//设置当前页
+			int currentPage=1;
+			
+			if(page.getCurrentPage()!= 0){
+				
+				currentPage=page.getCurrentPage();
+			}
+			
+			page.setCurrentPage(currentPage);
+			
+			//调用业务处理
+			page=(PageList<Course>) studentBiz.findAllCourse(page,2,user);
+			 
+			Map<String,Object> request = (Map<String,Object>) ActionContext.getContext().get("request");
+			
+			request.put("coursePage", page);
+			
+			return "pageCourseSuccess";
+			 
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			return ERROR;
+		}
+		
+		
+	}
+	
+	
+
+}

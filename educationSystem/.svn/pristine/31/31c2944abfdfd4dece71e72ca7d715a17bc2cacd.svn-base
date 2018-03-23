@@ -1,0 +1,20 @@
+package com.icss.dao;
+
+import java.util.List;
+
+import com.icss.entity.Course;
+import com.icss.entity.Evaluation;
+import com.icss.entity.Question;
+import com.icss.entity.Sclass;
+import com.icss.entity.Teacher;
+import com.icss.util.PageList;
+
+public interface AdminDao {
+	public void addTeacher(Teacher teacher);//逐个添加教师信息
+	public void addSclass(Sclass sclass);//逐个添加班级信息
+	public void addCourse(Course course);//录入课程信息
+	public void addQuestion(Question question);//录入问题
+	public List<Question> selectAllQuestion( );//查看所有问题
+	public List<Evaluation> selectListEvaluation(PageList<Evaluation> page,int pageSize);  //获取列表
+	public int getTotal();//获取有多少条数据
+}

@@ -1,0 +1,8 @@
+package com.icss.dao;
+
+import com.icss.entity.Teacher;
+
+public interface AdminDao {
+	public void addTeacher(Teacher teacher);//逐个添加教师信息
+
+}

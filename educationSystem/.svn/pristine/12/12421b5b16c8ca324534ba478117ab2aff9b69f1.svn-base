@@ -1,0 +1,121 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>查看成绩</title>
+<link
+	href="${pageContext.request.contextPath}/js/lib/datepicker/css/bootstrap.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/js/lib/datepicker/css/bootstrap-datepicker.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/base.css"
+	rel="stylesheet">
+
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script type="text/javascript">
+var ids="stNum,coName";
+var msg="请输入学号,请输入课程名";
+	//非空验证
+	function  checkNull(ids,msg){
+		  var idArray=ids.split(",");
+		   var msgArray=msg.split(",");
+		   for(var i=0;i<idArray.length;i++){
+			  var id= $("#"+idArray[i]).val();
+			  //如果为空，给出错误提示
+			  if(id==""){
+				  $("#"+idArray[i]+"Error").html(msgArray[i]);
+				  return false;
+			  }
+		   }
+		   return true;
+	 }
+
+	$(function(){
+
+//设置获取焦点触发的事件：错误提示消失
+$("#stNum").focus(function(){
+	$("#stNum").val("");
+	$("#stNumError").html("");
+});
+$("#coName").focus(function(){
+	$("#coName").val("");
+	$("#coNameError").html("");
+});
+
+
+//失去焦点触发的事件：判断内容是否为空，若为空给出错误提示
+$("#stNum").blur(function(){
+	var u=$("#stNum").val();
+	if(u==""){
+		$("#stNumError").html("学号不能为空");
+	}
+});
+$("#coName").blur(function(){
+	var p=$("#coName").val();
+	if(p==""){
+		$("#coNameError").html("课程名称不能为空");
+	}
+});
+	});
+function sub(){	
+	 if(checkNull(ids,msg)){
+		 $("#formadd").submit();   
+					
+	   }	
+}
+	
+</script>
+
+</head>
+<body>
+	<div class="container">
+		<div id="inner-hd">
+			<div class="crumbs">
+				<i class="crumbs-arrow"></i> <a href="javascript:;"
+					class="crumbs-label">成绩信息</a>
+			</div>
+		</div>
+
+		<div id="inner-bd">
+			<div class="button-group">
+
+				<div class="button current save">
+					<i class="iconfont">&#xe76a;</i> <span class="button-label"
+						onclick="sub();">保存</span>
+				</div>
+				<div class="button current save">
+					<i class="iconfont">&#xe76a;</i> <span class="button-label"
+						onclick="window.history.go(-1);">返回</span>
+				</div>
+			</div>
+
+			<form id="formadd"
+				action="${pageContext.request.contextPath}/adminAction!selectGrade"
+				method="post">
+				<table class="kv-table">
+
+					<tr>
+						<td class="kv-label">学号</td>
+						<td class="kv-content"><input type="text" name="grade.stNum"
+							id="stNum"> <span id="stNumError"></span></td>
+					</tr>
+					<tr>
+						<td class="kv-label">课程名</td>
+						<td class="kv-content"><input type="text" name="grade.coName"
+							id="coName"> <span id="coNameError"></span></td>
+					</tr>
+
+				</table>
+			</form>
+		</div>
+
+		<div id="inner-ft"></div>
+	</div>
+
+</body>
+</html>

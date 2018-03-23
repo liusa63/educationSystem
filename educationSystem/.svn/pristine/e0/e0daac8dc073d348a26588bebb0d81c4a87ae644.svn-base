@@ -1,0 +1,49 @@
+package com.icss.entity;
+
+public class Question {
+	private int qId;
+	private String qContext;
+	private String qA;
+	private String qB;
+	private String qC;
+	private String qD;
+	public int getqId() {
+		return qId;
+	}
+	public void setqId(int qId) {
+		this.qId = qId;
+	}
+	public String getqContext() {
+		return qContext;
+	}
+	public void setqContext(String qContext) {
+		this.qContext = qContext;
+	}
+	public String getqA() {
+		return qA;
+	}
+	public void setqA(String qA) {
+		this.qA = qA;
+	}
+	public String getqB() {
+		return qB;
+	}
+	public void setqB(String qB) {
+		this.qB = qB;
+	}
+	public String getqC() {
+		return qC;
+	}
+	public void setqC(String qC) {
+		this.qC = qC;
+	}
+	public String getqD() {
+		return qD;
+	}
+	public void setqD(String qD) {
+		this.qD = qD;
+	}
+	
+	
+	
+}

@@ -1,0 +1,24 @@
+package com.icss.biz;
+
+import java.util.List;
+
+import com.icss.entity.Course;
+import com.icss.entity.Evaluation;
+import com.icss.entity.Major;
+import com.icss.entity.Question;
+import com.icss.entity.Sclass;
+import com.icss.entity.Teacher;
+import com.icss.util.PageList;
+
+public interface AdminBiz {
+	public void addTeacher(Teacher teacher);//逐个添加教师信息
+	public void addSclass(Sclass sclass);//逐个添加班级信息
+	public void addCourse(Course course);//录入课程信息
+	public void addQuestion(Question question);//录入问题
+	public List<Question> selectAllQuestion( );//查看所有问题
+	//public void selectListEvaluation(PageList<Evaluation> page,int pageSize);//查看所有反馈信息
+	public void selectListTeacher(PageList<Teacher> page,int pageSize);//查看所有教师信息
+	public List<Major> selectAllMajor( );//查看所有专业
+	public List<Teacher> selectByIdTeacher(String tebehave);//查看所有班主任
+	public Major selectByIdMajor(int maId);//通过id查询专业
+}

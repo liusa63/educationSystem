@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.icss.entity.Student" table="student" lazy="false">
+		<id name="stId" column="st_id" type="integer">
+			<generator class="native"></generator>
+		</id>
+
+		<!-- 普通属性 -->
+		<property name="stNum" column="st_num" type="string"></property>
+		<property name="stName" column="st_name" type="string"></property>
+		<property name="stBehave" column="st_behave" type="string"></property>
+		
+	    <!-- 学生班级多对一 -->
+		<many-to-one  lazy="false"  update="false"  name="sclass" column="cl_id" class="com.icss.entity.Sclass"  >
+	    </many-to-one>
+		
+		<!-- 学生选课  多对多                主动方-->
+
+		<set name="exCourses" table="ex_st" inverse="false" lazy="false">
+		    <key>
+		       <column name="st_id"></column>
+		    </key>
+		    <many-to-many class="com.icss.entity.Excourse" column="ex_id"></many-to-many>
+		</set>
+		
+ 
+	</class>
+
+
+
+
+</hibernate-mapping>

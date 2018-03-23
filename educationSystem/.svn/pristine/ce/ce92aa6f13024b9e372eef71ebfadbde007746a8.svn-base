@@ -1,0 +1,218 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
+<script type="text/javascript">
+
+var ids="coName,coScore,coWeek,coStartTime,coEndTime";
+var msg="请输入课程名称,请输入学分,请输入周次,请输入学期开始,请输入学期末";
+
+
+	//非空验证
+	function  checkNull(ids,msg){
+		  var idArray=ids.split(",");
+		   var msgArray=msg.split(",");
+		   for(var i=0;i<idArray.length;i++){
+			  var id= $("#"+idArray[i]).val();
+			  //如果为空，给出错误提示
+			  if(id==""){
+				  $("#"+idArray[i]+"Error").html(msgArray[i]);
+				  return false;
+			  }
+		   }
+		   return true;
+	 }
+	
+	
+	 //页面加载完成触发的事件
+		$(document).ready(function(){
+			//设置获取焦点触发的事件：错误提示消失
+			$("#coName").focus(function(){
+				$("#coName").val("");
+				$("#coNameError").html("");
+			});
+			$("#coScore").focus(function(){
+				$("#coScore").val("");
+				$("#coScoreError").html("");
+			});
+			$("#coWeek").focus(function(){
+				$("#coWeek").val("");
+				$("#coWeekError").html("");
+			});
+			
+			
+			$("#coStartTime").focus(function(){
+				$("#coStartTime").val("");
+				$("#coStartTimeError").html("");
+			});
+			$("#coEndTime").focus(function(){
+				$("#coEndTime").val("");
+				$("#coEndTimeError").html("");
+			});
+			
+			//失去焦点触发的事件：判断内容是否为空，若为空给出错误提示
+			$("#coName").blur(function(){
+				var u=$("#coName").val();
+				if(u==""){
+					$("#coNameError").html("课程名不能为空");
+				}
+			});
+			$("#coScore").blur(function(){
+				var p=$("#coScore").val();
+				if(p==""){
+					$("#coScoreError").html("学分不能为空");
+				}
+			});
+			$("#coWeek").blur(function(){
+				var p=$("#coWeek").val();
+				if(p==""){
+					$("#coWeekError").html("周次不能为空");
+				}
+			});
+			
+			
+			
+			$("#coStartTime").blur(function(){
+				var p=$("#coStartTime").val();
+				if(p==""){
+					$("#coStartTimeError").html("学期开始不能为空");
+				}
+			});
+			
+			$("#coEndTime").blur(function(){
+				var p=$("#coEndTime").val();
+				if(p==""){
+					$("#coEndTime").html("学期末不能为空");
+				}
+			});
+		});
+
+
+//获取选中单选框
+function testradio(){
+	
+	 if(checkNull(ids,msg)){
+		 var v = $(":radio:checked").val();
+			
+			if(v!=undefined){
+				alert(1);
+				$("#cname").val(v);
+				var maid=$("#ma>option:selected").val();
+				if(maid!=undefined){
+					$("#aa").val(maid);
+					 $("#formadd").submit();   
+				}else{
+					alert("请选择专业");
+				}
+				
+			}else{
+				alert("课程属性");
+			}
+		  
+	   }
+	
+}
+/* 遍历所有专业 */
+$(function(){
+	
+	$.ajax({
+		type:"post",
+		url:"adminAction!selectAllMajor",
+		success:function(mlist){
+			alert(1);
+		   alert(mlist.size);
+		 	var str="<select id='ma'>";
+			for(var i=0;i<mlist.length;i++){
+				str+="<option value="+mlist[i].maId+">"+mlist[i].maName+"<option>";
+			}
+			str+="</select>";
+			$("#content").html(str); 
+		},
+		error:function(){
+			alert("失败");
+		}
+		
+		
+	})
+
+}) 
+
+
+
+</script>
+</head>
+<body>
+<form id="formadd" action="adminAction!addCourse" method="post">
+		<table>
+			
+			<tr>
+				<td>课程名称:</td>
+				
+				<td>&nbsp;&nbsp;<input type="text" name="course.coName" id="coName"/>
+				<span id="coNameError"></span>
+				
+				</td>
+			</tr>
+					<tr>
+				<td>学分:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="course.coScore" id="coScore" />
+				<span id="coScoreError"></span>
+
+				</td>
+			
+				<tr>
+				<td>属性:</td>
+				<td>
+				<input type="radio" value="1" name="coStatus">必修
+	            <input type="radio" value="2" name="coStatus">选修
+				</td>
+			</tr>
+			
+				<tr>
+				<td>周次:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="course.coWeek" id="coWeek"/>
+				<span id="coWeekError"></span>
+				
+
+				</td>
+			</tr>
+			 <tr>
+			
+			<td>选择专业:</td>
+			<td>&nbsp;&nbsp;<span id="content"></span>
+				</td>			
+			</tr>
+			
+				
+				<tr>
+				<td>学期始:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="start" id="coStartTime"/>
+				<span id="coStartTimeError"></span>
+				
+
+				</td>
+			</tr>
+				<tr>
+				<td>学期末:</td>
+				<td>&nbsp;&nbsp;<input type="text" name="end" id="coEndTime"/>
+				<span id="coEndTimeError"></span>
+				
+
+				</td>
+			</tr>
+		 
+			<tr>
+			 <td><input type="hidden" name="maId" id=aa />		
+		      		<td><input type="hidden" id="cname" name="course.coStatus"/>	</td>	
+				<td><input type="button" value="提交" onclick="testradio();" />	</td>			
+			</tr>
+		</table>
+
+	</form>
+
+</body>
+</html>
